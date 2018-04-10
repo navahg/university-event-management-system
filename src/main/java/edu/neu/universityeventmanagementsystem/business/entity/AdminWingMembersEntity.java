@@ -14,8 +14,6 @@ import java.util.Objects;
 @Table(name = "admin_wing_members", schema = "university_event_management_system")
 public class AdminWingMembersEntity {
     private int idAdminWingMembers;
-    private int idUser;
-    private int idAdminWing;
     private UsersEntity usersByIdUser;
     private AdminWingEntity adminWingByIdAdminWing;
 
@@ -29,40 +27,20 @@ public class AdminWingMembersEntity {
         this.idAdminWingMembers = idAdminWingMembers;
     }
 
-    @Basic
-    @Column(name = "id_user", nullable = false)
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
-    @Basic
-    @Column(name = "id_admin_wing", nullable = false)
-    public int getIdAdminWing() {
-        return idAdminWing;
-    }
-
-    public void setIdAdminWing(int idAdminWing) {
-        this.idAdminWing = idAdminWing;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AdminWingMembersEntity that = (AdminWingMembersEntity) o;
         return idAdminWingMembers == that.idAdminWingMembers &&
-                idUser == that.idUser &&
-                idAdminWing == that.idAdminWing;
+                usersByIdUser.equals(that.getUsersByIdUser()) &&
+                adminWingByIdAdminWing.equals(that.getAdminWingByIdAdminWing());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idAdminWingMembers, idUser, idAdminWing);
+        return Objects.hash(idAdminWingMembers, usersByIdUser.getIdUser(), adminWingByIdAdminWing.getIdAdminWing());
     }
 
     @ManyToOne

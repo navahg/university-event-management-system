@@ -16,13 +16,10 @@ import java.util.Objects;
 @Table(name = "events", schema = "university_event_management_system")
 public class EventsEntity {
     private int idEvent;
-    private int idHierarchy;
-    private int idCreator;
     private String name;
     private String venue;
     private Timestamp startTime;
     private Timestamp endTime;
-    private int status;
     private Collection<EventParticipantsEntity> eventParticipantsByIdEvent;
     private HierarchyEntity hierarchyByIdHierarchy;
     private UsersEntity usersByIdCreator;
@@ -38,26 +35,6 @@ public class EventsEntity {
 
     public void setIdEvent(int idEvent) {
         this.idEvent = idEvent;
-    }
-
-    @Basic
-    @Column(name = "id_hierarchy", nullable = false)
-    public int getIdHierarchy() {
-        return idHierarchy;
-    }
-
-    public void setIdHierarchy(int idHierarchy) {
-        this.idHierarchy = idHierarchy;
-    }
-
-    @Basic
-    @Column(name = "id_creator", nullable = false)
-    public int getIdCreator() {
-        return idCreator;
-    }
-
-    public void setIdCreator(int idCreator) {
-        this.idCreator = idCreator;
     }
 
     @Basic
@@ -100,25 +77,15 @@ public class EventsEntity {
         this.endTime = endTime;
     }
 
-    @Basic
-    @Column(name = "status", nullable = false)
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EventsEntity that = (EventsEntity) o;
         return idEvent == that.idEvent &&
-                idHierarchy == that.idHierarchy &&
-                idCreator == that.idCreator &&
-                status == that.status &&
+                hierarchyByIdHierarchy.equals(that.getHierarchyByIdHierarchy()) &&
+                usersByIdCreator.equals(that.getUsersByIdCreator()) &&
+                eventStatusByStatus.equals(that.getEventStatusByStatus()) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(venue, that.venue) &&
                 Objects.equals(startTime, that.startTime) &&
@@ -128,7 +95,8 @@ public class EventsEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(idEvent, idHierarchy, idCreator, name, venue, startTime, endTime, status);
+        return Objects.hash(idEvent, hierarchyByIdHierarchy.getIdHierarchy(), usersByIdCreator.getIdUser(),
+                name, venue, startTime, endTime, eventStatusByStatus.getIdStatus());
     }
 
     @OneToMany(mappedBy = "eventsByIdEvent")

@@ -15,7 +15,6 @@ import java.util.Objects;
 @Table(name = "users", schema = "university_event_management_system")
 public class UsersEntity {
     private int idUser;
-    private int idRole;
     private String userName;
     private String firstName;
     private String middleName;
@@ -41,16 +40,6 @@ public class UsersEntity {
 
     public void setIdUser(int idUser) {
         this.idUser = idUser;
-    }
-
-    @Basic
-    @Column(name = "id_role", nullable = false)
-    public int getIdRole() {
-        return idRole;
-    }
-
-    public void setIdRole(int idRole) {
-        this.idRole = idRole;
     }
 
     @Basic
@@ -109,7 +98,7 @@ public class UsersEntity {
         if (o == null || getClass() != o.getClass()) return false;
         UsersEntity that = (UsersEntity) o;
         return idUser == that.idUser &&
-                idRole == that.idRole &&
+                rolesByIdRole.equals(that.getRolesByIdRole()) &&
                 Objects.equals(userName, that.userName) &&
                 Objects.equals(firstName, that.firstName) &&
                 Objects.equals(middleName, that.middleName) &&
@@ -120,7 +109,7 @@ public class UsersEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(idUser, idRole, userName, firstName, middleName, lastName, email);
+        return Objects.hash(idUser, rolesByIdRole.getIdRole(), userName, firstName, middleName, lastName, email);
     }
 
     @OneToMany(mappedBy = "usersByIdUser")

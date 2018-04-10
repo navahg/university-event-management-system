@@ -15,7 +15,6 @@ import java.util.Objects;
 @Table(name = "clubs", schema = "university_event_management_system")
 public class ClubsEntity {
     private int idClub;
-    private int idHierarchy;
     private String name;
     private Collection<ClubMembersEntity> clubMembersByIdClub;
     private HierarchyEntity hierarchyByIdHierarchy;
@@ -28,16 +27,6 @@ public class ClubsEntity {
 
     public void setIdClub(int idClub) {
         this.idClub = idClub;
-    }
-
-    @Basic
-    @Column(name = "id_hierarchy", nullable = false)
-    public int getIdHierarchy() {
-        return idHierarchy;
-    }
-
-    public void setIdHierarchy(int idHierarchy) {
-        this.idHierarchy = idHierarchy;
     }
 
     @Basic
@@ -56,14 +45,14 @@ public class ClubsEntity {
         if (o == null || getClass() != o.getClass()) return false;
         ClubsEntity that = (ClubsEntity) o;
         return idClub == that.idClub &&
-                idHierarchy == that.idHierarchy &&
+                hierarchyByIdHierarchy.equals(that.getHierarchyByIdHierarchy()) &&
                 Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idClub, idHierarchy, name);
+        return Objects.hash(idClub, hierarchyByIdHierarchy.getIdHierarchy(), name);
     }
 
     @OneToMany(mappedBy = "clubsByIdClub")

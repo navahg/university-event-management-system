@@ -14,8 +14,6 @@ import java.util.Objects;
 @Table(name = "schedules", schema = "university_event_management_system")
 public class SchedulesEntity {
     private int idSchedule;
-    private int idUser;
-    private int idEvent;
     private UsersEntity usersByIdUser;
     private EventsEntity eventsByIdEvent;
 
@@ -29,40 +27,20 @@ public class SchedulesEntity {
         this.idSchedule = idSchedule;
     }
 
-    @Basic
-    @Column(name = "id_user", nullable = false)
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
-    @Basic
-    @Column(name = "id_event", nullable = false)
-    public int getIdEvent() {
-        return idEvent;
-    }
-
-    public void setIdEvent(int idEvent) {
-        this.idEvent = idEvent;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SchedulesEntity that = (SchedulesEntity) o;
         return idSchedule == that.idSchedule &&
-                idUser == that.idUser &&
-                idEvent == that.idEvent;
+                usersByIdUser.equals(that.usersByIdUser) &&
+                eventsByIdEvent.equals(that.getEventsByIdEvent());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idSchedule, idUser, idEvent);
+        return Objects.hash(idSchedule, usersByIdUser.getIdUser(), eventsByIdEvent.getIdEvent());
     }
 
     @ManyToOne

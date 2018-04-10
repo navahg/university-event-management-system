@@ -15,7 +15,6 @@ import java.util.Objects;
 @Table(name = "admin_wing", schema = "university_event_management_system")
 public class AdminWingEntity {
     private int idAdminWing;
-    private int idCollege;
     private String name;
     private CollegesEntity collegesByIdCollege;
     private Collection<AdminWingMembersEntity> adminWingMembersByIdAdminWing;
@@ -28,16 +27,6 @@ public class AdminWingEntity {
 
     public void setIdAdminWing(int idAdminWing) {
         this.idAdminWing = idAdminWing;
-    }
-
-    @Basic
-    @Column(name = "id_college", nullable = false)
-    public int getIdCollege() {
-        return idCollege;
-    }
-
-    public void setIdCollege(int idCollege) {
-        this.idCollege = idCollege;
     }
 
     @Basic
@@ -56,14 +45,14 @@ public class AdminWingEntity {
         if (o == null || getClass() != o.getClass()) return false;
         AdminWingEntity that = (AdminWingEntity) o;
         return idAdminWing == that.idAdminWing &&
-                idCollege == that.idCollege &&
+                collegesByIdCollege.equals(that.getCollegesByIdCollege()) &&
                 Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idAdminWing, idCollege, name);
+        return Objects.hash(idAdminWing, collegesByIdCollege.getIdCollege(), name);
     }
 
     @ManyToOne

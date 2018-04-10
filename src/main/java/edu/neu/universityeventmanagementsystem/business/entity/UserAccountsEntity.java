@@ -14,7 +14,6 @@ import java.util.Objects;
 @Table(name = "user_accounts", schema = "university_event_management_system")
 public class UserAccountsEntity {
     private int idUserAccount;
-    private int idUser;
     private String userName;
     private String password;
     private UsersEntity usersByIdUser;
@@ -27,16 +26,6 @@ public class UserAccountsEntity {
 
     public void setIdUserAccount(int idUserAccount) {
         this.idUserAccount = idUserAccount;
-    }
-
-    @Basic
-    @Column(name = "id_user", nullable = false)
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
     }
 
     @Basic
@@ -65,7 +54,7 @@ public class UserAccountsEntity {
         if (o == null || getClass() != o.getClass()) return false;
         UserAccountsEntity that = (UserAccountsEntity) o;
         return idUserAccount == that.idUserAccount &&
-                idUser == that.idUser &&
+                usersByIdUser.equals(that.getUsersByIdUser()) &&
                 Objects.equals(userName, that.userName) &&
                 Objects.equals(password, that.password);
     }
@@ -73,7 +62,7 @@ public class UserAccountsEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(idUserAccount, idUser, userName, password);
+        return Objects.hash(idUserAccount, usersByIdUser.getIdUser(), userName, password);
     }
 
     @ManyToOne

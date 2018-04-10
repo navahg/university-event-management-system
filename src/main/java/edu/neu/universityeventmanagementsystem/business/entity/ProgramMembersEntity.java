@@ -14,8 +14,6 @@ import java.util.Objects;
 @Table(name = "program_members", schema = "university_event_management_system")
 public class ProgramMembersEntity {
     private int idProgramMembers;
-    private int idUser;
-    private int idProgram;
     private UsersEntity usersByIdUser;
     private ProgramsEntity programsByIdProgram;
 
@@ -29,40 +27,20 @@ public class ProgramMembersEntity {
         this.idProgramMembers = idProgramMembers;
     }
 
-    @Basic
-    @Column(name = "id_user", nullable = false)
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
-    @Basic
-    @Column(name = "id_program", nullable = false)
-    public int getIdProgram() {
-        return idProgram;
-    }
-
-    public void setIdProgram(int idProgram) {
-        this.idProgram = idProgram;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProgramMembersEntity that = (ProgramMembersEntity) o;
         return idProgramMembers == that.idProgramMembers &&
-                idUser == that.idUser &&
-                idProgram == that.idProgram;
+                usersByIdUser.equals(that.getUsersByIdUser()) &&
+                programsByIdProgram.equals(that.getProgramsByIdProgram());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idProgramMembers, idUser, idProgram);
+        return Objects.hash(idProgramMembers, usersByIdUser.getIdUser(), programsByIdProgram.getIdProgram());
     }
 
     @ManyToOne

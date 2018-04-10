@@ -14,7 +14,6 @@ import java.util.Objects;
 @Table(name = "notifications", schema = "university_event_management_system")
 public class NotificationsEntity {
     private int idNotification;
-    private int idUser;
     private String message;
     private boolean readFlag;
     private UsersEntity usersByIdUser;
@@ -27,16 +26,6 @@ public class NotificationsEntity {
 
     public void setIdNotification(int idNotification) {
         this.idNotification = idNotification;
-    }
-
-    @Basic
-    @Column(name = "id_user", nullable = false)
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
     }
 
     @Basic
@@ -65,7 +54,7 @@ public class NotificationsEntity {
         if (o == null || getClass() != o.getClass()) return false;
         NotificationsEntity that = (NotificationsEntity) o;
         return idNotification == that.idNotification &&
-                idUser == that.idUser &&
+                usersByIdUser.equals(that.getUsersByIdUser()) &&
                 readFlag == that.readFlag &&
                 Objects.equals(message, that.message);
     }
@@ -73,7 +62,7 @@ public class NotificationsEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(idNotification, idUser, message, readFlag);
+        return Objects.hash(idNotification, usersByIdUser.getIdUser(), message, readFlag);
     }
 
     @ManyToOne

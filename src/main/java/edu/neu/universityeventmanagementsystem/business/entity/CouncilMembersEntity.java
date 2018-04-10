@@ -14,8 +14,6 @@ import java.util.Objects;
 @Table(name = "council_members", schema = "university_event_management_system")
 public class CouncilMembersEntity {
     private int idCouncilMembers;
-    private int idUser;
-    private int idCouncil;
     private UsersEntity usersByIdUser;
     private CouncilsEntity councilsByIdCouncil;
 
@@ -29,40 +27,20 @@ public class CouncilMembersEntity {
         this.idCouncilMembers = idCouncilMembers;
     }
 
-    @Basic
-    @Column(name = "id_user", nullable = false)
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
-    @Basic
-    @Column(name = "id_council", nullable = false)
-    public int getIdCouncil() {
-        return idCouncil;
-    }
-
-    public void setIdCouncil(int idCouncil) {
-        this.idCouncil = idCouncil;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CouncilMembersEntity that = (CouncilMembersEntity) o;
         return idCouncilMembers == that.idCouncilMembers &&
-                idUser == that.idUser &&
-                idCouncil == that.idCouncil;
+                usersByIdUser.equals(that.getUsersByIdUser()) &&
+                councilsByIdCouncil.equals(that.getCouncilsByIdCouncil());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idCouncilMembers, idUser, idCouncil);
+        return Objects.hash(idCouncilMembers, usersByIdUser.getIdUser(), councilsByIdCouncil.getIdCouncil());
     }
 
     @ManyToOne

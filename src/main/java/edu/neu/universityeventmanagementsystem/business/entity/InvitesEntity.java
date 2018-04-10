@@ -14,8 +14,6 @@ import java.util.Objects;
 @Table(name = "invites", schema = "university_event_management_system")
 public class InvitesEntity {
     private int idInvite;
-    private int idInvitee;
-    private int idEvent;
     private UsersEntity usersByIdInvitee;
     private EventsEntity eventsByIdEvent;
 
@@ -29,40 +27,20 @@ public class InvitesEntity {
         this.idInvite = idInvite;
     }
 
-    @Basic
-    @Column(name = "id_invitee", nullable = false)
-    public int getIdInvitee() {
-        return idInvitee;
-    }
-
-    public void setIdInvitee(int idInvitee) {
-        this.idInvitee = idInvitee;
-    }
-
-    @Basic
-    @Column(name = "id_event", nullable = false)
-    public int getIdEvent() {
-        return idEvent;
-    }
-
-    public void setIdEvent(int idEvent) {
-        this.idEvent = idEvent;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InvitesEntity that = (InvitesEntity) o;
         return idInvite == that.idInvite &&
-                idInvitee == that.idInvitee &&
-                idEvent == that.idEvent;
+                usersByIdInvitee.equals(that.getUsersByIdInvitee()) &&
+                eventsByIdEvent.equals(that.getEventsByIdEvent());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idInvite, idInvitee, idEvent);
+        return Objects.hash(idInvite, usersByIdInvitee.getIdUser(), eventsByIdEvent.getIdEvent());
     }
 
     @ManyToOne

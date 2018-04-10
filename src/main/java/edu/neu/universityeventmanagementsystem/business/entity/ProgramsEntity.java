@@ -15,7 +15,6 @@ import java.util.Objects;
 @Table(name = "programs", schema = "university_event_management_system")
 public class ProgramsEntity {
     private int idProgram;
-    private int idCollege;
     private String name;
     private Collection<ProgramMembersEntity> programMembersByIdProgram;
     private CollegesEntity collegesByIdCollege;
@@ -28,16 +27,6 @@ public class ProgramsEntity {
 
     public void setIdProgram(int idProgram) {
         this.idProgram = idProgram;
-    }
-
-    @Basic
-    @Column(name = "id_college", nullable = false)
-    public int getIdCollege() {
-        return idCollege;
-    }
-
-    public void setIdCollege(int idCollege) {
-        this.idCollege = idCollege;
     }
 
     @Basic
@@ -56,14 +45,14 @@ public class ProgramsEntity {
         if (o == null || getClass() != o.getClass()) return false;
         ProgramsEntity that = (ProgramsEntity) o;
         return idProgram == that.idProgram &&
-                idCollege == that.idCollege &&
+                collegesByIdCollege.equals(that.getCollegesByIdCollege()) &&
                 Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idProgram, idCollege, name);
+        return Objects.hash(idProgram, collegesByIdCollege.getIdCollege(), name);
     }
 
     @OneToMany(mappedBy = "programsByIdProgram")
