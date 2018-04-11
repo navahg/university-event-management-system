@@ -1,6 +1,8 @@
 package edu.neu.universityeventmanagementsystem;
 
-import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainController;
+import edu.neu.universityeventmanagementsystem.business.ui.loader.controller.LoaderFrameController;
+import edu.neu.universityeventmanagementsystem.business.ui.loader.view.LoaderFrameView;
+import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -18,10 +20,20 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class UniversityEventManagementSystemApplication {
 
     public static void main(String[] args) {
+        // Showing loading application
+        LoaderFrameController loaderFrameController = new LoaderFrameController(new LoaderFrameView());
+        loaderFrameController.prepareAndOpenFrame();
+
+        // Starting Spring application
         ConfigurableApplicationContext context =
                 new SpringApplicationBuilder(UniversityEventManagementSystemApplication.class)
                         .headless(false).run(args);
-        MainController mainController = context.getBean(MainController.class);
-        mainController.openFrame();
+
+        // Closing the loader screen
+        loaderFrameController.closeFrame();
+
+        // Opening the main application
+        MainFrameController mainFrameController = context.getBean(MainFrameController.class);
+        mainFrameController.prepareAndOpenFrame();
     }
 }

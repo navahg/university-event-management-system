@@ -10,6 +10,7 @@ package edu.neu.universityeventmanagementsystem.business.util;
 public interface ConstantMessages {
 
     interface Titles {
-        final String APPLICATION_TITLE = "University Event Management System";
+        String APPLICATION_TITLE = "University Event Management System";
+        String LOADER_TITLE = "Loading application...";
     }
 }

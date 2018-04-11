@@ -12,13 +12,12 @@ import org.springframework.stereotype.Component;
  * @version 1.0
  */
 @Component
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrameView extends javax.swing.JFrame {
 
     /** Creates new form MainFrame */
-    public MainFrame() {
+    public MainFrameView() {
         setUp();
         initComponents();
-        pack();
     }
 
     /** This method is called from within the constructor to
@@ -37,17 +36,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setPreferredSize(new java.awt.Dimension(1366, 768));
-
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1366, Short.MAX_VALUE)
-        );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 768, Short.MAX_VALUE)
-        );
+        mainPanel.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,9 +60,16 @@ public class MainFrame extends javax.swing.JFrame {
         LookAndFeelUtils.setSystemLookAndFeel();
         setTitle(ConstantMessages.Titles.APPLICATION_TITLE);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         setLocationRelativeTo(null);
     }
-    
+
+    public void addToPanel(java.awt.Component c) {
+        mainPanel.add("LoginPanel", c);
+        java.awt.CardLayout layout = (java.awt.CardLayout) mainPanel.getLayout();
+        layout.next(mainPanel);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
