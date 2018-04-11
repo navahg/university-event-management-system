@@ -22,7 +22,7 @@ public class UniversityEventManagementSystemApplication {
     public static void main(String[] args) {
         // Showing loading application
         LoaderFrameController loaderFrameController = new LoaderFrameController(new LoaderFrameView());
-        loaderFrameController.prepareAndOpenFrame();
+        loaderFrameController.prepareAndOpenForm();
 
         // Starting Spring application
         ConfigurableApplicationContext context =
@@ -34,6 +34,6 @@ public class UniversityEventManagementSystemApplication {
 
         // Opening the main application
         MainFrameController mainFrameController = context.getBean(MainFrameController.class);
-        mainFrameController.prepareAndOpenFrame();
+        mainFrameController.prepareAndOpenForm();
     }
 }

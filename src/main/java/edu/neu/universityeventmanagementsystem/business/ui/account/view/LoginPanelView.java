@@ -20,6 +20,7 @@ public class LoginPanelView extends javax.swing.JPanel {
      */
     public LoginPanelView() {
         initComponents();
+        supressInvalidCredentials();
     }
 
     @Override
@@ -28,6 +29,17 @@ public class LoginPanelView extends javax.swing.JPanel {
         g.drawImage(ImageTools.loadImage("background_2.jpg", 1366, 768), 0, 0, null);
     }
 
+    public void raiseInvalidCredentials () {
+        lblLoginFailed.setVisible(true);
+    }
+
+    public void supressInvalidCredentials () {
+        lblLoginFailed.setVisible(false);
+    }
+
+    public java.awt.Component getSignInButton () {
+        return btnSignIn;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,6 +57,7 @@ public class LoginPanelView extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
+        lblLoginFailed = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setPreferredSize(new java.awt.Dimension(1366, 768));
@@ -90,6 +103,14 @@ public class LoginPanelView extends javax.swing.JPanel {
 
         jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        lblLoginFailed.setBackground(jPanel1.getBackground());
+        lblLoginFailed.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblLoginFailed.setForeground(new java.awt.Color(204, 0, 0));
+        lblLoginFailed.setText("Invalid credentials");
+        lblLoginFailed.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblLoginFailed.setFocusable(false);
+        lblLoginFailed.setOpaque(true);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -114,7 +135,8 @@ public class LoginPanelView extends javax.swing.JPanel {
                                         .addComponent(txtFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPasswordField1))))
+                                    .addComponent(jPasswordField1)
+                                    .addComponent(lblLoginFailed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(58, 58, 58)))
                 .addContainerGap())
         );
@@ -127,11 +149,13 @@ public class LoginPanelView extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
+                .addGap(18, 18, 18)
+                .addComponent(lblLoginFailed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addComponent(btnSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,6 +189,7 @@ public class LoginPanelView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JLabel lblLoginFailed;
     private javax.swing.JTextField txtFieldUsername;
     // End of variables declaration//GEN-END:variables
 }

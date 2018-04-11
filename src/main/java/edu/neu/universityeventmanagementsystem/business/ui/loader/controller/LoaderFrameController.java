@@ -1,6 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.ui.loader.controller;
 
 import edu.neu.universityeventmanagementsystem.business.ui.loader.view.LoaderFrameView;
+import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 
 /**
  * MainFrameController class
@@ -9,7 +10,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.loader.view.LoaderFra
  * @version 1.0
  * @since 4/6/18
  */
-public class LoaderFrameController {
+public class LoaderFrameController extends FormController {
 
     private LoaderFrameView loaderFrameView;
 
@@ -17,7 +18,8 @@ public class LoaderFrameController {
         this.loaderFrameView = loaderFrameView;
     }
 
-    public void prepareAndOpenFrame() {
+    @Override
+    public void prepareAndOpenForm() {
         loaderFrameView.setVisible(true);
     }
 

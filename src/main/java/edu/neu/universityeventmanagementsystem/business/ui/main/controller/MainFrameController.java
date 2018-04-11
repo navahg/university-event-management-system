@@ -1,7 +1,8 @@
 package edu.neu.universityeventmanagementsystem.business.ui.main.controller;
 
-import edu.neu.universityeventmanagementsystem.business.ui.account.view.LoginPanelView;
+import edu.neu.universityeventmanagementsystem.business.ui.account.controller.LoginPanelController;
 import edu.neu.universityeventmanagementsystem.business.ui.main.view.MainFrameView;
+import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -13,23 +14,24 @@ import org.springframework.stereotype.Controller;
  * @since 4/6/18
  */
 @Controller
-public class MainFrameController {
+public class MainFrameController extends FormController {
 
     private MainFrameView mainFrameView;
-    private LoginPanelView loginPanelView;
+    private LoginPanelController loginPanelController;
 
     @Autowired
-    public MainFrameController(MainFrameView mainFrameView, LoginPanelView loginPanelView) {
+    public MainFrameController(MainFrameView mainFrameView, LoginPanelController loginPanelController) {
         this.mainFrameView = mainFrameView;
-        this.loginPanelView = loginPanelView;
+        this.loginPanelController = loginPanelController;
     }
 
-    public void prepareAndOpenFrame() {
-        addAndShowLoginPanel();
+    @Override
+    public void prepareAndOpenForm() {
+        showLoginPanel();
         mainFrameView.setVisible(true);
     }
 
-    private void addAndShowLoginPanel() {
-        mainFrameView.addToPanel(loginPanelView);
+    private void showLoginPanel() {
+        loginPanelController.prepareAndOpenForm();
     }
 }
