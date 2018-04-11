@@ -1,10 +1,14 @@
 package edu.neu.universityeventmanagementsystem.business.ui.account.controller;
 
+import edu.neu.universityeventmanagementsystem.business.entity.UserAccountsEntity;
+import edu.neu.universityeventmanagementsystem.business.service.UserAccountsService;
 import edu.neu.universityeventmanagementsystem.business.ui.account.view.LoginPanelView;
 import edu.neu.universityeventmanagementsystem.business.ui.main.view.MainFrameView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import javax.swing.*;
 
 /**
  * LoginPanelController class
@@ -18,11 +22,13 @@ public class LoginPanelController extends FormController {
 
     private MainFrameView mainFrameView;
     private LoginPanelView loginPanelView;
+    private UserAccountsService userAccountsService;
 
     @Autowired
-    public LoginPanelController(MainFrameView mainFrameView, LoginPanelView loginPanelView) {
+    public LoginPanelController(MainFrameView mainFrameView, LoginPanelView loginPanelView, UserAccountsService userAccountsService) {
         this.mainFrameView = mainFrameView;
         this.loginPanelView = loginPanelView;
+        this.userAccountsService = userAccountsService;
     }
 
     @Override
@@ -32,7 +38,18 @@ public class LoginPanelController extends FormController {
     }
 
     private void doSignIn () {
+        loginPanelView.supressInvalidCredentials();
 
+        String username = loginPanelView.getUserName();
+        String password = loginPanelView.getPassword();
+
+        UserAccountsEntity account = userAccountsService.findOne(username, password);
+        if (account == null) {
+            loginPanelView.raiseInvalidCredentials();
+            return;
+        }
+
+        JOptionPane.showMessageDialog(null, "Login Successful!");
     }
 
     private void addPanelTo(java.awt.Component mainFrameView) {
