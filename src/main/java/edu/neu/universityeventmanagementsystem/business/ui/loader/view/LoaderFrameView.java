@@ -17,8 +17,8 @@ public class LoaderFrameView extends javax.swing.JFrame {
      * Creates new form LoaderFrameView
      */
     public LoaderFrameView() {
-        setUp();
         initComponents();
+        setUp();
     }
 
     private void setUp() {

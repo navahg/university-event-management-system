@@ -16,8 +16,8 @@ public class MainFrameView extends javax.swing.JFrame {
 
     /** Creates new form MainFrame */
     public MainFrameView() {
-        setUp();
         initComponents();
+        setUp();
     }
 
     /** This method is called from within the constructor to
