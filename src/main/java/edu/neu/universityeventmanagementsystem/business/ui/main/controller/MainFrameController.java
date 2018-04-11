@@ -1,6 +1,6 @@
 package edu.neu.universityeventmanagementsystem.business.ui.main.controller;
 
-import edu.neu.universityeventmanagementsystem.business.ui.account.view.LoginPanel;
+import edu.neu.universityeventmanagementsystem.business.ui.account.view.LoginPanelView;
 import edu.neu.universityeventmanagementsystem.business.ui.main.view.MainFrameView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,12 +16,12 @@ import org.springframework.stereotype.Controller;
 public class MainFrameController {
 
     private MainFrameView mainFrameView;
-    private LoginPanel loginPanel;
+    private LoginPanelView loginPanelView;
 
     @Autowired
-    public MainFrameController(MainFrameView mainFrameView, LoginPanel loginPanel) {
+    public MainFrameController(MainFrameView mainFrameView, LoginPanelView loginPanelView) {
         this.mainFrameView = mainFrameView;
-        this.loginPanel = loginPanel;
+        this.loginPanelView = loginPanelView;
     }
 
     public void prepareAndOpenFrame() {
@@ -30,6 +30,6 @@ public class MainFrameController {
     }
 
     private void addAndShowLoginPanel() {
-        mainFrameView.addToPanel(loginPanel);
+        mainFrameView.addToPanel(loginPanelView);
     }
 }

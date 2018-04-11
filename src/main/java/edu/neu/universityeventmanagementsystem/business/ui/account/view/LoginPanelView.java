@@ -13,12 +13,12 @@ import java.awt.*;
  * @since 04/11/2018
  */
 @Component
-public class LoginPanel extends javax.swing.JPanel {
+public class LoginPanelView extends javax.swing.JPanel {
 
     /**
      * Creates new form LoginPanel
      */
-    public LoginPanel() {
+    public LoginPanelView() {
         initComponents();
     }
 
@@ -57,6 +57,7 @@ public class LoginPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sign In");
 
+        txtFieldUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtFieldUsername.setBorder(null);
 
         btnSignIn.setBackground(new java.awt.Color(0, 51, 0));
@@ -86,6 +87,8 @@ public class LoginPanel extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Password");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
