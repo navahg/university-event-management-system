@@ -1,6 +1,6 @@
 package edu.neu.universityeventmanagementsystem.business.ui.main.controller;
 
-import edu.neu.universityeventmanagementsystem.business.ui.account.controller.LoginPanelController;
+import edu.neu.universityeventmanagementsystem.business.ui.account.login.controller.LoginPanelController;
 import edu.neu.universityeventmanagementsystem.business.ui.main.view.MainFrameView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +33,9 @@ public class MainFrameController extends FormController {
 
     private void showLoginPanel() {
         loginPanelController.prepareAndOpenForm();
+    }
+
+    public void addToLayout (java.awt.Component component) {
+        mainFrameView.addToPanel(component);
     }
 }

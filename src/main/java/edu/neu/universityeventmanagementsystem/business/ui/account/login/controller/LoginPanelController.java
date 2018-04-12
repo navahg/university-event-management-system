@@ -1,8 +1,10 @@
-package edu.neu.universityeventmanagementsystem.business.ui.account.controller;
+package edu.neu.universityeventmanagementsystem.business.ui.account.login.controller;
 
 import edu.neu.universityeventmanagementsystem.business.entity.UserAccountsEntity;
 import edu.neu.universityeventmanagementsystem.business.service.UserAccountsService;
-import edu.neu.universityeventmanagementsystem.business.ui.account.view.LoginPanelView;
+import edu.neu.universityeventmanagementsystem.business.ui.account.login.view.LoginPanelView;
+import edu.neu.universityeventmanagementsystem.business.ui.account.register.controller.RegisterPanelController;
+import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.main.view.MainFrameView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,21 +22,25 @@ import javax.swing.*;
 @Controller
 public class LoginPanelController extends FormController {
 
-    private MainFrameView mainFrameView;
+    private MainFrameController mainFrameController;
     private LoginPanelView loginPanelView;
+    private RegisterPanelController registerPanelController;
     private UserAccountsService userAccountsService;
 
     @Autowired
-    public LoginPanelController(MainFrameView mainFrameView, LoginPanelView loginPanelView, UserAccountsService userAccountsService) {
-        this.mainFrameView = mainFrameView;
+    public LoginPanelController(MainFrameController mainFrameController, LoginPanelView loginPanelView,
+                                UserAccountsService userAccountsService,
+                                RegisterPanelController registerPanelController) {
+        this.mainFrameController = mainFrameController;
         this.loginPanelView = loginPanelView;
+        this.registerPanelController = registerPanelController;
         this.userAccountsService = userAccountsService;
     }
 
     @Override
     public void prepareAndOpenForm() {
         registerAction((javax.swing.JButton)loginPanelView.getSignInButton(), (event) -> doSignIn());
-        addPanelTo(mainFrameView);
+        viewPanel();
     }
 
     private void doSignIn () {
@@ -52,10 +58,8 @@ public class LoginPanelController extends FormController {
         JOptionPane.showMessageDialog(null, "Login Successful!");
     }
 
-    private void addPanelTo(java.awt.Component mainFrameView) {
-        if (!(mainFrameView instanceof MainFrameView)) return;
-
-        ((MainFrameView) mainFrameView).addToPanel(loginPanelView);
+    private void viewPanel() {
+        mainFrameController.addToLayout(loginPanelView);
     }
 
 }

@@ -1,4 +1,4 @@
-package edu.neu.universityeventmanagementsystem.business.ui.account.view;
+package edu.neu.universityeventmanagementsystem.business.ui.account.login.view;
 
 import edu.neu.universityeventmanagementsystem.business.util.ImageTools;
 import org.springframework.stereotype.Component;
@@ -27,7 +27,7 @@ public class LoginPanelView extends javax.swing.JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(ImageTools.loadImage("background_2.jpg", 1366, 768), 0, 0, null);
+        g.drawImage(ImageTools.loadImage("background_image.jpg", 1366, 768), 0, 0, null);
     }
 
     public void raiseInvalidCredentials () {
