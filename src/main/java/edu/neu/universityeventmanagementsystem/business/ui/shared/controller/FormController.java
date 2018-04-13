@@ -1,7 +1,6 @@
 package edu.neu.universityeventmanagementsystem.business.ui.shared.controller;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**

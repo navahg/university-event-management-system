@@ -2,8 +2,9 @@ package edu.neu.universityeventmanagementsystem.business.ui.main.view;
 
 import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
 import edu.neu.universityeventmanagementsystem.business.util.LookAndFeelUtils;
-import javax.swing.WindowConstants;
 import org.springframework.stereotype.Component;
+
+import javax.swing.*;
 
 /**
  *

@@ -1,7 +1,5 @@
 package edu.neu.universityeventmanagementsystem.business.ui.main.controller;
 
-import edu.neu.universityeventmanagementsystem.business.ui.account.login.controller.LoginPanelController;
-import edu.neu.universityeventmanagementsystem.business.ui.account.register.view.RegisterPanelView;
 import edu.neu.universityeventmanagementsystem.business.ui.main.view.MainFrameView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import org.springframework.beans.factory.annotation.Autowired;

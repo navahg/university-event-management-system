@@ -3,7 +3,6 @@ package edu.neu.universityeventmanagementsystem;
 import edu.neu.universityeventmanagementsystem.business.ui.account.login.controller.LoginPanelController;
 import edu.neu.universityeventmanagementsystem.business.ui.loader.controller.LoaderFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.loader.view.LoaderFrameView;
-import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
