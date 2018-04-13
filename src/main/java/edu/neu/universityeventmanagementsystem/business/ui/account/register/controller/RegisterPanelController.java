@@ -1,6 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.ui.account.register.controller;
 
 import edu.neu.universityeventmanagementsystem.business.ui.account.register.view.RegisterPanelView;
+import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.main.view.MainFrameView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +18,25 @@ import org.springframework.stereotype.Controller;
 public class RegisterPanelController extends FormController {
 
     private RegisterPanelView registerPanelView;
-    private MainFrameView mainFrameView;
+    private MainFrameController mainFrameController;
 
     @Autowired
-    public RegisterPanelController(RegisterPanelView registerPanelView, MainFrameView ) {
+    public RegisterPanelController(RegisterPanelView registerPanelView, MainFrameController mainFrameController) {
         this.registerPanelView = registerPanelView;
+        this.mainFrameController =mainFrameController;
     }
 
     @Override
     public void prepareAndOpenForm() {
+        registerAction(((javax.swing.JButton) registerPanelView.getBackButton()), (event) -> naviagateBack());
+        viewPanel();
+    }
 
+    private void naviagateBack() {
+        mainFrameController.removeFromLayout(registerPanelView);
+    }
+
+    private void viewPanel() {
+        mainFrameController.addToLayout(registerPanelView);
     }
 }

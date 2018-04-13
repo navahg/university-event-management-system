@@ -26,8 +26,6 @@ DROP TABLE IF EXISTS events CASCADE;
 DROP TABLE IF EXISTS event_status CASCADE;
 
 
-DROP TABLE IF EXISTS hierarchy CASCADE;
-
 DROP TABLE IF EXISTS user_accounts CASCADE;
 
 DROP TABLE IF EXISTS users CASCADE;
@@ -40,6 +38,9 @@ DROP TABLE IF EXISTS councils CASCADE;
 DROP TABLE IF EXISTS programs CASCADE;
 
 DROP TABLE IF EXISTS roles CASCADE;
+
+
+DROP TABLE IF EXISTS hierarchy CASCADE;
 
 
 DROP TABLE IF EXISTS colleges CASCADE;
@@ -90,13 +91,27 @@ CREATE TABLE admin_wing (
 );
 
 /*======================================================================================================*/
+/* Table: hierarchy                                                                                     */
+/*======================================================================================================*/
+CREATE TABLE hierarchy (
+  id_hierarchy INTEGER      NOT NULL  AUTO_INCREMENT,
+  table_name   VARCHAR(255) NOT NULL,
+  description  VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id_hierarchy)
+);
+
+/*======================================================================================================*/
 /* Table: roles                                                                                         */
 /*======================================================================================================*/
 CREATE TABLE roles (
   id_role         INTEGER      NOT NULL  AUTO_INCREMENT,
   name            VARCHAR(255) NOT NULL,
   privilege_level INTEGER      NOT NULL,
-  PRIMARY KEY (id_role)
+  id_hierarchy    INTEGER      NOT NULL,
+  id_entity       INTEGER      NOT NULL,
+  PRIMARY KEY (id_role),
+  FOREIGN KEY (id_hierarchy) REFERENCES hierarchy (id_hierarchy)
+    ON DELETE CASCADE
 );
 
 /*======================================================================================================*/
@@ -128,15 +143,6 @@ CREATE TABLE user_accounts (
     ON DELETE CASCADE
 );
 
-/*======================================================================================================*/
-/* Table: hierarchy                                                                                     */
-/*======================================================================================================*/
-CREATE TABLE hierarchy (
-  id_hierarchy INTEGER      NOT NULL  AUTO_INCREMENT,
-  table_name   VARCHAR(255) NOT NULL,
-  description  VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id_hierarchy)
-);
 
 /*======================================================================================================*/
 /* Table: clubs                                                                                         */

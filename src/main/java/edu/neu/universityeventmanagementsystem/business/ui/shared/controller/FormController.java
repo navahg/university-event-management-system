@@ -15,7 +15,7 @@ public abstract class FormController {
 
     public abstract void prepareAndOpenForm();
 
-    public void registerAction(JButton button, ActionListener actionListener) {
+    protected void registerAction(JButton button, ActionListener actionListener) {
         button.addActionListener(actionListener);
     }
 

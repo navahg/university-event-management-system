@@ -70,6 +70,12 @@ public class MainFrameView extends javax.swing.JFrame {
         layout.next(mainPanel);
     }
 
+    public void removeFromPanel(java.awt.Component c) {
+        mainPanel.remove(c);
+        java.awt.CardLayout layout = (java.awt.CardLayout) mainPanel.getLayout();
+        layout.previous(mainPanel);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables

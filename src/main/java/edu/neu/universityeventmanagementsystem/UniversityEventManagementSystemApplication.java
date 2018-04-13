@@ -1,5 +1,6 @@
 package edu.neu.universityeventmanagementsystem;
 
+import edu.neu.universityeventmanagementsystem.business.ui.account.login.controller.LoginPanelController;
 import edu.neu.universityeventmanagementsystem.business.ui.loader.controller.LoaderFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.loader.view.LoaderFrameView;
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
@@ -33,7 +34,7 @@ public class UniversityEventManagementSystemApplication {
         loaderFrameController.closeFrame();
 
         // Opening the main application
-        MainFrameController mainFrameController = context.getBean(MainFrameController.class);
-        mainFrameController.prepareAndOpenForm();
+        LoginPanelController loginPanelController = context.getBean(LoginPanelController.class);
+        loginPanelController.prepareAndOpenForm();
     }
 }

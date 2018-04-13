@@ -17,7 +17,11 @@ public class RolesEntity {
     private int idRole;
     private String name;
     private int privilegeLevel;
+    private int idEntity;
+    private HierarchyEntity hierarchyByIdHierarchy;
     private Collection<UsersEntity> usersByIdRole;
+
+    public final static int SYSTEM_ADMIN = 99;
 
     @Id
     @Column(name = "id_role", nullable = false)
@@ -49,6 +53,16 @@ public class RolesEntity {
         this.privilegeLevel = privilegeLevel;
     }
 
+    @Basic
+    @Column(name = "id_entity")
+    public int getIdEntity() {
+        return idEntity;
+    }
+
+    public void setIdEntity(int idEntity) {
+        this.idEntity = idEntity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,13 +70,25 @@ public class RolesEntity {
         RolesEntity that = (RolesEntity) o;
         return idRole == that.idRole &&
                 privilegeLevel == that.privilegeLevel &&
+                getHierarchyByIdHierarchy().getIdHierarchy() == that.getHierarchyByIdHierarchy().getIdHierarchy() &&
+                idEntity == that.idEntity &&
                 Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idRole, name, privilegeLevel);
+        return Objects.hash(idRole, name, privilegeLevel, getHierarchyByIdHierarchy().getIdHierarchy(), idEntity);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_hierarchy", referencedColumnName = "id_hierarchy", nullable = false)
+    public HierarchyEntity getHierarchyByIdHierarchy() {
+        return hierarchyByIdHierarchy;
+    }
+
+    public void setHierarchyByIdHierarchy(HierarchyEntity hierarchyByIdHierarchy) {
+        this.hierarchyByIdHierarchy = hierarchyByIdHierarchy;
     }
 
     @OneToMany(mappedBy = "rolesByIdRole")
