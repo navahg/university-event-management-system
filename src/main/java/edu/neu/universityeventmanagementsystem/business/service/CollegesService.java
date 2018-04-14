@@ -1,14 +1,11 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
 import edu.neu.universityeventmanagementsystem.business.entity.CollegesEntity;
-import edu.neu.universityeventmanagementsystem.business.entity.ProgramsEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.CollegesRepository;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,8 +36,16 @@ public class CollegesService {
         return colleges.get(0);
     }
 
+    public CollegesEntity save(CollegesEntity collegesEntity) {
+        return collegesRepository.save(collegesEntity);
+    }
+
+    public CollegesEntity create() {
+        return new CollegesEntity();
+    }
+
     @Transactional
-    public List<ProgramsEntity> getAllPrograms(CollegesEntity collegesEntity) {
-        return new ArrayList<>(collegesEntity.getProgramsByIdCollege());
+    public void delete(CollegesEntity collegesEntity) {
+        collegesRepository.delete(collegesEntity);
     }
 }

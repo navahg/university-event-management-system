@@ -1,8 +1,10 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
+import edu.neu.universityeventmanagementsystem.business.entity.ProgramsEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.ProgramsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * ProgramsService class
@@ -19,5 +21,19 @@ public class ProgramsService {
     @Autowired
     public ProgramsService(ProgramsRepository programsRepository) {
         this.programsRepository = programsRepository;
+    }
+
+    public ProgramsEntity create() {
+        return new ProgramsEntity();
+    }
+
+    public ProgramsEntity save(ProgramsEntity programsEntity) {
+        return programsRepository.save(programsEntity);
+    }
+
+    @Transactional
+    @javax.transaction.Transactional
+    public void deleteByName(String name) {
+        programsRepository.deleteByName(name);
     }
 }

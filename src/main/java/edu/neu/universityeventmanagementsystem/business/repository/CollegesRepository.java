@@ -19,5 +19,5 @@ import java.util.List;
 public interface CollegesRepository extends JpaRepository<CollegesEntity, Integer> {
 
     @Query("SELECT c FROM CollegesEntity c WHERE LOWER(c.name) = LOWER(:name)")
-    public List<CollegesEntity> findByName(@Param("name") String name);
+    List<CollegesEntity> findByName(@Param("name") String name);
 }

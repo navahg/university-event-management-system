@@ -31,4 +31,12 @@ public class UserAccountsService {
 
         return users.get(0);
     }
+
+    public UserAccountsEntity create() {
+        return new UserAccountsEntity();
+    }
+
+    public UserAccountsEntity save(UserAccountsEntity userAccountsEntity) {
+        return userAccountsRepository.save(userAccountsEntity);
+    }
 }

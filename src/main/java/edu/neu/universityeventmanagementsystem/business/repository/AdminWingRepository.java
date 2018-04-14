@@ -2,6 +2,9 @@ package edu.neu.universityeventmanagementsystem.business.repository;
 
 import edu.neu.universityeventmanagementsystem.business.entity.AdminWingEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,4 +15,9 @@ import org.springframework.stereotype.Repository;
  * @since 4/9/18
  */
 @Repository
-public interface AdminWingRepository extends JpaRepository<AdminWingEntity, Integer> { }
+public interface AdminWingRepository extends JpaRepository<AdminWingEntity, Integer> {
+
+    @Modifying
+    @Query("DELETE FROM AdminWingEntity a WHERE a.name = :name")
+    void deleteByName(@Param("name") String name);
+}

@@ -1,5 +1,6 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
+import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,13 @@ public class UsersService {
     @Autowired
     public UsersService(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
+    }
+
+    public UsersEntity create() {
+        return new UsersEntity();
+    }
+
+    public UsersEntity save(UsersEntity user) {
+        return usersRepository.save(user);
     }
 }

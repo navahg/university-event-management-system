@@ -9,12 +9,15 @@ package edu.neu.universityeventmanagementsystem.business.ui.admin.infrastructure
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * InfrastructureView class
  *
- * @author  Raghavan Renganathan <renganathan.raghavan@gmail.com> <renganathan.r@husky.neu.edu>
+ * @author  Raghavan Renganathan <renganathan.r@husky.neu.edu>
  * @version 1.0
  * @since   Apr 13, 2018
  */
@@ -23,6 +26,10 @@ public class InfrastructureView extends javax.swing.JPanel {
 
     public final static int MAIN_LIST_INDEX = 0;
     public final static int SUB_LIST_INDEX = 1;
+    public final static String MAIN_LIST_IDENTIFIER = "mainlist";
+    public final static String SUB_LIST_IDENTIFIER = "sublist";
+    private final static Color ACTIVE = new Color(6, 136, 136);
+    private final static Color INACTIVE = new Color(5, 119, 119);
 
     /** Creates new form InfrastructureView */
     public InfrastructureView() {
@@ -53,6 +60,33 @@ public class InfrastructureView extends javax.swing.JPanel {
         }
     }
 
+    public void clearList (int index) {
+        if (index == 0) {
+            listMain.setModel(new DefaultListModel<>());
+        } else {
+            listSubMain.setModel(new DefaultListModel<>());
+        }
+    }
+
+    public List<java.awt.Component> getPanelButtons() {
+        return new ArrayList<>(Arrays.asList(btnPrograms, btnAdministration, btnCouncils));
+    }
+
+    public List<java.awt.Component> getAddButtons() {
+        return new ArrayList<>(Arrays.asList(btnAddMainList, btnAddSubList));
+    }
+
+    public List<java.awt.Component> getRemoveButtons() {
+        return new ArrayList<>(Arrays.asList(btnRemoveMainList, btnRemoveSubList));
+    }
+
+    public void setActiveButton(java.awt.Component activeButton) {
+        getPanelButtons().forEach(button -> {
+            button.setBackground(INACTIVE);
+        });
+        activeButton.setBackground(ACTIVE);
+    }
+
     private void setListModels() {
         listMain.setModel(new DefaultListModel<>());
         listSubMain.setModel(new DefaultListModel<>());
@@ -71,18 +105,18 @@ public class InfrastructureView extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listMain = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAddMainList = new javax.swing.JButton();
+        btnRemoveMainList = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnPrograms = new javax.swing.JButton();
+        btnAdministration = new javax.swing.JButton();
+        btnCouncils = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listSubMain = new javax.swing.JList<>();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnRemoveSubList = new javax.swing.JButton();
+        btnAddSubList = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1066, 700));
@@ -98,11 +132,13 @@ public class InfrastructureView extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(listMain);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/plus_icon_14px.png"))); // NOI18N
-        jButton1.setText("Add");
+        btnAddMainList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/plus_icon_14px.png"))); // NOI18N
+        btnAddMainList.setText("Add");
+        btnAddMainList.setName("mainlist"); // NOI18N
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/minus_icon_14px.png"))); // NOI18N
-        jButton2.setText("Remove");
+        btnRemoveMainList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/minus_icon_14px.png"))); // NOI18N
+        btnRemoveMainList.setText("Remove");
+        btnRemoveMainList.setName("mainlist"); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -118,9 +154,9 @@ public class InfrastructureView extends javax.swing.JPanel {
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAddMainList, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRemoveMainList, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -131,8 +167,8 @@ public class InfrastructureView extends javax.swing.JPanel {
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAddMainList, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRemoveMainList, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -143,70 +179,73 @@ public class InfrastructureView extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton5.setBackground(new java.awt.Color(6, 136, 136));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Programs");
-        jButton5.setBorder(null);
-        jButton5.setBorderPainted(false);
-        jButton5.setContentAreaFilled(false);
-        jButton5.setMaximumSize(new java.awt.Dimension(217, 50));
-        jButton5.setMinimumSize(new java.awt.Dimension(217, 50));
-        jButton5.setOpaque(true);
-        jButton5.setPreferredSize(new java.awt.Dimension(217, 50));
+        btnPrograms.setBackground(new java.awt.Color(6, 136, 136));
+        btnPrograms.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnPrograms.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrograms.setText("Programs");
+        btnPrograms.setBorder(null);
+        btnPrograms.setBorderPainted(false);
+        btnPrograms.setContentAreaFilled(false);
+        btnPrograms.setMaximumSize(new java.awt.Dimension(217, 50));
+        btnPrograms.setMinimumSize(new java.awt.Dimension(217, 50));
+        btnPrograms.setOpaque(true);
+        btnPrograms.setPreferredSize(new java.awt.Dimension(217, 50));
 
-        jButton6.setBackground(new java.awt.Color(5, 119, 119));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Administration");
-        jButton6.setBorder(null);
-        jButton6.setBorderPainted(false);
-        jButton6.setContentAreaFilled(false);
-        jButton6.setMaximumSize(new java.awt.Dimension(217, 50));
-        jButton6.setMinimumSize(new java.awt.Dimension(217, 50));
-        jButton6.setOpaque(true);
-        jButton6.setPreferredSize(new java.awt.Dimension(217, 50));
+        btnAdministration.setBackground(new java.awt.Color(5, 119, 119));
+        btnAdministration.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnAdministration.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdministration.setText("Administration");
+        btnAdministration.setBorder(null);
+        btnAdministration.setBorderPainted(false);
+        btnAdministration.setContentAreaFilled(false);
+        btnAdministration.setMaximumSize(new java.awt.Dimension(217, 50));
+        btnAdministration.setMinimumSize(new java.awt.Dimension(217, 50));
+        btnAdministration.setOpaque(true);
+        btnAdministration.setPreferredSize(new java.awt.Dimension(217, 50));
 
-        jButton7.setBackground(new java.awt.Color(5, 119, 119));
-        jButton7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Councils");
-        jButton7.setBorder(null);
-        jButton7.setBorderPainted(false);
-        jButton7.setContentAreaFilled(false);
-        jButton7.setMaximumSize(new java.awt.Dimension(216, 50));
-        jButton7.setMinimumSize(new java.awt.Dimension(216, 50));
-        jButton7.setOpaque(true);
-        jButton7.setPreferredSize(new java.awt.Dimension(216, 50));
+        btnCouncils.setBackground(new java.awt.Color(5, 119, 119));
+        btnCouncils.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnCouncils.setForeground(new java.awt.Color(255, 255, 255));
+        btnCouncils.setText("Councils");
+        btnCouncils.setBorder(null);
+        btnCouncils.setBorderPainted(false);
+        btnCouncils.setContentAreaFilled(false);
+        btnCouncils.setMaximumSize(new java.awt.Dimension(216, 50));
+        btnCouncils.setMinimumSize(new java.awt.Dimension(216, 50));
+        btnCouncils.setOpaque(true);
+        btnCouncils.setPreferredSize(new java.awt.Dimension(216, 50));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPrograms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAdministration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCouncils, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnCouncils, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdministration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPrograms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jScrollPane2.setViewportView(listSubMain);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/minus_icon_14px.png"))); // NOI18N
-        jButton4.setText("Remove");
+        btnRemoveSubList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/minus_icon_14px.png"))); // NOI18N
+        btnRemoveSubList.setText("Remove");
+        btnRemoveSubList.setName("sublist"); // NOI18N
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/plus_icon_14px.png"))); // NOI18N
-        jButton3.setText("Add");
+        btnAddSubList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/plus_icon_14px.png"))); // NOI18N
+        btnAddSubList.setText("Add");
+        btnAddSubList.setName("sublist"); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -217,9 +256,9 @@ public class InfrastructureView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAddSubList, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRemoveSubList, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane2))
                 .addContainerGap())
@@ -230,8 +269,8 @@ public class InfrastructureView extends javax.swing.JPanel {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAddSubList, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRemoveSubList, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -270,13 +309,13 @@ public class InfrastructureView extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton btnAddMainList;
+    private javax.swing.JButton btnAddSubList;
+    private javax.swing.JButton btnAdministration;
+    private javax.swing.JButton btnCouncils;
+    private javax.swing.JButton btnPrograms;
+    private javax.swing.JButton btnRemoveMainList;
+    private javax.swing.JButton btnRemoveSubList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;

@@ -66,6 +66,34 @@ public class RegisterPanelView extends javax.swing.JPanel {
     public void suppressPasswordNoMatch() {
         lblPasswordError.setVisible(false);
     }
+
+    public String getFirstName() {
+        return txtFieldFirstName.getText();
+    }
+
+    public String getLastName() {
+        return txtFieldLastName.getText();
+    }
+
+    public String getMiddleName() {
+        return txtFieldMiddleName.getText();
+    }
+
+    public String getEmail() {
+        return txtFieldEmail.getText();
+    }
+
+    public String getUserName() {
+        return txtFieldUserName.getText();
+    }
+
+    public String getPassword() {
+        return new String(pwdField.getPassword());
+    }
+
+    public String getRole() {
+        return String.valueOf(comboBoxRole.getSelectedItem());
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -101,7 +129,7 @@ public class RegisterPanelView extends javax.swing.JPanel {
         pwdField = new javax.swing.JPasswordField();
         pwdFieldConfirm = new javax.swing.JPasswordField();
         jLabel15 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboBoxRole = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
         lblPasswordError = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
@@ -186,7 +214,7 @@ public class RegisterPanelView extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText("Account Role");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guest", "Sponsor" }));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel16.setForeground(getBackground());
@@ -211,7 +239,7 @@ public class RegisterPanelView extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboBoxRole, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,7 +320,7 @@ public class RegisterPanelView extends javax.swing.JPanel {
                             .addComponent(lblPasswordError))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxRole, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
                 .addGap(66, 66, 66))
         );
@@ -442,7 +470,7 @@ public class RegisterPanelView extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSignUp;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> comboBoxRole;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

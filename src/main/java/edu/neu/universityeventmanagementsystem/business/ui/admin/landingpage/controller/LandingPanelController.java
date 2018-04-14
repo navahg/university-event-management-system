@@ -42,9 +42,32 @@ public class LandingPanelController extends FormController {
             return;
         }
         registerAction((javax.swing.JButton) landingPanelView.getLogoutButton(), event -> doLogout());
+        registerPanelEvents();
         landingPanelView.setUserText(user.getFirstName() + " " + user.getLastName());
-        landingPanelView.setContentPanel(infrastructureController.getView());
         viewPanel();
+    }
+
+    private void registerPanelEvents() {
+        landingPanelView.getPanelButtons().forEach(button -> {
+            registerAction((javax.swing.JButton) button, this::changeView);
+        });
+    }
+
+    private void changeView(java.awt.event.ActionEvent event) {
+        String view = ((javax.swing.JButton) event.getSource()).getText();
+        landingPanelView.setActiveButton((javax.swing.JButton) event.getSource());
+        switch (view) {
+            case "Dashboard":
+                break;
+            case "Infrastructures":
+                landingPanelView.setContentPanel(infrastructureController.getView());
+                break;
+            case "Users":
+                break;
+            case "Events":
+                break;
+            default:
+        }
     }
 
     public void setUser(UsersEntity user) {

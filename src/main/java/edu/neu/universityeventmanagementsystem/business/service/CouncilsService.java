@@ -1,8 +1,10 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
+import edu.neu.universityeventmanagementsystem.business.entity.CouncilsEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.CouncilsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * CouncilsService class
@@ -19,5 +21,18 @@ public class CouncilsService {
     @Autowired
     public CouncilsService (CouncilsRepository councilsRepository) {
         this.councilsRepository = councilsRepository;
+    }
+
+    public CouncilsEntity create() {
+        return new CouncilsEntity();
+    }
+
+    public CouncilsEntity save(CouncilsEntity councilsEntity) {
+        return councilsRepository.save(councilsEntity);
+    }
+
+    @Transactional
+    public void deleteByName(String name) {
+        councilsRepository.deleteByName(name);
     }
 }
