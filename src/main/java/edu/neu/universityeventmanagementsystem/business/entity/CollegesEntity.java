@@ -1,5 +1,8 @@
 package edu.neu.universityeventmanagementsystem.business.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -55,7 +58,8 @@ public class CollegesEntity {
         return Objects.hash(idCollege, name);
     }
 
-    @OneToMany(mappedBy = "collegesByIdCollege")
+    @OneToMany(mappedBy = "collegesByIdCollege", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     public Collection<AdminWingEntity> getAdminWingsByIdCollege() {
         return adminWingsByIdCollege;
     }
@@ -64,7 +68,8 @@ public class CollegesEntity {
         this.adminWingsByIdCollege = adminWingsByIdCollege;
     }
 
-    @OneToMany(mappedBy = "collegesByIdCollege")
+    @OneToMany(mappedBy = "collegesByIdCollege", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     public Collection<CouncilsEntity> getCouncilsByIdCollege() {
         return councilsByIdCollege;
     }
@@ -73,7 +78,8 @@ public class CollegesEntity {
         this.councilsByIdCollege = councilsByIdCollege;
     }
 
-    @OneToMany(mappedBy = "collegesByIdCollege")
+    @OneToMany(mappedBy = "collegesByIdCollege", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     public Collection<ProgramsEntity> getProgramsByIdCollege() {
         return programsByIdCollege;
     }
