@@ -1,6 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.ui.shared.controller;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionListener;
 
 /**
@@ -16,6 +17,10 @@ public abstract class FormController {
 
     protected void registerAction(JButton button, ActionListener actionListener) {
         button.addActionListener(actionListener);
+    }
+
+    protected void registerAction(JList list, ListSelectionListener listSelectionListener) {
+        list.addListSelectionListener(listSelectionListener);
     }
 
 }

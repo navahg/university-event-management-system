@@ -1,6 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.controller;
 
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
+import edu.neu.universityeventmanagementsystem.business.ui.admin.infrastructure.controller.InfrastructureController;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.view.LandingPanelView;
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
@@ -20,14 +21,17 @@ public class LandingPanelController extends FormController {
 
     private MainFrameController mainFrameController;
     private LandingPanelView landingPanelView;
+    private InfrastructureController infrastructureController;
     private UsersEntity user;
 
     private final static Logger log = Logger.getLogger(LandingPanelController.class);
 
     @Autowired
-    public LandingPanelController (MainFrameController mainFrameController, LandingPanelView landingPanelView) {
+    public LandingPanelController (MainFrameController mainFrameController, LandingPanelView landingPanelView,
+                                   InfrastructureController infrastructureController) {
         this.mainFrameController = mainFrameController;
         this.landingPanelView = landingPanelView;
+        this.infrastructureController = infrastructureController;
         user = null;
     }
 
@@ -39,6 +43,7 @@ public class LandingPanelController extends FormController {
         }
         registerAction((javax.swing.JButton) landingPanelView.getLogoutButton(), event -> doLogout());
         landingPanelView.setUserText(user.getFirstName() + " " + user.getLastName());
+        landingPanelView.setContentPanel(infrastructureController.getView());
         viewPanel();
     }
 

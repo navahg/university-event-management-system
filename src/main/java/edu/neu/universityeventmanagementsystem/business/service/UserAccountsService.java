@@ -5,6 +5,8 @@ import edu.neu.universityeventmanagementsystem.business.repository.UserAccountsR
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * UserAccountsService class
  *
@@ -23,12 +25,10 @@ public class UserAccountsService {
     }
 
     public UserAccountsEntity findOne (String identifier, String password) {
-        for (UserAccountsEntity u : userAccountsRepository.findAll()) {
-            if ((u.getUserName().equals(identifier) || u.getUsersByIdUser().getEmail().equals(identifier)) &&
-                    u.getPassword().equals(password))
-                return u;
-        }
+        List<UserAccountsEntity> users = userAccountsRepository.authorizeUser(identifier, password);
+        if (users.size() == 0)
+            return null;
 
-        return null;
+        return users.get(0);
     }
 }
