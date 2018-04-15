@@ -18,6 +18,7 @@ public class ProgramMembersEntity {
     private ProgramsEntity programsByIdProgram;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_program_members", nullable = false)
     public int getIdProgramMembers() {
         return idProgramMembers;

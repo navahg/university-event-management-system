@@ -19,6 +19,7 @@ public class NotificationsEntity {
     private UsersEntity usersByIdUser;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_notification", nullable = false)
     public int getIdNotification() {
         return idNotification;

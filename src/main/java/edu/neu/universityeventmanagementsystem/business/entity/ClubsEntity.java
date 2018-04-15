@@ -20,6 +20,7 @@ public class ClubsEntity {
     private HierarchyEntity hierarchyByIdHierarchy;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_club", nullable = false)
     public int getIdClub() {
         return idClub;

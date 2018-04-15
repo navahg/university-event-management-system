@@ -18,6 +18,7 @@ public class CouncilMembersEntity {
     private CouncilsEntity councilsByIdCouncil;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_council_members", nullable = false)
     public int getIdCouncilMembers() {
         return idCouncilMembers;

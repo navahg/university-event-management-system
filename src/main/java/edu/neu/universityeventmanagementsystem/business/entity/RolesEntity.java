@@ -24,6 +24,7 @@ public class RolesEntity {
     public final static int SYSTEM_ADMIN = 99;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_role", nullable = false)
     public int getIdRole() {
         return idRole;

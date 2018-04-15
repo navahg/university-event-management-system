@@ -21,6 +21,7 @@ public class HierarchyEntity {
     private Collection<EventsEntity> eventsByIdHierarchy;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_hierarchy", nullable = false)
     public int getIdHierarchy() {
         return idHierarchy;

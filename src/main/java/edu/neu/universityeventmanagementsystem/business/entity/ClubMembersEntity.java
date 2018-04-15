@@ -18,6 +18,7 @@ public class ClubMembersEntity {
     private ClubsEntity clubsByIdClub;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_club_members", nullable = false)
     public int getIdClubMembers() {
         return idClubMembers;

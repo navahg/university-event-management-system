@@ -18,6 +18,7 @@ public class InvitesEntity {
     private EventsEntity eventsByIdEvent;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_invite", nullable = false)
     public int getIdInvite() {
         return idInvite;

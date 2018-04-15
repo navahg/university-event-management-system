@@ -20,6 +20,7 @@ public class ProgramsEntity {
     private CollegesEntity collegesByIdCollege;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_program", nullable = false)
     public int getIdProgram() {
         return idProgram;

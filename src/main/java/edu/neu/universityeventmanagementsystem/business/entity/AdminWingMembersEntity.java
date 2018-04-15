@@ -18,6 +18,7 @@ public class AdminWingMembersEntity {
     private AdminWingEntity adminWingByIdAdminWing;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_admin_wing_members", nullable = false)
     public int getIdAdminWingMembers() {
         return idAdminWingMembers;

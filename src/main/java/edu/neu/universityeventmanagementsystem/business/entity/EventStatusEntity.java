@@ -19,6 +19,7 @@ public class EventStatusEntity {
     private Collection<EventsEntity> eventsByIdStatus;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_status", nullable = false)
     public int getIdStatus() {
         return idStatus;

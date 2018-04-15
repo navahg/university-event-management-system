@@ -24,6 +24,7 @@ public class CollegesEntity {
     private Collection<ProgramsEntity> programsByIdCollege;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_college", nullable = false)
     public int getIdCollege() {
         return idCollege;

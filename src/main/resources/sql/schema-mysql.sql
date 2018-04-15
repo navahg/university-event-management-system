@@ -135,7 +135,7 @@ CREATE TABLE users (
 /*======================================================================================================*/
 CREATE TABLE user_accounts (
   id_user_account INTEGER      NOT NULL  AUTO_INCREMENT,
-  id_user         INTEGER      NOT NULL,
+  id_user         INTEGER      NOT NULL  UNIQUE,
   user_name       VARCHAR(255) NOT NULL  UNIQUE,
   password        VARCHAR(255) NOT NULL,
   PRIMARY KEY (id_user_account),

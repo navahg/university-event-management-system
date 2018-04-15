@@ -33,6 +33,7 @@ public class UsersEntity {
     private RolesEntity rolesByIdRole;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user", nullable = false)
     public int getIdUser() {
         return idUser;
@@ -193,7 +194,7 @@ public class UsersEntity {
         this.schedulesByIdUser = schedulesByIdUser;
     }
 
-    @OneToMany(mappedBy = "usersByIdUser")
+    @OneToMany(mappedBy = "usersByIdUser", cascade = CascadeType.ALL)
     public Collection<UserAccountsEntity> getUserAccountsByIdUser() {
         return userAccountsByIdUser;
     }

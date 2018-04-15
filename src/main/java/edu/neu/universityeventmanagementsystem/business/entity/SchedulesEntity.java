@@ -18,6 +18,7 @@ public class SchedulesEntity {
     private EventsEntity eventsByIdEvent;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_schedule", nullable = false)
     public int getIdSchedule() {
         return idSchedule;
