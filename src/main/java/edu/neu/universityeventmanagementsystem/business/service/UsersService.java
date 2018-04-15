@@ -5,6 +5,8 @@ import edu.neu.universityeventmanagementsystem.business.repository.UsersReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 /**
  * UsersService class
  *
@@ -28,5 +30,10 @@ public class UsersService {
 
     public UsersEntity save(UsersEntity user) {
         return usersRepository.save(user);
+    }
+
+    public UsersEntity findById(int idUser) {
+        Optional<UsersEntity> result = usersRepository.findById(idUser);
+        return result.orElse(null);
     }
 }

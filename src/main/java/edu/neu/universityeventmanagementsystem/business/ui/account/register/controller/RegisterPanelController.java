@@ -62,7 +62,7 @@ public class RegisterPanelController extends FormController {
         newUser.setEmail(registerPanelView.getEmail());
         newUser.setUserName(registerPanelView.getUserName());
         newUser.setRolesByIdRole(rolesService.findByName(registerPanelView.getRole()));
-        usersService.save(newUser);
+        newUser = usersService.save(newUser);
 
         newUserAccount.setUserName(registerPanelView.getUserName());
         newUserAccount.setPassword(registerPanelView.getPassword());
