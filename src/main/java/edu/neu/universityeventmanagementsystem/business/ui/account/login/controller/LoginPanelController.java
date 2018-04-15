@@ -8,6 +8,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.account.register.cont
 import edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.controller.LandingPanelController;
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
+import edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.controller.StudentLandingPanelController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -26,17 +27,20 @@ public class LoginPanelController extends FormController {
     private RegisterPanelController registerPanelController;
     private LandingPanelController adminLandingPanelController;
     private UserAccountsService userAccountsService;
+    private StudentLandingPanelController studentLandingPanelController;
 
     @Autowired
     public LoginPanelController(MainFrameController mainFrameController, LoginPanelView loginPanelView,
                                 UserAccountsService userAccountsService,
                                 RegisterPanelController registerPanelController,
-                                LandingPanelController adminLandingPanelController) {
+                                LandingPanelController adminLandingPanelController,
+                                StudentLandingPanelController studentLandingPanelController) {
         this.mainFrameController = mainFrameController;
         this.loginPanelView = loginPanelView;
         this.registerPanelController = registerPanelController;
         this.adminLandingPanelController = adminLandingPanelController;
         this.userAccountsService = userAccountsService;
+        this.studentLandingPanelController = studentLandingPanelController;
     }
 
     @Override
@@ -67,6 +71,10 @@ public class LoginPanelController extends FormController {
         if (account.getUsersByIdUser().getRolesByIdRole().getPrivilegeLevel() == RolesEntity.SYSTEM_ADMIN) {
             adminLandingPanelController.setUser(account.getUsersByIdUser());
             adminLandingPanelController.prepareAndOpenForm();
+        }
+        else {
+            studentLandingPanelController.setUser(account.getUsersByIdUser());
+            studentLandingPanelController.prepareAndOpenForm();
         }
     }
 
