@@ -11,7 +11,6 @@ import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.For
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import javax.management.relation.Role;
 import javax.swing.*;
 
 /**

@@ -1,10 +1,11 @@
 package edu.neu.universityeventmanagementsystem.business.ui.admin.users.view;
 
+import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
 import edu.neu.universityeventmanagementsystem.business.util.ImageTools;
-import java.util.List;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import java.util.List;
 
 /**
  * AddUserView class
@@ -18,7 +19,7 @@ public final class AddUserView extends javax.swing.JDialog {
 
     private static final int TITLE_BAR_ICON_SIZE = 64;
 
-    public static boolean modal = true;
+    private static boolean modal = true;
 
     /**
      * Creates new form NewJDialog on a new JFrame and blocks the user input till this dialogue is closed
@@ -64,7 +65,7 @@ public final class AddUserView extends javax.swing.JDialog {
         btnCreateUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Add New User");
+        setTitle(ConstantMessages.Titles.ADD_USER_TITLE);
         setIconImage(ImageTools.loadImage("add_user_icon_64px.png", TITLE_BAR_ICON_SIZE, TITLE_BAR_ICON_SIZE, true));
         setResizable(false);
 

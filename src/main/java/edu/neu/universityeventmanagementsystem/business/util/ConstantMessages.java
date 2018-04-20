@@ -12,5 +12,6 @@ public interface ConstantMessages {
     interface Titles {
         String APPLICATION_TITLE = "University Event Management System";
         String LOADER_TITLE = "Loading application...";
+        String ADD_USER_TITLE = "Add new user";
     }
 }

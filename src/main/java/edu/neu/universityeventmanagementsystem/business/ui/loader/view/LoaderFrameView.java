@@ -3,8 +3,6 @@ package edu.neu.universityeventmanagementsystem.business.ui.loader.view;
 import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
 import edu.neu.universityeventmanagementsystem.business.util.LookAndFeelUtils;
 
-import javax.swing.*;
-
 /**
  *
  * @author Raghavan Renganathan <renganathan.r@husky.neu.edu>

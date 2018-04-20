@@ -1,13 +1,12 @@
 package edu.neu.universityeventmanagementsystem.business.ui.admin.users.controller;
 
-import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.service.UsersService;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.users.view.UsersView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.awt.Component;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 /**

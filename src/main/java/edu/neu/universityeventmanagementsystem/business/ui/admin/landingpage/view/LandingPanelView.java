@@ -8,7 +8,6 @@ package edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.vi
 
 import org.springframework.stereotype.Component;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;

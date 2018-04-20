@@ -5,7 +5,6 @@ import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainF
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.EventsPanelController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.ui.student.account.controller.AccountSettingsController;
-import edu.neu.universityeventmanagementsystem.business.ui.student.account.view.AccountSettingsView;
 import edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.view.StudentLandingPanelView;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
