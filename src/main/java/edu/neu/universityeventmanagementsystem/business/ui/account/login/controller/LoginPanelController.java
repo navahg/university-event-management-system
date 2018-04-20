@@ -15,12 +15,12 @@ import org.springframework.stereotype.Controller;
 /**
  * LoginPanelController class
  *
- * @author ragha <renganathan.r@husky.neu.edu>
+ * @author Raghavan Renganathan <renganathan.r@husky.neu.edu>
  * @version 1.0
  * @since 4/11/2018
  */
 @Controller
-public class LoginPanelController extends FormController {
+public final class LoginPanelController extends FormController {
 
     private MainFrameController mainFrameController;
     private LoginPanelView loginPanelView;
@@ -52,7 +52,7 @@ public class LoginPanelController extends FormController {
     }
 
     private void doSignIn () {
-        loginPanelView.supressInvalidCredentials();
+        loginPanelView.suppressInvalidCredentials();
 
         String username = loginPanelView.getUserName();
         String password = loginPanelView.getPassword();

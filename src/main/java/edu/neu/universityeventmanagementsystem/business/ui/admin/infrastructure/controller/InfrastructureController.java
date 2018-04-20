@@ -23,7 +23,7 @@ import java.util.List;
  * @since 4/13/2018
  */
 @Controller
-public class InfrastructureController extends FormController {
+public final class InfrastructureController extends FormController {
 
     private InfrastructureView infrastructureView;
     private CollegesService collegesService;

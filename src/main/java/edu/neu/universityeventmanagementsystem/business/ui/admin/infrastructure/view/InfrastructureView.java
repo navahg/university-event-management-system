@@ -22,7 +22,7 @@ import java.util.List;
  * @since   Apr 13, 2018
  */
 @Component
-public class InfrastructureView extends javax.swing.JPanel {
+public final class InfrastructureView extends javax.swing.JPanel {
 
     public final static int MAIN_LIST_INDEX = 0;
     public final static int SUB_LIST_INDEX = 1;
@@ -100,20 +100,20 @@ public class InfrastructureView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+        javax.swing.JSeparator jSeparator1 = new javax.swing.JSeparator();
+        javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
+        javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
         listMain = new javax.swing.JList<>();
         btnAddMainList = new javax.swing.JButton();
         btnRemoveMainList = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
+        javax.swing.JPanel jPanel4 = new javax.swing.JPanel();
+        javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
         btnPrograms = new javax.swing.JButton();
         btnAdministration = new javax.swing.JButton();
         btnCouncils = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        javax.swing.JScrollPane jScrollPane2 = new javax.swing.JScrollPane();
         listSubMain = new javax.swing.JList<>();
         btnRemoveSubList = new javax.swing.JButton();
         btnAddSubList = new javax.swing.JButton();
@@ -316,14 +316,6 @@ public class InfrastructureView extends javax.swing.JPanel {
     private javax.swing.JButton btnPrograms;
     private javax.swing.JButton btnRemoveMainList;
     private javax.swing.JButton btnRemoveSubList;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JList<String> listMain;
     private javax.swing.JList<String> listSubMain;
     // End of variables declaration//GEN-END:variables

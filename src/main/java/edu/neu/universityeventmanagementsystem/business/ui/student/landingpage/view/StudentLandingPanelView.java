@@ -7,6 +7,7 @@ package edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.
 
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +18,9 @@ import java.util.List;
  */
 @Component
 public class StudentLandingPanelView extends javax.swing.JPanel {
+
+    private final static Color ACTIVE = new Color(6, 136, 136);
+    private final static Color INACTIVE = new Color(5, 119, 119);
 
     /**
      * Creates new form LandingPanelView
@@ -40,6 +44,11 @@ public class StudentLandingPanelView extends javax.swing.JPanel {
         contentPanel.repaint();
     }
 
+    public void setActiveButton(java.awt.Component activeButton) {
+        getPanelButtons().forEach(button -> button.setBackground(INACTIVE));
+        activeButton.setBackground(ACTIVE);
+    }
+
     public List<java.awt.Component> getPanelButtons() {
         return new ArrayList<>(Arrays.asList(btnDashboard, btnEvents, btnAccountSettings));
     }
@@ -55,9 +64,9 @@ public class StudentLandingPanelView extends javax.swing.JPanel {
     private void initComponents() {
 
         contentPanel = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
+        javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
+        javax.swing.JSeparator jSeparator1 = new javax.swing.JSeparator();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         lblUserFullName = new javax.swing.JLabel();
         btnDashboard = new javax.swing.JButton();
         btnEvents = new javax.swing.JButton();
@@ -94,6 +103,7 @@ public class StudentLandingPanelView extends javax.swing.JPanel {
         btnDashboard.setBorderPainted(false);
         btnDashboard.setContentAreaFilled(false);
         btnDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDashboard.setFocusPainted(false);
         btnDashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         btnDashboard.setOpaque(true);
 
@@ -105,6 +115,7 @@ public class StudentLandingPanelView extends javax.swing.JPanel {
         btnEvents.setBorderPainted(false);
         btnEvents.setContentAreaFilled(false);
         btnEvents.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEvents.setFocusPainted(false);
         btnEvents.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         btnEvents.setOpaque(true);
 
@@ -116,6 +127,7 @@ public class StudentLandingPanelView extends javax.swing.JPanel {
         btnAccountSettings.setBorderPainted(false);
         btnAccountSettings.setContentAreaFilled(false);
         btnAccountSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAccountSettings.setFocusPainted(false);
         btnAccountSettings.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         btnAccountSettings.setOpaque(true);
 
@@ -197,9 +209,6 @@ public class StudentLandingPanelView extends javax.swing.JPanel {
     private javax.swing.JButton btnEvents;
     private javax.swing.JButton btnLogout;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblUserFullName;
     // End of variables declaration//GEN-END:variables
 }

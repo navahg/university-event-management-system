@@ -3,6 +3,7 @@ package edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.co
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.infrastructure.controller.InfrastructureController;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.view.LandingPanelView;
+import edu.neu.universityeventmanagementsystem.business.ui.admin.users.controller.UsersController;
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import org.apache.log4j.Logger;
@@ -17,21 +18,24 @@ import org.springframework.stereotype.Controller;
  * @since 4/12/2018
  */
 @Controller
-public class LandingPanelController extends FormController {
+public final class LandingPanelController extends FormController {
 
     private MainFrameController mainFrameController;
     private LandingPanelView landingPanelView;
     private InfrastructureController infrastructureController;
+    private UsersController usersController;
     private UsersEntity user;
 
     private final static Logger log = Logger.getLogger(LandingPanelController.class);
 
     @Autowired
     public LandingPanelController (MainFrameController mainFrameController, LandingPanelView landingPanelView,
-                                   InfrastructureController infrastructureController) {
+                                   InfrastructureController infrastructureController,
+                                   UsersController usersController) {
         this.mainFrameController = mainFrameController;
         this.landingPanelView = landingPanelView;
         this.infrastructureController = infrastructureController;
+        this.usersController = usersController;
         user = null;
     }
 
@@ -63,6 +67,7 @@ public class LandingPanelController extends FormController {
                 landingPanelView.setContentPanel(infrastructureController.getView());
                 break;
             case "Users":
+                landingPanelView.setContentPanel(usersController.getView());
                 break;
             case "Events":
                 break;

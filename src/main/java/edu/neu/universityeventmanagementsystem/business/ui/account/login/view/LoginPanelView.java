@@ -13,7 +13,7 @@ import java.awt.*;
  * @since 04/11/2018
  */
 @Component
-public class LoginPanelView extends javax.swing.JPanel {
+public final class LoginPanelView extends javax.swing.JPanel {
 
     private final static String LOGIN_FAILED_MESSAGE = "Invalid Credentials.";
     /**
@@ -21,20 +21,20 @@ public class LoginPanelView extends javax.swing.JPanel {
      */
     public LoginPanelView() {
         initComponents();
-        supressInvalidCredentials();
+        suppressInvalidCredentials();
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(ImageTools.loadImage("background_image.jpg", 1366, 768), 0, 0, null);
+        g.drawImage(ImageTools.loadImage("background_image.jpg", 1366, 768, false), 0, 0, null);
     }
 
     public void raiseInvalidCredentials () {
         lblLoginFailed.setText(LOGIN_FAILED_MESSAGE);
     }
 
-    public void supressInvalidCredentials () {
+    public void suppressInvalidCredentials() {
         lblLoginFailed.setText("");
     }
 
@@ -67,17 +67,17 @@ public class LoginPanelView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         txtFieldUsername = new javax.swing.JTextField();
         btnSignIn = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
         txtFieldPassword = new javax.swing.JPasswordField();
         lblLoginFailed = new javax.swing.JLabel();
         btnForgotPassword = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
         btnSignUp = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
@@ -247,12 +247,6 @@ public class LoginPanelView extends javax.swing.JPanel {
     private javax.swing.JButton btnForgotPassword;
     private javax.swing.JButton btnSignIn;
     private javax.swing.JButton btnSignUp;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLoginFailed;
     private javax.swing.JPasswordField txtFieldPassword;
     private javax.swing.JTextField txtFieldUsername;

@@ -17,12 +17,15 @@
 
 package edu.neu.universityeventmanagementsystem.business.util;
 
+import org.apache.log4j.Logger;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 /**
  * A utility class for handling Image files
@@ -33,7 +36,10 @@ import java.io.IOException;
  */
 public class ImageTools {
 
-    private final static String IMAGES_DIR = ConstantPaths.Resources.IMAGES_DIR + "/";
+    private static final String IMAGES_DIR = ConstantPaths.Resources.IMAGES_DIR;
+    private static final String ICONS_DIR = ConstantPaths.Resources.ICONS_DIR;
+
+    private static final Logger log = Logger.getLogger(ImageTools.class);
 
     /**
      * This method sets icon for the JComponents.
@@ -41,7 +47,7 @@ public class ImageTools {
      * @param component A JComponent for which the icon has to be set.
      *                  <b>Should be a JButton or JLabel</b>
      * @param filename  The filename of the icon.
-     *                  <b>Should be located in /resources/images/ directory</b>
+     *                  <b>Should be located in /resources/icons/ directory</b>
      * @param width     Desired width of the icon
      * @param height    Desired height of the icon
      */
@@ -57,12 +63,12 @@ public class ImageTools {
         BufferedImage image;
         Image scaledImage;
         try {
-            f = new File(IMAGES_DIR + filename);
+            f = new File(Paths.get(ICONS_DIR, filename).toString());
             image = ImageIO.read(f);
             scaledImage = image.getScaledInstance(width, height,
                     Image.SCALE_FAST);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Error rendering Picture!");
+            log.error("Error rendering the icon: ", ex);
             return;
         }
 
@@ -79,23 +85,39 @@ public class ImageTools {
      * The method to generate an Image object from a file.
      *
      * @param filename The filename of the icon.
-     *                 <b>Should be located in /resources/images/ directory</b>
+     *                 <b>Should be located in /resources/icons/ directory</b>
      * @param width    Desired width of the image
      * @param height   Desired height of the image
+     * @param icon     Is the file an icon or an image
      * @return The Image object of the desired image file
      */
-    public static Image loadImage(String filename, int width, int height) {
+    public static Image loadImage(String filename, int width, int height, boolean icon) {
+        return icon ? loadImage(filename, width, height, ICONS_DIR) :
+                loadImage(filename, width, height, IMAGES_DIR);
+    }
+
+    /**
+     * The method to generate an Image object from a file.
+     *
+     * @param filename The filename of the icon.
+     *                 <b>Should be located in /resources/icons/ directory</b>
+     * @param width    Desired width of the image
+     * @param height   Desired height of the image
+     * @param rootDir  The root directory in which the file has to be searched
+     * @return The Image object of the desired image file
+     */
+    private static Image loadImage(String filename, int width, int height, String rootDir) {
         File f;
         BufferedImage image;
         Image scaledImage;
         try {
-            f = new File(IMAGES_DIR + filename);
+            f = new File(Paths.get(rootDir, filename).toString());
             image = ImageIO.read(f);
             scaledImage = image.getScaledInstance(width, height,
                     Image.SCALE_FAST);
             return scaledImage;
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Error rendering Picture!");
+            log.error("Error rendering the image: ", ex);
             return null;
         }
     }

@@ -14,5 +14,7 @@ public interface ConstantPaths {
     interface Resources {
         String IMAGES_DIR = Paths.get(System.getProperty("user.dir"),
                 "src", "main", "resources", "images").toString();
+        String ICONS_DIR = Paths.get(System.getProperty("user.dir"),
+                "src", "main", "resources", "icons").toString();
     }
 }

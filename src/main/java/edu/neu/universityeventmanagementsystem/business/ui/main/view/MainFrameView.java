@@ -1,11 +1,11 @@
 package edu.neu.universityeventmanagementsystem.business.ui.main.view;
 
 import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
+import edu.neu.universityeventmanagementsystem.business.util.ImageTools;
 import edu.neu.universityeventmanagementsystem.business.util.LookAndFeelUtils;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  *
@@ -14,12 +14,15 @@ import java.awt.*;
  * @version 1.0
  */
 @Component
-public class MainFrameView extends javax.swing.JFrame {
+public final class MainFrameView extends javax.swing.JFrame {
+
+    private static final int TITLE_BAR_ICON_SIZE = 64;
 
     /** Creates new form MainFrame */
     public MainFrameView() {
         initComponents();
-        setUp();
+        LookAndFeelUtils.setSystemLookAndFeel();
+        setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -34,7 +37,8 @@ public class MainFrameView extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1366, 768));
+        setTitle(ConstantMessages.Titles.APPLICATION_TITLE);
+        setIconImage(ImageTools.loadImage("application_icon_64px.png", TITLE_BAR_ICON_SIZE, TITLE_BAR_ICON_SIZE, true));
         setResizable(false);
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -55,16 +59,8 @@ public class MainFrameView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void setUp() {
-        LookAndFeelUtils.setSystemLookAndFeel();
-        setTitle(ConstantMessages.Titles.APPLICATION_TITLE);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
-        setLocationRelativeTo(null);
-    }
-
     public void addToPanel(java.awt.Component c) {
-        mainPanel.add("LoginPanel", c);
+        mainPanel.add("NewPanel", c);
         java.awt.CardLayout layout = (java.awt.CardLayout) mainPanel.getLayout();
         layout.next(mainPanel);
     }

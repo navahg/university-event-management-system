@@ -18,7 +18,7 @@ import java.awt.*;
  * @since   Apr 11, 2018
  */
 @Component
-public class RegisterPanelView extends javax.swing.JPanel {
+public final class RegisterPanelView extends javax.swing.JPanel {
 
     /** Creates new form RegisterPanelView */
     public RegisterPanelView() {
@@ -37,18 +37,18 @@ public class RegisterPanelView extends javax.swing.JPanel {
     }
 
     public void raiseUsernameExists () {
-        lblUserNameAvailablity.setForeground(Color.RED);
-        lblUserNameAvailablity.setText("Username already picked.");
+        lbjUserNameAvailability.setForeground(Color.RED);
+        lbjUserNameAvailability.setText("Username already picked.");
     }
 
     public void suppressUsernameMessage () {
-        lblUserNameAvailablity.setForeground(Color.WHITE);
-        lblUserNameAvailablity.setText("");
+        lbjUserNameAvailability.setForeground(Color.WHITE);
+        lbjUserNameAvailability.setText("");
     }
 
     public void showUsernameAvailable () {
-        lblUserNameAvailablity.setForeground(Color.GREEN);
-        lblUserNameAvailablity.setText("Username available.");
+        lbjUserNameAvailability.setForeground(Color.GREEN);
+        lbjUserNameAvailability.setText("Username available.");
     }
 
     public void raiseInvalidEmailId () {
@@ -103,42 +103,42 @@ public class RegisterPanelView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel7 = new javax.swing.JLabel();
+        javax.swing.JPanel jPanel3 = new javax.swing.JPanel();
+        javax.swing.JLabel jLabel8 = new javax.swing.JLabel();
         txtFieldFirstName = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel9 = new javax.swing.JLabel();
         txtFieldMiddleName = new javax.swing.JTextField();
         txtFieldLastName = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel10 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel11 = new javax.swing.JLabel();
         txtFieldEmail = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel12 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel13 = new javax.swing.JLabel();
         txtFieldUserName = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel14 = new javax.swing.JLabel();
         lblInvalidEmail = new javax.swing.JLabel();
-        lblUserNameAvailablity = new javax.swing.JLabel();
+        lbjUserNameAvailability = new javax.swing.JLabel();
         pwdField = new javax.swing.JPasswordField();
         pwdFieldConfirm = new javax.swing.JPasswordField();
-        jLabel15 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel15 = new javax.swing.JLabel();
         comboBoxRole = new javax.swing.JComboBox<>();
-        jLabel16 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel16 = new javax.swing.JLabel();
         lblPasswordError = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
         btnSignUp = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel17 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel18 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel19 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel20 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 102, 102));
         setPreferredSize(new java.awt.Dimension(1366, 768));
@@ -205,7 +205,7 @@ public class RegisterPanelView extends javax.swing.JPanel {
         lblInvalidEmail.setForeground(new java.awt.Color(255, 0, 51));
         lblInvalidEmail.setText("Invalid email address.");
 
-        lblUserNameAvailablity.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbjUserNameAvailability.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         pwdField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -214,7 +214,7 @@ public class RegisterPanelView extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText("Account Role");
 
-        comboBoxRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Guest", "Sponsor" }));
+        comboBoxRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "Guest" }));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel16.setForeground(getBackground());
@@ -235,7 +235,7 @@ public class RegisterPanelView extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblUserNameAvailablity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lbjUserNameAvailability, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addGap(18, 18, 18)
@@ -306,7 +306,7 @@ public class RegisterPanelView extends javax.swing.JPanel {
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblUserNameAvailablity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbjUserNameAvailability, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -329,6 +329,7 @@ public class RegisterPanelView extends javax.swing.JPanel {
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back_icon.png"))); // NOI18N
         btnBack.setContentAreaFilled(false);
         btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack.setFocusPainted(false);
         btnBack.setOpaque(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -471,32 +472,9 @@ public class RegisterPanelView extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSignUp;
     private javax.swing.JComboBox<String> comboBoxRole;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblInvalidEmail;
     private javax.swing.JLabel lblPasswordError;
-    private javax.swing.JLabel lblUserNameAvailablity;
+    private javax.swing.JLabel lbjUserNameAvailability;
     private javax.swing.JPasswordField pwdField;
     private javax.swing.JPasswordField pwdFieldConfirm;
     private javax.swing.JTextField txtFieldEmail;

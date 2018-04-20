@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
  * @since 4/6/18
  */
 @Controller
-public class MainFrameController extends FormController {
+public final class MainFrameController extends FormController {
 
     private MainFrameView mainFrameView;
 

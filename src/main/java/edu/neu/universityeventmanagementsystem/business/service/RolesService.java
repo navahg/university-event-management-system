@@ -5,6 +5,8 @@ import edu.neu.universityeventmanagementsystem.business.repository.RolesReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * RolesService class
  *
@@ -24,5 +26,9 @@ public class RolesService {
 
     public RolesEntity findByName(String role) {
         return rolesRepository.findByName(role);
+    }
+
+    public List<RolesEntity> findAll() {
+        return rolesRepository.findAll();
     }
 }

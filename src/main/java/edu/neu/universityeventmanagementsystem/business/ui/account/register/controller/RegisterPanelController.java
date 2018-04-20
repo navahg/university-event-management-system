@@ -22,7 +22,7 @@ import javax.swing.*;
  * @since 4/12/2018
  */
 @Controller
-public class RegisterPanelController extends FormController {
+public final class RegisterPanelController extends FormController {
 
     private RegisterPanelView registerPanelView;
     private MainFrameController mainFrameController;

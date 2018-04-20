@@ -5,6 +5,7 @@ import edu.neu.universityeventmanagementsystem.business.repository.UsersReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -18,10 +19,12 @@ import java.util.Optional;
 public class UsersService {
 
     private UsersRepository usersRepository;
+    private RolesService rolesService;
 
     @Autowired
-    public UsersService(UsersRepository usersRepository) {
+    public UsersService(UsersRepository usersRepository, RolesService rolesService) {
         this.usersRepository = usersRepository;
+        this.rolesService = rolesService;
     }
 
     public UsersEntity create() {
@@ -35,5 +38,9 @@ public class UsersService {
     public UsersEntity findById(int idUser) {
         Optional<UsersEntity> result = usersRepository.findById(idUser);
         return result.orElse(null);
+    }
+
+    public List<UsersEntity> findByRole(String role) {
+        return usersRepository.findByRole(rolesService.findByName(role));
     }
 }

@@ -10,7 +10,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.For
  * @version 1.0
  * @since 4/6/18
  */
-public class LoaderFrameController extends FormController {
+public final class LoaderFrameController extends FormController {
 
     private LoaderFrameView loaderFrameView;
 

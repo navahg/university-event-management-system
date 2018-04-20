@@ -11,21 +11,14 @@ import javax.swing.*;
  * @since Apr 11, 2018
  * @version 1.0
  */
-public class LoaderFrameView extends javax.swing.JFrame {
+public final class LoaderFrameView extends javax.swing.JFrame {
 
     /**
      * Creates new form LoaderFrameView
      */
     public LoaderFrameView() {
         initComponents();
-        setUp();
-    }
-
-    private void setUp() {
         LookAndFeelUtils.setSystemLookAndFeel();
-        setTitle(ConstantMessages.Titles.LOADER_TITLE);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
         setLocationRelativeTo(null);
     }
 
@@ -38,10 +31,12 @@ public class LoaderFrameView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        loadingMessagePanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        javax.swing.JPanel loadingMessagePanel = new javax.swing.JPanel();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle(ConstantMessages.Titles.LOADER_TITLE);
+        setResizable(false);
 
         loadingMessagePanel.setPreferredSize(new java.awt.Dimension(300, 100));
 
@@ -80,7 +75,5 @@ public class LoaderFrameView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel loadingMessagePanel;
     // End of variables declaration//GEN-END:variables
 }
