@@ -44,7 +44,7 @@ public class ProgramMembersEntity {
         return Objects.hash(idProgramMembers, usersByIdUser.getIdUser(), programsByIdProgram.getIdProgram());
     }
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_user", referencedColumnName = "id_user", nullable = false)
     public UsersEntity getUsersByIdUser() {
         return usersByIdUser;

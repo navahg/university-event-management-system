@@ -20,14 +20,14 @@ public class UsersEntity {
     private String middleName;
     private String lastName;
     private String email;
-    private Collection<AdminWingMembersEntity> adminWingMembersByIdUser;
+    private AdminWingMembersEntity adminWingMembersByIdUser;
+    private CouncilMembersEntity councilMembersByIdUser;
+    private ProgramMembersEntity programMembersByIdUser;
     private Collection<ClubMembersEntity> clubMembersByIdUser;
-    private Collection<CouncilMembersEntity> councilMembersByIdUser;
     private Collection<EventParticipantsEntity> eventParticipantsByIdUser;
     private Collection<EventsEntity> eventsByIdUser;
     private Collection<InvitesEntity> invitesByIdUser;
     private Collection<NotificationsEntity> notificationsByIdUser;
-    private Collection<ProgramMembersEntity> programMembersByIdUser;
     private Collection<SchedulesEntity> schedulesByIdUser;
     private Collection<UserAccountsEntity> userAccountsByIdUser;
     private RolesEntity rolesByIdRole;
@@ -113,15 +113,33 @@ public class UsersEntity {
         return Objects.hash(idUser, rolesByIdRole.getIdRole(), userName, firstName, middleName, lastName, email);
     }
 
-    @OneToMany(mappedBy = "usersByIdUser")
-    public Collection<AdminWingMembersEntity> getAdminWingMembersByIdUser() {
+    @OneToOne(mappedBy = "usersByIdUser")
+    public AdminWingMembersEntity getAdminWingMembersByIdUser() {
         return adminWingMembersByIdUser;
     }
 
-    public void setAdminWingMembersByIdUser(Collection<AdminWingMembersEntity> adminWingMembersByIdUser) {
+    public void setAdminWingMembersByIdUser(AdminWingMembersEntity adminWingMembersByIdUser) {
         this.adminWingMembersByIdUser = adminWingMembersByIdUser;
     }
 
+    @OneToOne(mappedBy = "usersByIdUser")
+    public CouncilMembersEntity getCouncilMembersByIdUser() {
+        return councilMembersByIdUser;
+    }
+
+    public void setCouncilMembersByIdUser(CouncilMembersEntity councilMembersByIdUser) {
+        this.councilMembersByIdUser = councilMembersByIdUser;
+    }
+
+    @OneToOne(mappedBy = "usersByIdUser")
+    public ProgramMembersEntity getProgramMembersByIdUser() {
+        return programMembersByIdUser;
+    }
+
+    public void setProgramMembersByIdUser(ProgramMembersEntity programMembersByIdUser) {
+        this.programMembersByIdUser = programMembersByIdUser;
+    }
+    
     @OneToMany(mappedBy = "usersByIdUser")
     public Collection<ClubMembersEntity> getClubMembersByIdUser() {
         return clubMembersByIdUser;
@@ -129,15 +147,6 @@ public class UsersEntity {
 
     public void setClubMembersByIdUser(Collection<ClubMembersEntity> clubMembersByIdUser) {
         this.clubMembersByIdUser = clubMembersByIdUser;
-    }
-
-    @OneToMany(mappedBy = "usersByIdUser")
-    public Collection<CouncilMembersEntity> getCouncilMembersByIdUser() {
-        return councilMembersByIdUser;
-    }
-
-    public void setCouncilMembersByIdUser(Collection<CouncilMembersEntity> councilMembersByIdUser) {
-        this.councilMembersByIdUser = councilMembersByIdUser;
     }
 
     @OneToMany(mappedBy = "usersByIdUser")
@@ -174,15 +183,6 @@ public class UsersEntity {
 
     public void setNotificationsByIdUser(Collection<NotificationsEntity> notificationsByIdUser) {
         this.notificationsByIdUser = notificationsByIdUser;
-    }
-
-    @OneToMany(mappedBy = "usersByIdUser")
-    public Collection<ProgramMembersEntity> getProgramMembersByIdUser() {
-        return programMembersByIdUser;
-    }
-
-    public void setProgramMembersByIdUser(Collection<ProgramMembersEntity> programMembersByIdUser) {
-        this.programMembersByIdUser = programMembersByIdUser;
     }
 
     @OneToMany(mappedBy = "usersByIdUser")

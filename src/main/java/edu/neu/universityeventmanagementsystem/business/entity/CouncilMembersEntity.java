@@ -44,7 +44,7 @@ public class CouncilMembersEntity {
         return Objects.hash(idCouncilMembers, usersByIdUser.getIdUser(), councilsByIdCouncil.getIdCouncil());
     }
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_user", referencedColumnName = "id_user", nullable = false)
     public UsersEntity getUsersByIdUser() {
         return usersByIdUser;
