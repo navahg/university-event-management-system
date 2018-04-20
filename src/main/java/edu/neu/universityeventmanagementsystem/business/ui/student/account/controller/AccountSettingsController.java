@@ -26,7 +26,7 @@ public final class AccountSettingsController extends FormController {
 
     @Override
     public void prepareAndOpenForm() {
-
+//        accountSettingsView.fillDetails();
     }
 
     public Component getView() {

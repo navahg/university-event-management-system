@@ -1,5 +1,6 @@
 package edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.controller;
 
+import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.infrastructure.controller.InfrastructureController;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.view.LandingPanelView;
@@ -24,23 +25,26 @@ public final class LandingPanelController extends FormController {
     private LandingPanelView landingPanelView;
     private InfrastructureController infrastructureController;
     private UsersController usersController;
-    private UsersEntity user;
+    private CurrentUserBean currentUserBean;
 
     private final static Logger log = Logger.getLogger(LandingPanelController.class);
 
     @Autowired
     public LandingPanelController (MainFrameController mainFrameController, LandingPanelView landingPanelView,
                                    InfrastructureController infrastructureController,
-                                   UsersController usersController) {
+                                   UsersController usersController,
+                                   CurrentUserBean currentUserBean) {
         this.mainFrameController = mainFrameController;
         this.landingPanelView = landingPanelView;
         this.infrastructureController = infrastructureController;
         this.usersController = usersController;
-        user = null;
+        this.currentUserBean = currentUserBean;
     }
 
     @Override
     public void prepareAndOpenForm() {
+        UsersEntity user = currentUserBean.getCurrentUser();
+
         if (user == null) {
             log.error("Current user is null");
             return;
@@ -75,11 +79,8 @@ public final class LandingPanelController extends FormController {
         }
     }
 
-    public void setUser(UsersEntity user) {
-        this.user = user;
-    }
-
     private void doLogout () {
+        currentUserBean.setCurrentUser(null);
         mainFrameController.removeFromLayout(landingPanelView);
     }
 

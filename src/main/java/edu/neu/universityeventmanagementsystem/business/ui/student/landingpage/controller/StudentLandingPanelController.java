@@ -1,5 +1,6 @@
 package edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.controller;
 
+import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.EventsPanelController;
@@ -19,7 +20,7 @@ public class StudentLandingPanelController extends FormController {
     private StudentLandingPanelView studentLandingPanelView;
     private EventsPanelController eventsPanelController;
     private AccountSettingsController accountSettingsController;
-    private UsersEntity user;
+    private CurrentUserBean currentUserBean;
 
     private final static Logger log = Logger.getLogger(StudentLandingPanelController.class);
 
@@ -27,16 +28,19 @@ public class StudentLandingPanelController extends FormController {
     @Autowired
     public StudentLandingPanelController(MainFrameController mainFrameController, StudentLandingPanelView studentLandingPanelView,
                                          EventsPanelController eventsPanelController,
-                                         AccountSettingsController accountSettingsController) {
+                                         AccountSettingsController accountSettingsController,
+                                         CurrentUserBean currentUserBean) {
         this.mainFrameController = mainFrameController;
         this.studentLandingPanelView = studentLandingPanelView;
         this.eventsPanelController = eventsPanelController;
         this.accountSettingsController = accountSettingsController;
-        user = null;
+        this.currentUserBean = currentUserBean;
     }
 
     @Override
     public void prepareAndOpenForm() {
+        UsersEntity user = currentUserBean.getCurrentUser();
+
         if (user == null) {
             log.error("Current user is null");
             return;
@@ -47,11 +51,8 @@ public class StudentLandingPanelController extends FormController {
         viewPanel();
     }
 
-    public void setUser(UsersEntity user) {
-        this.user = user;
-    }
-
     private void doLogout () {
+        currentUserBean.setCurrentUser(null);
         mainFrameController.removeFromLayout(studentLandingPanelView);
     }
 

@@ -1,5 +1,6 @@
 package edu.neu.universityeventmanagementsystem.business.ui.account.login.controller;
 
+import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
 import edu.neu.universityeventmanagementsystem.business.entity.RolesEntity;
 import edu.neu.universityeventmanagementsystem.business.entity.UserAccountsEntity;
 import edu.neu.universityeventmanagementsystem.business.service.UserAccountsService;
@@ -28,30 +29,33 @@ public final class LoginPanelController extends FormController {
     private LandingPanelController adminLandingPanelController;
     private UserAccountsService userAccountsService;
     private StudentLandingPanelController studentLandingPanelController;
+    private CurrentUserBean currentUserBean;
 
     @Autowired
     public LoginPanelController(MainFrameController mainFrameController, LoginPanelView loginPanelView,
                                 UserAccountsService userAccountsService,
                                 RegisterPanelController registerPanelController,
                                 LandingPanelController adminLandingPanelController,
-                                StudentLandingPanelController studentLandingPanelController) {
+                                StudentLandingPanelController studentLandingPanelController,
+                                CurrentUserBean currentUserBean) {
         this.mainFrameController = mainFrameController;
         this.loginPanelView = loginPanelView;
         this.registerPanelController = registerPanelController;
         this.adminLandingPanelController = adminLandingPanelController;
         this.userAccountsService = userAccountsService;
         this.studentLandingPanelController = studentLandingPanelController;
+        this.currentUserBean = currentUserBean;
     }
 
     @Override
     public void prepareAndOpenForm() {
         mainFrameController.prepareAndOpenForm();
-        registerAction((javax.swing.JButton)loginPanelView.getSignInButton(), (event) -> doSignIn());
-        registerAction((javax.swing.JButton)loginPanelView.getSignUpButton(), (event) -> showRegisterView());
+        registerAction((javax.swing.JButton) loginPanelView.getSignInButton(), (event) -> doSignIn());
+        registerAction((javax.swing.JButton) loginPanelView.getSignUpButton(), (event) -> showRegisterView());
         viewPanel();
     }
 
-    private void doSignIn () {
+    private void doSignIn() {
         loginPanelView.suppressInvalidCredentials();
 
         String username = loginPanelView.getUserName();
@@ -64,21 +68,21 @@ public final class LoginPanelController extends FormController {
         }
 
         loginPanelView.resetView();
-        showRespectiveView(account);
+        currentUserBean.setCurrentUser(account.getUsersByIdUser());
+        showRespectiveView();
     }
 
-    private void showRespectiveView (UserAccountsEntity account) {
-        if (account.getUsersByIdUser().getRolesByIdRole().getPrivilegeLevel() == RolesEntity.SYSTEM_ADMIN) {
-            adminLandingPanelController.setUser(account.getUsersByIdUser());
+    private void showRespectiveView() {
+        if (currentUserBean.getCurrentUser() == null) return;
+
+        if (currentUserBean.getCurrentUser().getRolesByIdRole().getPrivilegeLevel() == RolesEntity.SYSTEM_ADMIN) {
             adminLandingPanelController.prepareAndOpenForm();
-        }
-        else {
-            studentLandingPanelController.setUser(account.getUsersByIdUser());
+        } else {
             studentLandingPanelController.prepareAndOpenForm();
         }
     }
 
-    private void showRegisterView () {
+    private void showRegisterView() {
         registerPanelController.prepareAndOpenForm();
     }
 

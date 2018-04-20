@@ -1,5 +1,7 @@
 package edu.neu.universityeventmanagementsystem.system.spring;
 
+import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -15,4 +17,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = "edu.neu.universityeventmanagementsystem.business")
 @EnableJpaRepositories(basePackages = "edu.neu.universityeventmanagementsystem.business")
 public class ApplicationConfiguration {
+
+    @Bean
+    public CurrentUserBean currentUserBean() {
+        return new CurrentUserBean();
+    }
+    
 }
