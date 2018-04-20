@@ -22,5 +22,5 @@ public class ApplicationConfiguration {
     public CurrentUserBean currentUserBean() {
         return new CurrentUserBean();
     }
-    
+
 }
