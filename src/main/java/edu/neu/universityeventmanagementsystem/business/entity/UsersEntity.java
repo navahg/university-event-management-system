@@ -139,7 +139,7 @@ public class UsersEntity {
     public void setProgramMembersByIdUser(ProgramMembersEntity programMembersByIdUser) {
         this.programMembersByIdUser = programMembersByIdUser;
     }
-    
+
     @OneToMany(mappedBy = "usersByIdUser")
     public Collection<ClubMembersEntity> getClubMembersByIdUser() {
         return clubMembersByIdUser;

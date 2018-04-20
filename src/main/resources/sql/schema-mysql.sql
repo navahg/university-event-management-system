@@ -190,7 +190,7 @@ CREATE TABLE events (
 /* Table: program_members                                                                               */
 /*======================================================================================================*/
 CREATE TABLE program_members (
-  id_program_members INTEGER NOT NULL,
+  id_program_members INTEGER NOT NULL AUTO_INCREMENT,
   id_user            INTEGER NOT NULL UNIQUE,
   id_program         INTEGER NOT NULL,
   PRIMARY KEY (id_program_members),
@@ -204,7 +204,7 @@ CREATE TABLE program_members (
 /* Table: council_members                                                                               */
 /*======================================================================================================*/
 CREATE TABLE council_members (
-  id_council_members INTEGER NOT NULL,
+  id_council_members INTEGER NOT NULL AUTO_INCREMENT,
   id_user            INTEGER NOT NULL UNIQUE,
   id_council         INTEGER NOT NULL,
   PRIMARY KEY (id_council_members),
@@ -218,7 +218,7 @@ CREATE TABLE council_members (
 /* Table: admin_wing_members                                                                            */
 /*======================================================================================================*/
 CREATE TABLE admin_wing_members (
-  id_admin_wing_members INTEGER NOT NULL,
+  id_admin_wing_members INTEGER NOT NULL AUTO_INCREMENT,
   id_user               INTEGER NOT NULL UNIQUE,
   id_admin_wing         INTEGER NOT NULL,
   PRIMARY KEY (id_admin_wing_members),
@@ -232,7 +232,7 @@ CREATE TABLE admin_wing_members (
 /* Table: club_members                                                                                  */
 /*======================================================================================================*/
 CREATE TABLE club_members (
-  id_club_members INTEGER NOT NULL,
+  id_club_members INTEGER NOT NULL AUTO_INCREMENT,
   id_user         INTEGER NOT NULL,
   id_club         INTEGER NOT NULL,
   PRIMARY KEY (id_club_members),
@@ -246,7 +246,7 @@ CREATE TABLE club_members (
 /* Table: event_participants                                                                            */
 /*======================================================================================================*/
 CREATE TABLE event_participants (
-  id_event_participants INTEGER NOT NULL,
+  id_event_participants INTEGER NOT NULL AUTO_INCREMENT,
   id_user               INTEGER NOT NULL,
   id_event              INTEGER NOT NULL,
   PRIMARY KEY (id_event_participants),

@@ -8,10 +8,13 @@ import edu.neu.universityeventmanagementsystem.business.service.UsersService;
 import edu.neu.universityeventmanagementsystem.business.ui.account.register.view.RegisterPanelView;
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
+import edu.neu.universityeventmanagementsystem.business.util.ConstantValues;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * RegisterPanelController class
@@ -42,6 +45,13 @@ public final class RegisterPanelController extends FormController {
 
     @Override
     public void prepareAndOpenForm() {
+        List<String> roles = new ArrayList<>();
+
+        rolesService.findAll().stream()
+                .filter(rolesEntity -> rolesEntity.getPrivilegeLevel() < ConstantValues.Values.PRIVILEGE_LIMIT_FOR_REGISTRATION)
+                .forEach(filteredRolesEntity -> roles.add(filteredRolesEntity.getName()));
+
+        registerPanelView.populateRoles(roles);
         registerAction(((javax.swing.JButton) registerPanelView.getBackButton()), (event) -> naviagateBack());
         registerAction(((javax.swing.JButton) registerPanelView.getRegisterButton()), (event) -> registerUser());
         viewPanel();

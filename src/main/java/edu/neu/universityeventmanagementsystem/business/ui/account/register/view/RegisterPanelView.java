@@ -8,7 +8,9 @@ package edu.neu.universityeventmanagementsystem.business.ui.account.register.vie
 
 import org.springframework.stereotype.Component;
 
+import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 /**
  * RegisterPanelView class
@@ -34,6 +36,10 @@ public final class RegisterPanelView extends javax.swing.JPanel {
 
     public java.awt.Component getRegisterButton () {
         return btnSignUp;
+    }
+
+    public void populateRoles(List<String> roles) {
+        comboBoxRole.setModel(new DefaultComboBoxModel(roles.toArray()));
     }
 
     public void raiseUsernameExists () {

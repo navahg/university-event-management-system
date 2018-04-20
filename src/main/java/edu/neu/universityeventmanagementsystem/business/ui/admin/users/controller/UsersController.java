@@ -12,9 +12,9 @@ import java.awt.event.ActionEvent;
 /**
  * UsersController class
  *
- * @author  Raghavan Renganathan <renganathan.r@husky.neu.edu>
+ * @author Raghavan Renganathan <renganathan.r@husky.neu.edu>
  * @version 1.0
- * @since   Apr 15, 2018
+ * @since Apr 15, 2018
  */
 @Controller
 public final class UsersController extends FormController {
@@ -25,6 +25,8 @@ public final class UsersController extends FormController {
     private String selectedViewByRole;
     private static final String ADMIN_ROLE = "SYSTEM_ADMIN";
     private static final String STUDENT_ROLE = "STUDENT";
+    private static final String FACULTY_ROLE = "FACULTY";
+    private static final String SPONSOR_ROLE = "SPONSOR";
     private static final String GUEST_ROLE = "GUEST";
 
     @Autowired
@@ -32,12 +34,13 @@ public final class UsersController extends FormController {
         this.usersView = usersView;
         this.usersService = usersService;
         this.addUserController = addUserController;
-        selectedViewByRole = STUDENT_ROLE;
+        selectedViewByRole = ADMIN_ROLE;
     }
 
     @Override
     public void prepareAndOpenForm() {
         registerEvents();
+        usersView.populateTable(usersService.findByRole(selectedViewByRole));
     }
 
     private void registerEvents() {
@@ -61,6 +64,12 @@ public final class UsersController extends FormController {
                 break;
             case "Students":
                 selectedViewByRole = STUDENT_ROLE;
+                break;
+            case "Faculties":
+                selectedViewByRole = FACULTY_ROLE;
+                break;
+            case "Sponsors":
+                selectedViewByRole = SPONSOR_ROLE;
                 break;
             case "Guests":
                 selectedViewByRole = GUEST_ROLE;

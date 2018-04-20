@@ -1,5 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.ui.student.account.view;
 
+import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,9 +14,33 @@ import org.springframework.stereotype.Component;
 @Component
 public final class AccountSettingsView extends javax.swing.JPanel {
 
+    private static final Logger log = Logger.getLogger(AccountSettingsView.class);
+
+    private UsersEntity currentUser;
     /** Creates new form AccountSettingsView */
     public AccountSettingsView() {
         initComponents();
+    }
+
+    public void setCurrentUser(UsersEntity currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public void fillDetails() {
+        if (currentUser == null) {
+            log.debug("User entity is null.");
+            return;
+        }
+
+        txtFieldUserName.setText(currentUser.getUserName());
+        txtFieldCollege.setText(currentUser.getProgramMembersByIdUser().getProgramsByIdProgram().getCollegesByIdCollege().getName());
+        txtFieldProgram.setText(currentUser.getProgramMembersByIdUser().getProgramsByIdProgram().getName());
+
+        txtFieldFirstName.setText(currentUser.getFirstName());
+        txtFieldMiddleName.setText(currentUser.getMiddleName());
+        txtFieldLastName.setText(currentUser.getLastName());
+
+        txtFieldEmail.setText(currentUser.getEmail());
     }
 
     /** This method is called from within the constructor to
@@ -40,9 +66,9 @@ public final class AccountSettingsView extends javax.swing.JPanel {
         javax.swing.JLabel jLabel9 = new javax.swing.JLabel();
         txtFieldLastName = new javax.swing.JTextField();
         javax.swing.JLabel jLabel10 = new javax.swing.JLabel();
-        txtFieldUserName1 = new javax.swing.JTextField();
+        txtFieldCollege = new javax.swing.JTextField();
         javax.swing.JLabel jLabel15 = new javax.swing.JLabel();
-        txtFieldUserName2 = new javax.swing.JTextField();
+        txtFieldProgram = new javax.swing.JTextField();
         javax.swing.JLabel jLabel16 = new javax.swing.JLabel();
         btnEdit = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
@@ -86,14 +112,14 @@ public final class AccountSettingsView extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Last Name");
 
-        txtFieldUserName1.setEditable(false);
-        txtFieldUserName1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFieldCollege.setEditable(false);
+        txtFieldCollege.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText("College");
 
-        txtFieldUserName2.setEditable(false);
-        txtFieldUserName2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFieldProgram.setEditable(false);
+        txtFieldProgram.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setText("Program");
@@ -147,7 +173,7 @@ public final class AccountSettingsView extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel15)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtFieldUserName1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtFieldCollege, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel14)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -155,7 +181,7 @@ public final class AccountSettingsView extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel16)
                             .addGap(18, 18, 18)
-                            .addComponent(txtFieldUserName2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtFieldProgram, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(380, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -167,11 +193,11 @@ public final class AccountSettingsView extends javax.swing.JPanel {
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFieldUserName1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFieldCollege, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFieldUserName2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFieldProgram, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,13 +241,13 @@ public final class AccountSettingsView extends javax.swing.JPanel {
     private javax.swing.JButton btnSave;
     private javax.swing.JPasswordField pwdField;
     private javax.swing.JPasswordField pwdFieldConfirm;
+    private javax.swing.JTextField txtFieldCollege;
     private javax.swing.JTextField txtFieldEmail;
     private javax.swing.JTextField txtFieldFirstName;
     private javax.swing.JTextField txtFieldLastName;
     private javax.swing.JTextField txtFieldMiddleName;
+    private javax.swing.JTextField txtFieldProgram;
     private javax.swing.JTextField txtFieldUserName;
-    private javax.swing.JTextField txtFieldUserName1;
-    private javax.swing.JTextField txtFieldUserName2;
     // End of variables declaration//GEN-END:variables
 
 }
