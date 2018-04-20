@@ -191,7 +191,7 @@ CREATE TABLE events (
 /*======================================================================================================*/
 CREATE TABLE program_members (
   id_program_members INTEGER NOT NULL,
-  id_user            INTEGER NOT NULL,
+  id_user            INTEGER NOT NULL UNIQUE,
   id_program         INTEGER NOT NULL,
   PRIMARY KEY (id_program_members),
   FOREIGN KEY (id_user) REFERENCES users (id_user)
@@ -205,7 +205,7 @@ CREATE TABLE program_members (
 /*======================================================================================================*/
 CREATE TABLE council_members (
   id_council_members INTEGER NOT NULL,
-  id_user            INTEGER NOT NULL,
+  id_user            INTEGER NOT NULL UNIQUE,
   id_council         INTEGER NOT NULL,
   PRIMARY KEY (id_council_members),
   FOREIGN KEY (id_user) REFERENCES users (id_user)
@@ -219,7 +219,7 @@ CREATE TABLE council_members (
 /*======================================================================================================*/
 CREATE TABLE admin_wing_members (
   id_admin_wing_members INTEGER NOT NULL,
-  id_user               INTEGER NOT NULL,
+  id_user               INTEGER NOT NULL UNIQUE,
   id_admin_wing         INTEGER NOT NULL,
   PRIMARY KEY (id_admin_wing_members),
   FOREIGN KEY (id_user) REFERENCES users (id_user)
