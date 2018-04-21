@@ -38,7 +38,7 @@ public class EventEntityView extends javax.swing.JPanel {
         lblDate = new javax.swing.JLabel();
         lblEventName = new javax.swing.JLabel();
         lblLocation = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblEventStatus = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -53,9 +53,9 @@ public class EventEntityView extends javax.swing.JPanel {
         lblLocation.setForeground(new java.awt.Color(0, 153, 153));
         lblLocation.setText("Location");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 102, 204));
-        jLabel1.setText("Event Status");
+        lblEventStatus.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        lblEventStatus.setForeground(new java.awt.Color(0, 102, 204));
+        lblEventStatus.setText("Event Status");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -74,7 +74,7 @@ public class EventEntityView extends javax.swing.JPanel {
                         .addGap(0, 18, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                        .addComponent(lblEventStatus)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -87,7 +87,7 @@ public class EventEntityView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblEventName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(lblEventStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -95,9 +95,9 @@ public class EventEntityView extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblEventName;
+    private javax.swing.JLabel lblEventStatus;
     private javax.swing.JLabel lblLocation;
     // End of variables declaration//GEN-END:variables
 

@@ -6,11 +6,12 @@ import edu.neu.universityeventmanagementsystem.business.entity.UserAccountsEntit
 import edu.neu.universityeventmanagementsystem.business.service.UserAccountsService;
 import edu.neu.universityeventmanagementsystem.business.ui.account.login.view.LoginPanelView;
 import edu.neu.universityeventmanagementsystem.business.ui.account.register.controller.RegisterPanelController;
-import edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.controller.LandingPanelController;
+import edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.controller.AdminLandingPanelController;
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.controller.StudentLandingPanelController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
@@ -27,26 +28,20 @@ public final class LoginPanelController extends FormController {
 
     private MainFrameController mainFrameController;
     private LoginPanelView loginPanelView;
-    private RegisterPanelController registerPanelController;
-    private LandingPanelController adminLandingPanelController;
     private UserAccountsService userAccountsService;
-    private StudentLandingPanelController studentLandingPanelController;
     private CurrentUserBean currentUserBean;
+    private ApplicationContext context;
 
     @Autowired
     public LoginPanelController(MainFrameController mainFrameController, LoginPanelView loginPanelView,
                                 UserAccountsService userAccountsService,
-                                RegisterPanelController registerPanelController,
-                                LandingPanelController adminLandingPanelController,
-                                StudentLandingPanelController studentLandingPanelController,
-                                CurrentUserBean currentUserBean) {
+                                CurrentUserBean currentUserBean,
+                                ApplicationContext context) {
         this.mainFrameController = mainFrameController;
         this.loginPanelView = loginPanelView;
-        this.registerPanelController = registerPanelController;
-        this.adminLandingPanelController = adminLandingPanelController;
         this.userAccountsService = userAccountsService;
-        this.studentLandingPanelController = studentLandingPanelController;
         this.currentUserBean = currentUserBean;
+        this.context = context;
     }
 
     @Override
@@ -78,14 +73,14 @@ public final class LoginPanelController extends FormController {
         if (currentUserBean.getCurrentUser() == null) return;
 
         if (currentUserBean.getCurrentUser().getRolesByIdRole().getPrivilegeLevel() == RolesEntity.SYSTEM_ADMIN) {
-            adminLandingPanelController.prepareAndOpenForm();
+            (context.getBean(AdminLandingPanelController.class)).prepareAndOpenForm();
         } else {
-            studentLandingPanelController.prepareAndOpenForm();
+            (context.getBean(StudentLandingPanelController.class)).prepareAndOpenForm();
         }
     }
 
     private void showRegisterView() {
-        registerPanelController.prepareAndOpenForm();
+        (context.getBean(RegisterPanelController.class)).prepareAndOpenForm();
     }
 
     private void viewPanel() {

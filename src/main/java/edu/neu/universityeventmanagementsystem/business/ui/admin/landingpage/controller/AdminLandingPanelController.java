@@ -3,17 +3,18 @@ package edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.co
 import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.infrastructure.controller.InfrastructureController;
-import edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.view.LandingPanelView;
+import edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.view.AdminLandingPanelView;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.users.controller.UsersController;
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 /**
- * LandingPanelController class
+ * AdminLandingPanelController class
  *
  * @author Raghavan Renganathan <renganathan.r@husky.neu.edu>
  * @version 1.0
@@ -21,26 +22,24 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 @Lazy
-public final class LandingPanelController extends FormController {
+public final class AdminLandingPanelController extends FormController {
 
     private MainFrameController mainFrameController;
-    private LandingPanelView landingPanelView;
-    private InfrastructureController infrastructureController;
-    private UsersController usersController;
+    private AdminLandingPanelView landingPanelView;
     private CurrentUserBean currentUserBean;
+    private ApplicationContext context;
 
-    private final static Logger log = Logger.getLogger(LandingPanelController.class);
+    private final static Logger log = Logger.getLogger(AdminLandingPanelController.class);
 
     @Autowired
-    public LandingPanelController (MainFrameController mainFrameController, LandingPanelView landingPanelView,
-                                   InfrastructureController infrastructureController,
-                                   UsersController usersController,
-                                   CurrentUserBean currentUserBean) {
+    public AdminLandingPanelController (MainFrameController mainFrameController,
+                                        AdminLandingPanelView landingPanelView,
+                                        CurrentUserBean currentUserBean,
+                                        ApplicationContext context) {
         this.mainFrameController = mainFrameController;
         this.landingPanelView = landingPanelView;
-        this.infrastructureController = infrastructureController;
-        this.usersController = usersController;
         this.currentUserBean = currentUserBean;
+        this.context = context;
     }
 
     @Override
@@ -70,10 +69,10 @@ public final class LandingPanelController extends FormController {
             case "Dashboard":
                 break;
             case "Infrastructures":
-                landingPanelView.setContentPanel(infrastructureController.getView());
+                landingPanelView.setContentPanel((context.getBean(InfrastructureController.class)).getView());
                 break;
             case "Users":
-                landingPanelView.setContentPanel(usersController.getView());
+                landingPanelView.setContentPanel((context.getBean(UsersController.class)).getView());
                 break;
             case "Events":
                 break;

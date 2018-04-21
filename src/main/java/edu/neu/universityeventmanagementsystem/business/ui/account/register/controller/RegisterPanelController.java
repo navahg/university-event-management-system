@@ -10,6 +10,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainF
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.util.ConstantValues;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
@@ -54,12 +55,12 @@ public final class RegisterPanelController extends FormController {
                 .forEach(filteredRolesEntity -> roles.add(filteredRolesEntity.getName()));
 
         registerPanelView.populateRoles(roles);
-        registerAction(((javax.swing.JButton) registerPanelView.getBackButton()), (event) -> naviagateBack());
+        registerAction(((javax.swing.JButton) registerPanelView.getBackButton()), (event) -> navigateBack());
         registerAction(((javax.swing.JButton) registerPanelView.getRegisterButton()), (event) -> registerUser());
         viewPanel();
     }
 
-    private void naviagateBack() {
+    private void navigateBack() {
         mainFrameController.removeFromLayout(registerPanelView);
     }
 
@@ -82,7 +83,7 @@ public final class RegisterPanelController extends FormController {
 
         JOptionPane.showMessageDialog(null, "Account registered successfully!");
 
-        naviagateBack();
+        navigateBack();
     }
 
     private void viewPanel() {

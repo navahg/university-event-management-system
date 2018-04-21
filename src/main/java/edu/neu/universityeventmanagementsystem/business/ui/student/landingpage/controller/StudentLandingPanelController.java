@@ -9,6 +9,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.student.account.contr
 import edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.view.StudentLandingPanelView;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
@@ -20,23 +21,21 @@ public class StudentLandingPanelController extends FormController {
 
     private MainFrameController mainFrameController;
     private StudentLandingPanelView studentLandingPanelView;
-    private EventsPanelController eventsPanelController;
-    private AccountSettingsController accountSettingsController;
     private CurrentUserBean currentUserBean;
+    private ApplicationContext context;
 
     private final static Logger log = Logger.getLogger(StudentLandingPanelController.class);
 
 
     @Autowired
-    public StudentLandingPanelController(MainFrameController mainFrameController, StudentLandingPanelView studentLandingPanelView,
-                                         EventsPanelController eventsPanelController,
-                                         AccountSettingsController accountSettingsController,
-                                         CurrentUserBean currentUserBean) {
+    public StudentLandingPanelController(MainFrameController mainFrameController,
+                                         StudentLandingPanelView studentLandingPanelView,
+                                         CurrentUserBean currentUserBean,
+                                         ApplicationContext context) {
         this.mainFrameController = mainFrameController;
         this.studentLandingPanelView = studentLandingPanelView;
-        this.eventsPanelController = eventsPanelController;
-        this.accountSettingsController = accountSettingsController;
         this.currentUserBean = currentUserBean;
+        this.context = context;
     }
 
     @Override
@@ -71,10 +70,10 @@ public class StudentLandingPanelController extends FormController {
             case "Dashboard":
                 break;
             case "Events":
-                studentLandingPanelView.setContentPanel(eventsPanelController.getView());
+                studentLandingPanelView.setContentPanel((context.getBean(EventsPanelController.class)).getView());
                 break;
             case "Account Settings":
-                studentLandingPanelView.setContentPanel(accountSettingsController.getView());
+                studentLandingPanelView.setContentPanel((context.getBean(AccountSettingsController.class)).getView());
                 break;
             default:
         }

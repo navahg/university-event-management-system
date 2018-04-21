@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * LandingPanelView class
+ * AdminLandingPanelView class
  *
  * @author Raghavan Renganathan <renganathan.raghavan@gmail.com> <renganathan.r@husky.neu.edu>
  * @version 1.0
@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Component
 @Lazy
-public final class LandingPanelView extends javax.swing.JPanel {
+public final class AdminLandingPanelView extends javax.swing.JPanel {
 
     private final static Color ACTIVE = new Color(6, 136, 136);
     private final static Color INACTIVE = new Color(5, 119, 119);
@@ -31,7 +31,7 @@ public final class LandingPanelView extends javax.swing.JPanel {
     /**
      * Creates new form LandingPanelView
      */
-    public LandingPanelView() {
+    public AdminLandingPanelView() {
         initComponents();
     }
 
