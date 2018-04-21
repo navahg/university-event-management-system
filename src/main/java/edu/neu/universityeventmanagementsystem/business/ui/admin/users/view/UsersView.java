@@ -7,6 +7,7 @@
 package edu.neu.universityeventmanagementsystem.business.ui.admin.users.view;
 
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +24,7 @@ import java.util.List;
  * @since Apr 15, 2018
  */
 @Component
+@Lazy
 public final class UsersView extends javax.swing.JPanel {
 
     private final static Color ACTIVE_BACKGROUND = new Color(255, 255, 255);

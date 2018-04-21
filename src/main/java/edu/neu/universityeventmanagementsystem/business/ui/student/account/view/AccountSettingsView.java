@@ -2,6 +2,7 @@ package edu.neu.universityeventmanagementsystem.business.ui.student.account.view
 
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
  * @since   Apr 19, 2018
  */
 @Component
+@Lazy
 public final class AccountSettingsView extends javax.swing.JPanel {
 
     private static final Logger log = Logger.getLogger(AccountSettingsView.class);

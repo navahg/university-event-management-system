@@ -11,6 +11,7 @@ import edu.neu.universityeventmanagementsystem.business.service.ProgramsService;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.infrastructure.view.InfrastructureView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import javax.swing.*;
@@ -26,6 +27,7 @@ import java.util.List;
  * @since 4/13/2018
  */
 @Controller
+@Lazy
 public final class InfrastructureController extends FormController {
 
     private InfrastructureView infrastructureView;

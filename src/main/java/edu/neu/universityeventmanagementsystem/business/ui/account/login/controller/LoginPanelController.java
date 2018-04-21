@@ -11,6 +11,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainF
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.controller.StudentLandingPanelController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Controller;
  * @since 4/11/2018
  */
 @Controller
+@Lazy
 public final class LoginPanelController extends FormController {
 
     private MainFrameController mainFrameController;

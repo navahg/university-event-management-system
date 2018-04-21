@@ -8,6 +8,7 @@ import edu.neu.universityeventmanagementsystem.business.service.UsersService;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.users.view.AddUserView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import javax.swing.*;
@@ -23,6 +24,7 @@ import java.util.List;
  * @since Apr 18, 2018
  */
 @Controller
+@Lazy
 public final class AddUserController extends FormController {
 
     private AddUserView addUserView;

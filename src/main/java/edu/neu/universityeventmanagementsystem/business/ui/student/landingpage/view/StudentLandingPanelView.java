@@ -5,6 +5,7 @@
  */
 package edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.view;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.awt.*;
@@ -17,6 +18,7 @@ import java.util.List;
  * @author Srinithi
  */
 @Component
+@Lazy
 public class StudentLandingPanelView extends javax.swing.JPanel {
 
     private final static Color ACTIVE = new Color(6, 136, 136);

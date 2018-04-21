@@ -4,6 +4,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.shared.view.EventEnti
 import edu.neu.universityeventmanagementsystem.business.ui.shared.view.EventsPanelView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import java.awt.*;
@@ -16,6 +17,7 @@ import java.awt.*;
  * @since   Apr 19, 2018
  */
 @Controller
+@Lazy
 public final class EventsPanelController extends FormController {
 
     private EventsPanelView eventsPanelView;
@@ -37,7 +39,7 @@ public final class EventsPanelController extends FormController {
     }
 
     private void addEventToThePane(String type) {
-        EventEntityView event = context.getBean(EventEntityView.class);
+        EventEntityView event = context.getBean(EventEntityView.class, "test");
         event.setEventName(type);
         eventsPanelView.addToPanel(event, type);
     }

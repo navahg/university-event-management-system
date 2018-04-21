@@ -4,6 +4,7 @@ import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.ui.student.account.view.AccountSettingsView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import java.awt.*;
@@ -16,6 +17,7 @@ import java.awt.*;
  * @since   Apr 20, 2018
  */
 @Controller
+@Lazy
 public final class AccountSettingsController extends FormController {
 
     private AccountSettingsView accountSettingsView;

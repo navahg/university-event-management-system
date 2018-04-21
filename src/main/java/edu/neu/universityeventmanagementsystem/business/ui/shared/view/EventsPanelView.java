@@ -1,5 +1,6 @@
 package edu.neu.universityeventmanagementsystem.business.ui.shared.view;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
  * @since   Apr 19, 2018
  */
 @Component
+@Lazy
 public final class EventsPanelView extends javax.swing.JPanel {
 
     /** Creates new form EventsPanelView */
@@ -19,9 +21,7 @@ public final class EventsPanelView extends javax.swing.JPanel {
 
     public void addToPanel(java.awt.Component component, String type) {
         lblNoUpcomingEvents.setVisible(false);
-        upcomingEventsPanel.add(component);
-        upcomingEventsPanel.revalidate();
-        upcomingEventsPanel.repaint();
+        upcomingEventsContentPane.add(component);
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -32,32 +32,35 @@ public final class EventsPanelView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainContainerPanel = new javax.swing.JScrollPane();
-        mainScrollPane = new javax.swing.JPanel();
-        javax.swing.JPanel jPanel6 = new javax.swing.JPanel();
-        javax.swing.JPanel jPanel5 = new javax.swing.JPanel();
-        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
-        javax.swing.JPanel jPanel9 = new javax.swing.JPanel();
-        javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
-        upcomingEventsPanel = new javax.swing.JPanel();
+        javax.swing.JScrollPane mainContainerPanel = new javax.swing.JScrollPane();
+        javax.swing.JPanel mainScrollPane = new javax.swing.JPanel();
+        javax.swing.JPanel upcominEventsOuterPanel = new javax.swing.JPanel();
+        javax.swing.JPanel upcomingEventLabelContainer = new javax.swing.JPanel();
+        javax.swing.JLabel lblUpcomingEvents = new javax.swing.JLabel();
+        javax.swing.JPanel upcomingEventContentContainer = new javax.swing.JPanel();
+        javax.swing.JScrollPane upcomingEventScrollPane = new javax.swing.JScrollPane();
+        upcomingEventsContentPane = new javax.swing.JPanel();
         lblNoUpcomingEvents = new javax.swing.JLabel();
-        javax.swing.JPanel jPanel8 = new javax.swing.JPanel();
-        javax.swing.JPanel jPanel7 = new javax.swing.JPanel();
-        javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
-        javax.swing.JScrollPane jScrollPane2 = new javax.swing.JScrollPane();
-        invitesPanel = new javax.swing.JPanel();
+        javax.swing.JPanel invitesOuterPanel = new javax.swing.JPanel();
+        javax.swing.JPanel invitesLabelContainer = new javax.swing.JPanel();
+        javax.swing.JLabel lblInvites = new javax.swing.JLabel();
+        javax.swing.JPanel invitesContentContainer = new javax.swing.JPanel();
+        javax.swing.JScrollPane invitesScrollPane = new javax.swing.JScrollPane();
+        invitesContentPane = new javax.swing.JPanel();
         lblNoInvites = new javax.swing.JLabel();
-        javax.swing.JPanel jPanel3 = new javax.swing.JPanel();
-        javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
-        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
-        javax.swing.JScrollPane jScrollPane3 = new javax.swing.JScrollPane();
-        pastEventsPanel = new javax.swing.JPanel();
-        lblNoPastEvnts = new javax.swing.JLabel();
-        javax.swing.JPanel jPanel4 = new javax.swing.JPanel();
-        javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
-        javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
-        javax.swing.JScrollPane jScrollPane4 = new javax.swing.JScrollPane();
-        javax.swing.JPanel hostedEventsPanel = new javax.swing.JPanel();
+        javax.swing.JPanel pastEventsOuterPanel = new javax.swing.JPanel();
+        javax.swing.JPanel pastEventsLabelContainer = new javax.swing.JPanel();
+        javax.swing.JLabel lblPastEvents = new javax.swing.JLabel();
+        pastEventsContentContainer = new javax.swing.JPanel();
+        javax.swing.JScrollPane pastEventsScrollPane = new javax.swing.JScrollPane();
+        pastEventsContentPane = new javax.swing.JPanel();
+        lblNoPastEvents = new javax.swing.JLabel();
+        javax.swing.JPanel hostedEventsOuterPanel = new javax.swing.JPanel();
+        javax.swing.JPanel hostedEventsLabelContainer = new javax.swing.JPanel();
+        javax.swing.JLabel lblHostedEvents = new javax.swing.JLabel();
+        hostedEventContentContainer = new javax.swing.JPanel();
+        javax.swing.JScrollPane hostedEventsScrollPane = new javax.swing.JScrollPane();
+        hostedEventsContentPane = new javax.swing.JPanel();
         lblNoHostedEvents = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -68,237 +71,266 @@ public final class EventsPanelView extends javax.swing.JPanel {
         mainContainerPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         mainContainerPanel.setAutoscrolls(true);
         mainContainerPanel.setOpaque(false);
-        mainContainerPanel.setPreferredSize(new java.awt.Dimension(1066, 790));
+        mainContainerPanel.setPreferredSize(new java.awt.Dimension(1066, 700));
         mainContainerPanel.getVerticalScrollBar().setUnitIncrement(10);
 
         mainScrollPane.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        jPanel6.setLayout(new java.awt.BorderLayout());
+        upcominEventsOuterPanel.setBackground(new java.awt.Color(255, 255, 255));
+        upcominEventsOuterPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        upcominEventsOuterPanel.setLayout(new java.awt.BorderLayout());
 
-        jPanel5.setPreferredSize(new java.awt.Dimension(480, 50));
+        upcomingEventLabelContainer.setPreferredSize(new java.awt.Dimension(480, 50));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel2.setText("Upcoming Events");
+        lblUpcomingEvents.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lblUpcomingEvents.setText("Upcoming Events");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout upcomingEventLabelContainerLayout = new javax.swing.GroupLayout(upcomingEventLabelContainer);
+        upcomingEventLabelContainer.setLayout(upcomingEventLabelContainerLayout);
+        upcomingEventLabelContainerLayout.setHorizontalGroup(
+            upcomingEventLabelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(upcomingEventLabelContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(lblUpcomingEvents)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        upcomingEventLabelContainerLayout.setVerticalGroup(
+            upcomingEventLabelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(upcomingEventLabelContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(lblUpcomingEvents)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel6.add(jPanel5, java.awt.BorderLayout.PAGE_START);
+        upcominEventsOuterPanel.add(upcomingEventLabelContainer, java.awt.BorderLayout.PAGE_START);
 
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setPreferredSize(new java.awt.Dimension(480, 300));
+        upcomingEventContentContainer.setBackground(new java.awt.Color(255, 255, 255));
+        upcomingEventContentContainer.setPreferredSize(new java.awt.Dimension(480, 300));
 
-        jScrollPane1.setBorder(null);
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setHorizontalScrollBar(null);
-        jScrollPane1.setMaximumSize(new java.awt.Dimension(480, 300));
-        jScrollPane1.setMinimumSize(new java.awt.Dimension(480, 300));
-        jScrollPane1.getVerticalScrollBar().setUnitIncrement(10);
+        upcomingEventScrollPane.setBorder(null);
+        upcomingEventScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        upcomingEventScrollPane.setHorizontalScrollBar(null);
+        upcomingEventScrollPane.setMaximumSize(new java.awt.Dimension(480, 300));
+        upcomingEventScrollPane.setMinimumSize(new java.awt.Dimension(480, 300));
+        upcomingEventScrollPane.getVerticalScrollBar().setUnitIncrement(10);
 
-        upcomingEventsPanel.setBackground(new java.awt.Color(255, 255, 255));
-        upcomingEventsPanel.setLayout(new javax.swing.BoxLayout(upcomingEventsPanel, javax.swing.BoxLayout.Y_AXIS));
+        upcomingEventsContentPane.setBackground(new java.awt.Color(255, 255, 255));
+        upcomingEventsContentPane.setLayout(new javax.swing.BoxLayout(upcomingEventsContentPane, javax.swing.BoxLayout.Y_AXIS));
 
         lblNoUpcomingEvents.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         lblNoUpcomingEvents.setForeground(new java.awt.Color(153, 153, 153));
         lblNoUpcomingEvents.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNoUpcomingEvents.setText("No upcoming events.");
         lblNoUpcomingEvents.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        upcomingEventsPanel.add(lblNoUpcomingEvents);
+        upcomingEventsContentPane.add(lblNoUpcomingEvents);
 
-        jScrollPane1.setViewportView(upcomingEventsPanel);
+        upcomingEventScrollPane.setViewportView(upcomingEventsContentPane);
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
-            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE))
+        javax.swing.GroupLayout upcomingEventContentContainerLayout = new javax.swing.GroupLayout(upcomingEventContentContainer);
+        upcomingEventContentContainer.setLayout(upcomingEventContentContainerLayout);
+        upcomingEventContentContainerLayout.setHorizontalGroup(
+            upcomingEventContentContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(upcomingEventContentContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(upcomingEventScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
+        upcomingEventContentContainerLayout.setVerticalGroup(
+            upcomingEventContentContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(upcomingEventContentContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(upcomingEventScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel6.add(jPanel9, java.awt.BorderLayout.CENTER);
+        upcominEventsOuterPanel.add(upcomingEventContentContainer, java.awt.BorderLayout.CENTER);
 
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        invitesOuterPanel.setBackground(new java.awt.Color(255, 255, 255));
+        invitesOuterPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        invitesOuterPanel.setPreferredSize(new java.awt.Dimension(484, 354));
+        invitesOuterPanel.setLayout(new java.awt.BorderLayout());
 
-        jPanel7.setPreferredSize(new java.awt.Dimension(100, 50));
+        invitesLabelContainer.setPreferredSize(new java.awt.Dimension(480, 50));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel3.setText("Invites");
+        lblInvites.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lblInvites.setText("Invites");
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout invitesLabelContainerLayout = new javax.swing.GroupLayout(invitesLabelContainer);
+        invitesLabelContainer.setLayout(invitesLabelContainerLayout);
+        invitesLabelContainerLayout.setHorizontalGroup(
+            invitesLabelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(invitesLabelContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(413, Short.MAX_VALUE))
+                .addComponent(lblInvites)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        invitesLabelContainerLayout.setVerticalGroup(
+            invitesLabelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(invitesLabelContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(lblInvites)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane2.setBorder(null);
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        invitesOuterPanel.add(invitesLabelContainer, java.awt.BorderLayout.PAGE_START);
 
-        invitesPanel.setBackground(new java.awt.Color(255, 255, 255));
-        invitesPanel.setPreferredSize(new java.awt.Dimension(91, 300));
+        invitesContentContainer.setPreferredSize(new java.awt.Dimension(480, 300));
+
+        invitesScrollPane.setBorder(null);
+        invitesScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        invitesContentPane.setBackground(new java.awt.Color(255, 255, 255));
+        invitesContentPane.setPreferredSize(new java.awt.Dimension(91, 300));
+        invitesContentPane.setLayout(new javax.swing.BoxLayout(invitesContentPane, javax.swing.BoxLayout.Y_AXIS));
 
         lblNoInvites.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         lblNoInvites.setForeground(new java.awt.Color(153, 153, 153));
         lblNoInvites.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNoInvites.setText("No invites.");
-        invitesPanel.add(lblNoInvites);
+        invitesContentPane.add(lblNoInvites);
 
-        jScrollPane2.setViewportView(invitesPanel);
+        invitesScrollPane.setViewportView(invitesContentPane);
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
-            .addComponent(jScrollPane2)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout invitesContentContainerLayout = new javax.swing.GroupLayout(invitesContentContainer);
+        invitesContentContainer.setLayout(invitesContentContainerLayout);
+        invitesContentContainerLayout.setHorizontalGroup(
+            invitesContentContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(invitesContentContainerLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane2))
+                .addComponent(invitesScrollPane)
+                .addGap(0, 0, 0))
+        );
+        invitesContentContainerLayout.setVerticalGroup(
+            invitesContentContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(invitesContentContainerLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(invitesScrollPane)
+                .addGap(0, 0, 0))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        invitesOuterPanel.add(invitesContentContainer, java.awt.BorderLayout.CENTER);
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(100, 50));
+        pastEventsOuterPanel.setBackground(new java.awt.Color(255, 255, 255));
+        pastEventsOuterPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        pastEventsOuterPanel.setPreferredSize(new java.awt.Dimension(484, 354));
+        pastEventsOuterPanel.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel1.setText("Past Events");
+        pastEventsLabelContainer.setPreferredSize(new java.awt.Dimension(100, 50));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        lblPastEvents.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lblPastEvents.setText("Past Events");
+
+        javax.swing.GroupLayout pastEventsLabelContainerLayout = new javax.swing.GroupLayout(pastEventsLabelContainer);
+        pastEventsLabelContainer.setLayout(pastEventsLabelContainerLayout);
+        pastEventsLabelContainerLayout.setHorizontalGroup(
+            pastEventsLabelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pastEventsLabelContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(381, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        jScrollPane3.setBorder(null);
-        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        pastEventsPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        lblNoPastEvnts.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        lblNoPastEvnts.setForeground(new java.awt.Color(153, 153, 153));
-        lblNoPastEvnts.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNoPastEvnts.setText("No past events.");
-        pastEventsPanel.add(lblNoPastEvnts);
-
-        jScrollPane3.setViewportView(pastEventsPanel);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
-            .addComponent(jScrollPane3)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-
-        jPanel2.setPreferredSize(new java.awt.Dimension(100, 50));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel4.setText("Events You Host");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
+                .addComponent(lblPastEvents)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pastEventsLabelContainerLayout.setVerticalGroup(
+            pastEventsLabelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pastEventsLabelContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(lblPastEvents)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane4.setBorder(null);
-        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        pastEventsOuterPanel.add(pastEventsLabelContainer, java.awt.BorderLayout.PAGE_START);
 
-        hostedEventsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        pastEventsScrollPane.setBorder(null);
+        pastEventsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        pastEventsContentPane.setBackground(new java.awt.Color(255, 255, 255));
+        pastEventsContentPane.setLayout(new javax.swing.BoxLayout(pastEventsContentPane, javax.swing.BoxLayout.Y_AXIS));
+
+        lblNoPastEvents.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        lblNoPastEvents.setForeground(new java.awt.Color(153, 153, 153));
+        lblNoPastEvents.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNoPastEvents.setText("No past events.");
+        pastEventsContentPane.add(lblNoPastEvents);
+
+        pastEventsScrollPane.setViewportView(pastEventsContentPane);
+
+        javax.swing.GroupLayout pastEventsContentContainerLayout = new javax.swing.GroupLayout(pastEventsContentContainer);
+        pastEventsContentContainer.setLayout(pastEventsContentContainerLayout);
+        pastEventsContentContainerLayout.setHorizontalGroup(
+            pastEventsContentContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pastEventsContentContainerLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(pastEventsScrollPane)
+                .addGap(0, 0, 0))
+        );
+        pastEventsContentContainerLayout.setVerticalGroup(
+            pastEventsContentContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pastEventsContentContainerLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(pastEventsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+
+        pastEventsOuterPanel.add(pastEventsContentContainer, java.awt.BorderLayout.CENTER);
+
+        hostedEventsOuterPanel.setBackground(new java.awt.Color(255, 255, 255));
+        hostedEventsOuterPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        hostedEventsOuterPanel.setPreferredSize(new java.awt.Dimension(484, 354));
+        hostedEventsOuterPanel.setLayout(new java.awt.BorderLayout());
+
+        hostedEventsLabelContainer.setPreferredSize(new java.awt.Dimension(100, 50));
+
+        lblHostedEvents.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lblHostedEvents.setText("Events You Host");
+
+        javax.swing.GroupLayout hostedEventsLabelContainerLayout = new javax.swing.GroupLayout(hostedEventsLabelContainer);
+        hostedEventsLabelContainer.setLayout(hostedEventsLabelContainerLayout);
+        hostedEventsLabelContainerLayout.setHorizontalGroup(
+            hostedEventsLabelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hostedEventsLabelContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHostedEvents)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        hostedEventsLabelContainerLayout.setVerticalGroup(
+            hostedEventsLabelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hostedEventsLabelContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHostedEvents)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        hostedEventsOuterPanel.add(hostedEventsLabelContainer, java.awt.BorderLayout.PAGE_START);
+
+        hostedEventsScrollPane.setBorder(null);
+        hostedEventsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        hostedEventsContentPane.setBackground(new java.awt.Color(255, 255, 255));
+        hostedEventsContentPane.setLayout(new javax.swing.BoxLayout(hostedEventsContentPane, javax.swing.BoxLayout.Y_AXIS));
 
         lblNoHostedEvents.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         lblNoHostedEvents.setForeground(new java.awt.Color(153, 153, 153));
         lblNoHostedEvents.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNoHostedEvents.setText("<HTML>You don't host any events or <BR> you don't have enough privilege to host an event</HTML>");
-        hostedEventsPanel.add(lblNoHostedEvents);
+        hostedEventsContentPane.add(lblNoHostedEvents);
 
-        jScrollPane4.setViewportView(hostedEventsPanel);
+        hostedEventsScrollPane.setViewportView(hostedEventsContentPane);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout hostedEventContentContainerLayout = new javax.swing.GroupLayout(hostedEventContentContainer);
+        hostedEventContentContainer.setLayout(hostedEventContentContainerLayout);
+        hostedEventContentContainerLayout.setHorizontalGroup(
+            hostedEventContentContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hostedEventContentContainerLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
+                .addComponent(hostedEventsScrollPane)
+                .addGap(0, 0, 0))
         );
+        hostedEventContentContainerLayout.setVerticalGroup(
+            hostedEventContentContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hostedEventContentContainerLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(hostedEventsScrollPane)
+                .addGap(0, 0, 0))
+        );
+
+        hostedEventsOuterPanel.add(hostedEventContentContainer, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout mainScrollPaneLayout = new javax.swing.GroupLayout(mainScrollPane);
         mainScrollPane.setLayout(mainScrollPaneLayout);
@@ -308,26 +340,26 @@ public final class EventsPanelView extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addGroup(mainScrollPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(mainScrollPaneLayout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pastEventsOuterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(hostedEventsOuterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(mainScrollPaneLayout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(upcominEventsOuterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(100, Short.MAX_VALUE))
+                        .addComponent(invitesOuterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainScrollPaneLayout.setVerticalGroup(
             mainScrollPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainScrollPaneLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addGroup(mainScrollPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                    .addComponent(invitesOuterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(upcominEventsOuterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(mainScrollPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pastEventsOuterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hostedEventsOuterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39))
         );
 
@@ -337,25 +369,26 @@ public final class EventsPanelView extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainContainerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainContainerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainContainerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(mainContainerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel invitesPanel;
+    private javax.swing.JPanel hostedEventContentContainer;
+    private javax.swing.JPanel hostedEventsContentPane;
+    private javax.swing.JPanel invitesContentPane;
     private javax.swing.JLabel lblNoHostedEvents;
     private javax.swing.JLabel lblNoInvites;
-    private javax.swing.JLabel lblNoPastEvnts;
+    private javax.swing.JLabel lblNoPastEvents;
     private javax.swing.JLabel lblNoUpcomingEvents;
-    private javax.swing.JScrollPane mainContainerPanel;
-    private javax.swing.JPanel mainScrollPane;
-    private javax.swing.JPanel pastEventsPanel;
-    private javax.swing.JPanel upcomingEventsPanel;
+    private javax.swing.JPanel pastEventsContentContainer;
+    private javax.swing.JPanel pastEventsContentPane;
+    private javax.swing.JPanel upcomingEventsContentPane;
     // End of variables declaration//GEN-END:variables
 
 }

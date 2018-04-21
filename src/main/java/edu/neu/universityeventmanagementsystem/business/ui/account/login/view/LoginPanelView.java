@@ -1,6 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.ui.account.login.view;
 
 import edu.neu.universityeventmanagementsystem.business.util.ImageTools;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.awt.*;
@@ -13,6 +14,7 @@ import java.awt.*;
  * @since 04/11/2018
  */
 @Component
+@Lazy
 public final class LoginPanelView extends javax.swing.JPanel {
 
     private final static String LOGIN_FAILED_MESSAGE = "Invalid Credentials.";

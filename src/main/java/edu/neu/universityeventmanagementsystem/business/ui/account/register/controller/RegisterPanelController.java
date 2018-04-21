@@ -10,6 +10,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainF
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.util.ConstantValues;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import javax.swing.*;
@@ -24,6 +25,7 @@ import java.util.List;
  * @since 4/12/2018
  */
 @Controller
+@Lazy
 public final class RegisterPanelController extends FormController {
 
     private RegisterPanelView registerPanelView;

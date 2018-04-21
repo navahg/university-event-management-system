@@ -3,6 +3,7 @@ package edu.neu.universityeventmanagementsystem.business.ui.main.view;
 import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
 import edu.neu.universityeventmanagementsystem.business.util.ImageTools;
 import edu.neu.universityeventmanagementsystem.business.util.LookAndFeelUtils;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ import javax.swing.*;
  * @version 1.0
  */
 @Component
+@Lazy
 public final class MainFrameView extends javax.swing.JFrame {
 
     private static final int TITLE_BAR_ICON_SIZE = 64;

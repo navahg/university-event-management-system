@@ -9,11 +9,13 @@ import edu.neu.universityeventmanagementsystem.business.ui.student.account.contr
 import edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.view.StudentLandingPanelView;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import java.awt.event.ActionEvent;
 
 @Controller
+@Lazy
 public class StudentLandingPanelController extends FormController {
 
     private MainFrameController mainFrameController;

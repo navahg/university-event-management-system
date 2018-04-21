@@ -2,6 +2,7 @@ package edu.neu.universityeventmanagementsystem.business.ui.admin.users.view;
 
 import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
 import edu.neu.universityeventmanagementsystem.business.util.ImageTools;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -15,6 +16,7 @@ import java.util.List;
  * @since Apr 18, 2018
  */
 @Component
+@Lazy
 public final class AddUserView extends javax.swing.JDialog {
 
     private static final int TITLE_BAR_ICON_SIZE = 64;

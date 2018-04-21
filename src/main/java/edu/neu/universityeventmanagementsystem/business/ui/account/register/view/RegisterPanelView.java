@@ -6,6 +6,7 @@
 
 package edu.neu.universityeventmanagementsystem.business.ui.account.register.view;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -20,6 +21,7 @@ import java.util.List;
  * @since   Apr 11, 2018
  */
 @Component
+@Lazy
 public final class RegisterPanelView extends javax.swing.JPanel {
 
     /** Creates new form RegisterPanelView */

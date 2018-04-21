@@ -3,6 +3,7 @@ package edu.neu.universityeventmanagementsystem.business.ui.main.controller;
 import edu.neu.universityeventmanagementsystem.business.ui.main.view.MainFrameView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
  * @since 4/6/18
  */
 @Controller
+@Lazy
 public final class MainFrameController extends FormController {
 
     private MainFrameView mainFrameView;

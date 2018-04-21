@@ -9,6 +9,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainF
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Controller;
  * @since 4/12/2018
  */
 @Controller
+@Lazy
 public final class LandingPanelController extends FormController {
 
     private MainFrameController mainFrameController;

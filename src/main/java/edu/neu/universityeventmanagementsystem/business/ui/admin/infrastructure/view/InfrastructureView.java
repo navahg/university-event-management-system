@@ -6,6 +6,7 @@
 
 package edu.neu.universityeventmanagementsystem.business.ui.admin.infrastructure.view;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -22,6 +23,7 @@ import java.util.List;
  * @since   Apr 13, 2018
  */
 @Component
+@Lazy
 public final class InfrastructureView extends javax.swing.JPanel {
 
     public final static int MAIN_LIST_INDEX = 0;
