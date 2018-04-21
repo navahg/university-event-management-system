@@ -17,8 +17,23 @@ import org.springframework.stereotype.Component;
 public class EventEntityView extends javax.swing.JPanel {
 
     /** Creates new form EventEntityView */
-    public EventEntityView(String status) {
+    public EventEntityView() {
         initComponents();
+    }
+
+    /**
+     * Creates an event view with specified name and status
+     * @param name Event name
+     * @param status Event registration status
+     */
+    public EventEntityView(String name, String status) {
+        initComponents();
+        setEventName(name);
+        setEventStatus(status);
+    }
+
+    public void setEventStatus(String status) {
+        lblEventStatus.setText(status);
     }
 
     public void setEventName(String name) {
@@ -71,7 +86,7 @@ public class EventEntityView extends javax.swing.JPanel {
                         .addComponent(lblLocation))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblEventName)
-                        .addGap(0, 18, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lblEventStatus)))

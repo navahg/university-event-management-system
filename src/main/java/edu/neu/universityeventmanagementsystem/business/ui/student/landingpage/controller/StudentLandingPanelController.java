@@ -7,6 +7,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.Eve
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.ui.student.account.controller.AccountSettingsController;
 import edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.view.StudentLandingPanelView;
+import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -47,7 +48,7 @@ public class StudentLandingPanelController extends FormController {
             return;
         }
         registerAction((javax.swing.JButton) studentLandingPanelView.getLogoutButton(), event -> doLogout());
-        studentLandingPanelView.setUserText(user.getFirstName() + " " + user.getLastName());
+        studentLandingPanelView.setUserText(user.getFirstName());
         registerPanelEvents();
         viewPanel();
     }
@@ -69,10 +70,14 @@ public class StudentLandingPanelController extends FormController {
         switch (view) {
             case "Dashboard":
                 break;
-            case "Events":
+            case "Schedule & Invites":
+                studentLandingPanelView.setTitle(ConstantMessages.Titles.STUDENT_SCHEDULE);
                 studentLandingPanelView.setContentPanel((context.getBean(EventsPanelController.class)).getView());
                 break;
+            case "Events":
+                break;
             case "Account Settings":
+                studentLandingPanelView.setTitle(ConstantMessages.Titles.STUDENT_ACCOUNT_SETTINGS);
                 studentLandingPanelView.setContentPanel((context.getBean(AccountSettingsController.class)).getView());
                 break;
             default:

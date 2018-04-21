@@ -7,6 +7,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.vie
 import edu.neu.universityeventmanagementsystem.business.ui.admin.users.controller.UsersController;
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
+import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -52,7 +53,7 @@ public final class AdminLandingPanelController extends FormController {
         }
         registerAction((javax.swing.JButton) landingPanelView.getLogoutButton(), event -> doLogout());
         registerPanelEvents();
-        landingPanelView.setUserText(user.getFirstName() + " " + user.getLastName());
+        landingPanelView.setUserText(user.getFirstName());
         viewPanel();
     }
 
@@ -69,9 +70,11 @@ public final class AdminLandingPanelController extends FormController {
             case "Dashboard":
                 break;
             case "Infrastructures":
+                landingPanelView.setTitle(ConstantMessages.Titles.ADMIN_INFRASTUCTURE);
                 landingPanelView.setContentPanel((context.getBean(InfrastructureController.class)).getView());
                 break;
             case "Users":
+                landingPanelView.setTitle(ConstantMessages.Titles.ADMIN_USERS);
                 landingPanelView.setContentPanel((context.getBean(UsersController.class)).getView());
                 break;
             case "Events":

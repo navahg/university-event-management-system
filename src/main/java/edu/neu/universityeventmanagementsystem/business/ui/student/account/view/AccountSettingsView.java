@@ -76,7 +76,7 @@ public final class AccountSettingsView extends javax.swing.JPanel {
         btnSave = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1066, 700));
+        setPreferredSize(new java.awt.Dimension(1116, 700));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("First Name");
@@ -184,7 +184,7 @@ public final class AccountSettingsView extends javax.swing.JPanel {
                             .addComponent(jLabel16)
                             .addGap(18, 18, 18)
                             .addComponent(txtFieldProgram, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(380, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

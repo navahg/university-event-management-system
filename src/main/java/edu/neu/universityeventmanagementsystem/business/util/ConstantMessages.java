@@ -13,5 +13,9 @@ public interface ConstantMessages {
         String APPLICATION_TITLE = "University Event Management System";
         String LOADER_TITLE = "Loading application...";
         String ADD_USER_TITLE = "Add new user";
+        String ADMIN_INFRASTUCTURE = "List of Infrastructures";
+        String ADMIN_USERS = "List of Users";
+        String STUDENT_SCHEDULE = "Schedule of Events";
+        String STUDENT_ACCOUNT_SETTINGS = "Account Settings";
     }
 }

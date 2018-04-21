@@ -39,8 +39,7 @@ public final class EventsPanelController extends FormController {
     }
 
     private void addEventToThePane(String type) {
-        EventEntityView event = context.getBean(EventEntityView.class, "test");
-        event.setEventName(type);
+        EventEntityView event = context.getBean(EventEntityView.class, type, "Registered");
         eventsPanelView.addToPanel(event, type);
     }
 

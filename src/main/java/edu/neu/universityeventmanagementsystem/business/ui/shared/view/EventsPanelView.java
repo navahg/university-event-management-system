@@ -64,7 +64,7 @@ public final class EventsPanelView extends javax.swing.JPanel {
         lblNoHostedEvents = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1066, 700));
+        setPreferredSize(new java.awt.Dimension(1116, 700));
 
         mainContainerPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainContainerPanel.setBorder(null);
@@ -78,6 +78,7 @@ public final class EventsPanelView extends javax.swing.JPanel {
 
         upcominEventsOuterPanel.setBackground(new java.awt.Color(255, 255, 255));
         upcominEventsOuterPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        upcominEventsOuterPanel.setPreferredSize(new java.awt.Dimension(510, 354));
         upcominEventsOuterPanel.setLayout(new java.awt.BorderLayout());
 
         upcomingEventLabelContainer.setPreferredSize(new java.awt.Dimension(480, 50));
@@ -145,7 +146,7 @@ public final class EventsPanelView extends javax.swing.JPanel {
 
         invitesOuterPanel.setBackground(new java.awt.Color(255, 255, 255));
         invitesOuterPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        invitesOuterPanel.setPreferredSize(new java.awt.Dimension(484, 354));
+        invitesOuterPanel.setPreferredSize(new java.awt.Dimension(510, 354));
         invitesOuterPanel.setLayout(new java.awt.BorderLayout());
 
         invitesLabelContainer.setPreferredSize(new java.awt.Dimension(480, 50));
@@ -210,7 +211,7 @@ public final class EventsPanelView extends javax.swing.JPanel {
 
         pastEventsOuterPanel.setBackground(new java.awt.Color(255, 255, 255));
         pastEventsOuterPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        pastEventsOuterPanel.setPreferredSize(new java.awt.Dimension(484, 354));
+        pastEventsOuterPanel.setPreferredSize(new java.awt.Dimension(510, 354));
         pastEventsOuterPanel.setLayout(new java.awt.BorderLayout());
 
         pastEventsLabelContainer.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -272,7 +273,7 @@ public final class EventsPanelView extends javax.swing.JPanel {
 
         hostedEventsOuterPanel.setBackground(new java.awt.Color(255, 255, 255));
         hostedEventsOuterPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        hostedEventsOuterPanel.setPreferredSize(new java.awt.Dimension(484, 354));
+        hostedEventsOuterPanel.setPreferredSize(new java.awt.Dimension(510, 354));
         hostedEventsOuterPanel.setLayout(new java.awt.BorderLayout());
 
         hostedEventsLabelContainer.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -337,7 +338,7 @@ public final class EventsPanelView extends javax.swing.JPanel {
         mainScrollPaneLayout.setHorizontalGroup(
             mainScrollPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainScrollPaneLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(25, 25, 25)
                 .addGroup(mainScrollPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(mainScrollPaneLayout.createSequentialGroup()
                         .addComponent(pastEventsOuterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,7 +357,7 @@ public final class EventsPanelView extends javax.swing.JPanel {
                 .addGroup(mainScrollPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(invitesOuterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(upcominEventsOuterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(mainScrollPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pastEventsOuterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hostedEventsOuterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -369,7 +370,7 @@ public final class EventsPanelView extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainContainerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(mainContainerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
