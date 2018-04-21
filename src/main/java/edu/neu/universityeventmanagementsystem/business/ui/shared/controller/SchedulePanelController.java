@@ -1,7 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.ui.shared.controller;
 
 import edu.neu.universityeventmanagementsystem.business.ui.shared.view.EventEntityView;
-import edu.neu.universityeventmanagementsystem.business.ui.shared.view.EventsPanelView;
+import edu.neu.universityeventmanagementsystem.business.ui.shared.view.SchedulePanelView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import java.awt.*;
 
 /**
- * EventsPanelController class
+ * SchedulePanelController class
  *
  * @author  Raghavan Renganathan <renganathan.r@husky.neu.edu>
  * @version 1.0
@@ -18,13 +18,13 @@ import java.awt.*;
  */
 @Controller
 @Lazy
-public final class EventsPanelController extends FormController {
+public final class SchedulePanelController extends FormController {
 
-    private EventsPanelView eventsPanelView;
+    private SchedulePanelView eventsPanelView;
     private ApplicationContext context;
 
     @Autowired
-    public EventsPanelController(EventsPanelView eventsPanelView,
+    public SchedulePanelController(SchedulePanelView eventsPanelView,
                                  ApplicationContext context) {
         this.eventsPanelView = eventsPanelView;
         this.context = context;

@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
- * EventsPanelView class
+ * SchedulePanelView class
  *
  * @author  Raghavan Renganathan <renganathan.r@husky.neu.edu>
  * @version 1.0
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Lazy
-public final class EventsPanelView extends javax.swing.JPanel {
+public final class SchedulePanelView extends javax.swing.JPanel {
 
     /** Creates new form EventsPanelView */
-    public EventsPanelView() {
+    public SchedulePanelView() {
         initComponents();
     }
 

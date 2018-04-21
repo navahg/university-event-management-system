@@ -3,7 +3,7 @@ package edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.
 import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
-import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.EventsPanelController;
+import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.SchedulePanelController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.ui.student.account.controller.AccountSettingsController;
 import edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.view.StudentLandingPanelView;
@@ -72,7 +72,7 @@ public class StudentLandingPanelController extends FormController {
                 break;
             case "Schedule & Invites":
                 studentLandingPanelView.setTitle(ConstantMessages.Titles.STUDENT_SCHEDULE);
-                studentLandingPanelView.setContentPanel((context.getBean(EventsPanelController.class)).getView());
+                studentLandingPanelView.setContentPanel((context.getBean(SchedulePanelController.class)).getView());
                 break;
             case "Events":
                 break;
