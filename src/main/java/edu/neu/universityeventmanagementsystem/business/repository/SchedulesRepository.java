@@ -19,6 +19,6 @@ import java.util.List;
 @Repository
 public interface SchedulesRepository extends JpaRepository<SchedulesEntity, Integer> {
 
-    @Query("SELECT S FROM SchedulesEntity s WHERE s.usersByIdUser = :user")
+    @Query("SELECT s FROM SchedulesEntity s WHERE s.usersByIdUser = :user")
     List<SchedulesEntity> findAllByUser(@Param("user") UsersEntity user);
 }
