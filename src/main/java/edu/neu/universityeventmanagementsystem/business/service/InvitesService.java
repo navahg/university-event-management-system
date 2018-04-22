@@ -1,8 +1,12 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
+import edu.neu.universityeventmanagementsystem.business.entity.InvitesEntity;
+import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.InvitesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * InvitesService class
@@ -19,5 +23,9 @@ public class InvitesService {
     @Autowired
     public InvitesService(InvitesRepository invitesRepository) {
         this.invitesRepository = invitesRepository;
+    }
+
+    public List<InvitesEntity> findByInvitee(UsersEntity user) {
+        return invitesRepository.findAllByInvitee(user);
     }
 }

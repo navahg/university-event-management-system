@@ -3,6 +3,8 @@ package edu.neu.universityeventmanagementsystem.business.ui.shared.view;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import javax.swing.*;
+
 /**
  * SchedulePanelView class
  *
@@ -14,15 +16,74 @@ import org.springframework.stereotype.Component;
 @Lazy
 public final class SchedulePanelView extends javax.swing.JPanel {
 
+    public static final int UPCOMING_EVENTS_PANE = 0;
+    public static final int PAST_EVENTS_PANE = 1;
+    public static final int INVITES_PANE = 2;
+    public static final int HOSTED_EVENTS_PANE = 3;
+    public static final int[] ALL_PANES = {0, 1, 2, 3};
+
+
     /** Creates new form EventsPanelView */
     public SchedulePanelView() {
         initComponents();
     }
 
-    public void addToPanel(java.awt.Component component, String type) {
-        lblNoUpcomingEvents.setVisible(false);
-        upcomingEventsContentPane.add(component);
+    public void addToPanel(java.awt.Component component, int panelIndex) {
+        switch (panelIndex) {
+            case UPCOMING_EVENTS_PANE:
+                lblNoUpcomingEvents.setVisible(false);
+                upcomingEventsContentPane.add(component);
+                break;
+            case PAST_EVENTS_PANE:
+                lblNoPastEvents.setVisible(false);
+                pastEventsContentPane.add(component);
+                break;
+            case INVITES_PANE:
+                lblNoInvites.setVisible(false);
+                invitesContentPane.add(component);
+                break;
+            case HOSTED_EVENTS_PANE:
+                lblNoHostedEvents.setVisible(false);
+                hostedEventsContentPane.add(component);
+                break;
+        }
     }
+
+    private void resetPanel(JPanel panel) {
+        for (java.awt.Component comp : panel.getComponents()) {
+            if (comp instanceof EventView)
+                panel.remove(comp);
+        }
+        panel.revalidate();
+        panel.repaint();
+        java.awt.Component comp = panel.getComponent(0);
+        if (comp instanceof JLabel)
+            comp.setVisible(true);
+        panel.revalidate();
+        panel.repaint();
+    }
+
+    public void resetPanel(int panelIndex) {
+        switch (panelIndex) {
+            case UPCOMING_EVENTS_PANE:
+                resetPanel(upcomingEventsContentPane);
+                break;
+            case PAST_EVENTS_PANE:
+                resetPanel(pastEventsContentPane);
+                break;
+            case INVITES_PANE:
+                resetPanel(invitesContentPane);
+                break;
+            case HOSTED_EVENTS_PANE:
+                resetPanel(hostedEventsContentPane);
+        }
+    }
+
+    public void resetPanels(int[] panelIndices) {
+        for (int panelIndex : panelIndices)
+            resetPanel(panelIndex);
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -51,14 +112,14 @@ public final class SchedulePanelView extends javax.swing.JPanel {
         javax.swing.JPanel pastEventsOuterPanel = new javax.swing.JPanel();
         javax.swing.JPanel pastEventsLabelContainer = new javax.swing.JPanel();
         javax.swing.JLabel lblPastEvents = new javax.swing.JLabel();
-        pastEventsContentContainer = new javax.swing.JPanel();
+        javax.swing.JPanel pastEventsContentContainer = new javax.swing.JPanel();
         javax.swing.JScrollPane pastEventsScrollPane = new javax.swing.JScrollPane();
         pastEventsContentPane = new javax.swing.JPanel();
         lblNoPastEvents = new javax.swing.JLabel();
         javax.swing.JPanel hostedEventsOuterPanel = new javax.swing.JPanel();
         javax.swing.JPanel hostedEventsLabelContainer = new javax.swing.JPanel();
         javax.swing.JLabel lblHostedEvents = new javax.swing.JLabel();
-        hostedEventContentContainer = new javax.swing.JPanel();
+        javax.swing.JPanel hostedEventContentContainer = new javax.swing.JPanel();
         javax.swing.JScrollPane hostedEventsScrollPane = new javax.swing.JScrollPane();
         hostedEventsContentPane = new javax.swing.JPanel();
         lblNoHostedEvents = new javax.swing.JLabel();
@@ -380,14 +441,12 @@ public final class SchedulePanelView extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel hostedEventContentContainer;
     private javax.swing.JPanel hostedEventsContentPane;
     private javax.swing.JPanel invitesContentPane;
     private javax.swing.JLabel lblNoHostedEvents;
     private javax.swing.JLabel lblNoInvites;
     private javax.swing.JLabel lblNoPastEvents;
     private javax.swing.JLabel lblNoUpcomingEvents;
-    private javax.swing.JPanel pastEventsContentContainer;
     private javax.swing.JPanel pastEventsContentPane;
     private javax.swing.JPanel upcomingEventsContentPane;
     // End of variables declaration//GEN-END:variables
