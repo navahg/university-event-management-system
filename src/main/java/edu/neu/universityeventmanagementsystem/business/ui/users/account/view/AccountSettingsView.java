@@ -1,4 +1,4 @@
-package edu.neu.universityeventmanagementsystem.business.ui.student.account.view;
+package edu.neu.universityeventmanagementsystem.business.ui.users.account.view;
 
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import org.apache.log4j.Logger;

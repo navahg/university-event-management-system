@@ -9,7 +9,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.account.register.cont
 import edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.controller.AdminLandingPanelController;
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
-import edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.controller.StudentLandingPanelController;
+import edu.neu.universityeventmanagementsystem.business.ui.users.landingpage.controller.UsersLandingPanelController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
@@ -75,7 +75,7 @@ public final class LoginPanelController extends FormController {
         if (currentUserBean.getCurrentUser().getRolesByIdRole().getPrivilegeLevel() == RolesEntity.SYSTEM_ADMIN) {
             (context.getBean(AdminLandingPanelController.class)).prepareAndOpenForm();
         } else {
-            (context.getBean(StudentLandingPanelController.class)).prepareAndOpenForm();
+            (context.getBean(UsersLandingPanelController.class)).prepareAndOpenForm();
         }
     }
 

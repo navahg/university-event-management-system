@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.view;
+package edu.neu.universityeventmanagementsystem.business.ui.users.landingpage.view;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Component
 @Lazy
-public class StudentLandingPanelView extends javax.swing.JPanel {
+public class UsersLandingPanelView extends javax.swing.JPanel {
 
     private final static Color ACTIVE = new Color(6, 136, 136);
     private final static Color INACTIVE = new Color(5, 119, 119);
@@ -27,7 +27,7 @@ public class StudentLandingPanelView extends javax.swing.JPanel {
     /**
      * Creates new form LandingPanelView
      */
-    public StudentLandingPanelView() {
+    public UsersLandingPanelView() {
         initComponents();
     }
 

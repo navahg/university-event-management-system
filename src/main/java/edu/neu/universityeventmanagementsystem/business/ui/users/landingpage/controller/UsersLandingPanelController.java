@@ -1,12 +1,12 @@
-package edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.controller;
+package edu.neu.universityeventmanagementsystem.business.ui.users.landingpage.controller;
 
 import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
-import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.SchedulePanelController;
+import edu.neu.universityeventmanagementsystem.business.ui.users.schedule.controller.SchedulePanelController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
-import edu.neu.universityeventmanagementsystem.business.ui.student.account.controller.AccountSettingsController;
-import edu.neu.universityeventmanagementsystem.business.ui.student.landingpage.view.StudentLandingPanelView;
+import edu.neu.universityeventmanagementsystem.business.ui.users.account.controller.AccountSettingsController;
+import edu.neu.universityeventmanagementsystem.business.ui.users.landingpage.view.UsersLandingPanelView;
 import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +18,19 @@ import java.awt.event.ActionEvent;
 
 @Controller
 @Lazy
-public class StudentLandingPanelController extends FormController {
+public class UsersLandingPanelController extends FormController {
 
     private MainFrameController mainFrameController;
-    private StudentLandingPanelView studentLandingPanelView;
+    private UsersLandingPanelView studentLandingPanelView;
     private CurrentUserBean currentUserBean;
     private ApplicationContext context;
 
-    private final static Logger log = Logger.getLogger(StudentLandingPanelController.class);
+    private final static Logger log = Logger.getLogger(UsersLandingPanelController.class);
 
 
     @Autowired
-    public StudentLandingPanelController(MainFrameController mainFrameController,
-                                         StudentLandingPanelView studentLandingPanelView,
+    public UsersLandingPanelController(MainFrameController mainFrameController,
+                                         UsersLandingPanelView studentLandingPanelView,
                                          CurrentUserBean currentUserBean,
                                          ApplicationContext context) {
         this.mainFrameController = mainFrameController;

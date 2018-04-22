@@ -1,5 +1,6 @@
-package edu.neu.universityeventmanagementsystem.business.ui.shared.view;
+package edu.neu.universityeventmanagementsystem.business.ui.users.schedule.view;
 
+import edu.neu.universityeventmanagementsystem.business.ui.shared.view.EventView;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 

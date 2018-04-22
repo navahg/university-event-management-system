@@ -1,4 +1,4 @@
-package edu.neu.universityeventmanagementsystem.business.ui.shared.controller;
+package edu.neu.universityeventmanagementsystem.business.ui.users.schedule.controller;
 
 import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
 import edu.neu.universityeventmanagementsystem.business.entity.EventsEntity;
@@ -7,8 +7,9 @@ import edu.neu.universityeventmanagementsystem.business.entity.SchedulesEntity;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.service.InvitesService;
 import edu.neu.universityeventmanagementsystem.business.service.SchedulesService;
+import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.view.EventView;
-import edu.neu.universityeventmanagementsystem.business.ui.shared.view.SchedulePanelView;
+import edu.neu.universityeventmanagementsystem.business.ui.users.schedule.view.SchedulePanelView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;

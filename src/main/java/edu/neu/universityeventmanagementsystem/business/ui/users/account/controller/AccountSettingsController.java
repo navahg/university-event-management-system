@@ -1,8 +1,8 @@
-package edu.neu.universityeventmanagementsystem.business.ui.student.account.controller;
+package edu.neu.universityeventmanagementsystem.business.ui.users.account.controller;
 
 import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
-import edu.neu.universityeventmanagementsystem.business.ui.student.account.view.AccountSettingsView;
+import edu.neu.universityeventmanagementsystem.business.ui.users.account.view.AccountSettingsView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
