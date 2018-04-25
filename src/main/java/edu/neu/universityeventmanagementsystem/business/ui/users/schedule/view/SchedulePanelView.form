@@ -395,6 +395,7 @@
                         <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                       </Properties>
                       <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="invitesScrollPane.getVerticalScrollBar().setUnitIncrement(10);"/>
                         <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
                       </AuxValues>
@@ -549,6 +550,7 @@
                         <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                       </Properties>
                       <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="pastEventsScrollPane.getVerticalScrollBar().setUnitIncrement(10);"/>
                         <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
                       </AuxValues>
@@ -700,6 +702,7 @@
                         <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                       </Properties>
                       <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="hostedEventsScrollPane.getVerticalScrollBar().setUnitIncrement(10);"/>
                         <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
                       </AuxValues>

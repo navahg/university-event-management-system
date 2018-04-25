@@ -19,6 +19,10 @@ public abstract class FormController {
         button.addActionListener(actionListener);
     }
 
+    protected void registerAction(JComboBox comboBox, ActionListener actionListener) {
+        comboBox.addActionListener(actionListener);
+    }
+
     protected void registerAction(JList list, ListSelectionListener listSelectionListener) {
         list.addListSelectionListener(listSelectionListener);
     }

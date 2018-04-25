@@ -1,5 +1,6 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
+import edu.neu.universityeventmanagementsystem.business.entity.EventsEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.EventsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class EventsService {
 
-    public EventsRepository eventsRepository;
+    private EventsRepository eventsRepository;
 
     @Autowired
     public EventsService(EventsRepository eventsRepository) {
         this.eventsRepository = eventsRepository;
+    }
+
+    public EventsEntity create() {
+        return new EventsEntity();
+    }
+
+    public EventsEntity save(EventsEntity newEvent) {
+        return eventsRepository.save(newEvent);
     }
 }

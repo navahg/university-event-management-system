@@ -239,6 +239,7 @@ public final class SchedulePanelView extends javax.swing.JPanel {
 
         invitesScrollPane.setBorder(null);
         invitesScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        invitesScrollPane.getVerticalScrollBar().setUnitIncrement(10);
 
         invitesContentPane.setBackground(new java.awt.Color(255, 255, 255));
         invitesContentPane.setPreferredSize(new java.awt.Dimension(91, 300));
@@ -302,6 +303,7 @@ public final class SchedulePanelView extends javax.swing.JPanel {
 
         pastEventsScrollPane.setBorder(null);
         pastEventsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        pastEventsScrollPane.getVerticalScrollBar().setUnitIncrement(10);
 
         pastEventsContentPane.setBackground(new java.awt.Color(255, 255, 255));
         pastEventsContentPane.setLayout(new javax.swing.BoxLayout(pastEventsContentPane, javax.swing.BoxLayout.Y_AXIS));
@@ -364,6 +366,7 @@ public final class SchedulePanelView extends javax.swing.JPanel {
 
         hostedEventsScrollPane.setBorder(null);
         hostedEventsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        hostedEventsScrollPane.getVerticalScrollBar().setUnitIncrement(10);
 
         hostedEventsContentPane.setBackground(new java.awt.Color(255, 255, 255));
         hostedEventsContentPane.setLayout(new javax.swing.BoxLayout(hostedEventsContentPane, javax.swing.BoxLayout.Y_AXIS));

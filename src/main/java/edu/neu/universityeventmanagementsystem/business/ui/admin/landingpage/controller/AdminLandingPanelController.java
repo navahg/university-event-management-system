@@ -2,6 +2,8 @@ package edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.co
 
 import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
+import edu.neu.universityeventmanagementsystem.business.ui.admin.events.controller.EventsController;
+import edu.neu.universityeventmanagementsystem.business.ui.admin.events.view.EventsView;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.infrastructure.controller.InfrastructureController;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.view.AdminLandingPanelView;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.users.controller.UsersController;
@@ -70,7 +72,7 @@ public final class AdminLandingPanelController extends FormController {
             case "Dashboard":
                 break;
             case "Infrastructures":
-                landingPanelView.setTitle(ConstantMessages.Titles.ADMIN_INFRASTUCTURE);
+                landingPanelView.setTitle(ConstantMessages.Titles.ADMIN_INFRASTRUCTURE);
                 landingPanelView.setContentPanel((context.getBean(InfrastructureController.class)).getView());
                 break;
             case "Users":
@@ -78,6 +80,8 @@ public final class AdminLandingPanelController extends FormController {
                 landingPanelView.setContentPanel((context.getBean(UsersController.class)).getView());
                 break;
             case "Events":
+                landingPanelView.setTitle(ConstantMessages.Titles.ADMIN_EVENTS);
+                landingPanelView.setContentPanel((context.getBean(EventsController.class)).getView());
                 break;
             default:
         }

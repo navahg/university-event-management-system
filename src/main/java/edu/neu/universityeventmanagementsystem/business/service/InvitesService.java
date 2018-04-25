@@ -28,4 +28,12 @@ public class InvitesService {
     public List<InvitesEntity> findByInvitee(UsersEntity user) {
         return invitesRepository.findAllByInvitee(user);
     }
+
+    public InvitesEntity create() {
+        return new InvitesEntity();
+    }
+
+    public InvitesEntity save(InvitesEntity invite) {
+        return invitesRepository.save(invite);
+    }
 }

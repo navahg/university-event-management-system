@@ -1,8 +1,11 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
+import edu.neu.universityeventmanagementsystem.business.entity.EventStatusEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.EventStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * EventStatusService class
@@ -19,5 +22,10 @@ public class EventStatusService {
     @Autowired
     public EventStatusService(EventStatusRepository eventStatusRepository) {
         this.eventStatusRepository = eventStatusRepository;
+    }
+
+    public EventStatusEntity findByStatusMessage(String status) {
+        Optional<EventStatusEntity> result = eventStatusRepository.findByStatusMessage(status);
+        return result.orElse(null);
     }
 }

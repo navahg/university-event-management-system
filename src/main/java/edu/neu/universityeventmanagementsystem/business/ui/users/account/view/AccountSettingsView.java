@@ -1,6 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.ui.users.account.view;
 
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
+import edu.neu.universityeventmanagementsystem.business.util.ConstantValues;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * AccountSettingsView class
  *
- * @author  Raghavan Renganathan <renganathan.raghavan@gmail.com> <renganathan.r@husky.neu.edu>
+ * @author  Raghavan Renganathan <renganathan.r@husky.neu.edu>
  * @version 1.0
  * @since   Apr 19, 2018
  */
@@ -34,9 +35,17 @@ public final class AccountSettingsView extends javax.swing.JPanel {
             return;
         }
 
+        int privilegeLevel = currentUser.getRolesByIdRole().getPrivilegeLevel();
+
         txtFieldUserName.setText(currentUser.getUserName());
-        txtFieldCollege.setText(currentUser.getProgramMembersByIdUser().getProgramsByIdProgram().getCollegesByIdCollege().getName());
-        txtFieldProgram.setText(currentUser.getProgramMembersByIdUser().getProgramsByIdProgram().getName());
+
+        if (privilegeLevel >= ConstantValues.MinimumPrivilegeLevel.STUDENT) {
+            txtFieldCollege.setText(currentUser.getProgramMembersByIdUser().getProgramsByIdProgram().getCollegesByIdCollege().getName());
+            txtFieldProgram.setText(currentUser.getProgramMembersByIdUser().getProgramsByIdProgram().getName());
+        } else {
+            txtFieldCollege.setVisible(false);
+            txtFieldProgram.setVisible(false);
+        }
 
         txtFieldFirstName.setText(currentUser.getFirstName());
         txtFieldMiddleName.setText(currentUser.getMiddleName());

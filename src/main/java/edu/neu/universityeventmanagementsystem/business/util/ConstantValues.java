@@ -12,4 +12,11 @@ public interface ConstantValues {
     interface Values {
         Integer PRIVILEGE_LIMIT_FOR_REGISTRATION = 10;
     }
+
+    interface MinimumPrivilegeLevel {
+        Integer ADMIN = 90;
+        Integer STUDENT = 50;
+        Integer FACULTY = 70;
+        Integer STRANGER = 0;
+    }
 }

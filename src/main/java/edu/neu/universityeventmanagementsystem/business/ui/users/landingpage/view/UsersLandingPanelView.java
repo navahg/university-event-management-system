@@ -5,6 +5,7 @@
  */
 package edu.neu.universityeventmanagementsystem.business.ui.users.landingpage.view;
 
+import edu.neu.universityeventmanagementsystem.business.util.ConstantValues;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -57,6 +58,12 @@ public class UsersLandingPanelView extends javax.swing.JPanel {
 
     public List<java.awt.Component> getPanelButtons() {
         return new ArrayList<>(Arrays.asList(btnDashboard, btnSchedule, btnEvents, btnAccountSettings));
+    }
+
+    public void showOnlyPrivileged(int privilegeLevel) {
+        if (privilegeLevel <= ConstantValues.MinimumPrivilegeLevel.STUDENT) {
+
+        }
     }
 
 

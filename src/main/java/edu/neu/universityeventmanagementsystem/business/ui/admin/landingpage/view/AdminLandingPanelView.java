@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * AdminLandingPanelView class
  *
- * @author Raghavan Renganathan <renganathan.raghavan@gmail.com> <renganathan.r@husky.neu.edu>
+ * @author Raghavan Renganathan <renganathan.r@husky.neu.edu>
  * @version 1.0
  * @since Apr 12, 2018
  */

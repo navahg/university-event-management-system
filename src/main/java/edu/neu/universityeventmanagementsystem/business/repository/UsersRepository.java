@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * UsersRepository class
@@ -21,4 +22,7 @@ public interface UsersRepository extends JpaRepository<UsersEntity, Integer> {
 
     @Query("SELECT u FROM UsersEntity u WHERE u.rolesByIdRole = :role")
     List<UsersEntity> findByRole(@Param("role") RolesEntity role);
+
+    @Query("SELECT u FROM UsersEntity u WHERE u.email = :email")
+    Optional<UsersEntity> findByEmail(@Param("email") String email);
 }

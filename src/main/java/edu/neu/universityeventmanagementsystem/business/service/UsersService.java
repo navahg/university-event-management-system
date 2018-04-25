@@ -43,4 +43,9 @@ public class UsersService {
     public List<UsersEntity> findByRole(String role) {
         return usersRepository.findByRole(rolesService.findByName(role));
     }
+
+    public UsersEntity findByEmail(String email) {
+        Optional<UsersEntity> result = usersRepository.findByEmail(email);
+        return result.orElse(null);
+    }
 }

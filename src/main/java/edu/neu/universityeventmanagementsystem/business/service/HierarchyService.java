@@ -1,8 +1,12 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
+import edu.neu.universityeventmanagementsystem.business.entity.HierarchyEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.HierarchyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * HierarchyService class
@@ -19,5 +23,14 @@ public class HierarchyService {
     @Autowired
     public HierarchyService(HierarchyRepository hierarchyRepository) {
         this.hierarchyRepository = hierarchyRepository;
+    }
+
+    public List<HierarchyEntity> findAll() {
+        return hierarchyRepository.findAll();
+    }
+
+    public HierarchyEntity findByTableName(String tableName) {
+        Optional<HierarchyEntity> result = hierarchyRepository.findByTableName(tableName);
+        return result.orElse(null);
     }
 }
