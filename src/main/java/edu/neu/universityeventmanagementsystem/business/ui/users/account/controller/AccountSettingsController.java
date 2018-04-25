@@ -2,6 +2,7 @@ package edu.neu.universityeventmanagementsystem.business.ui.users.account.contro
 
 import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
+import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.InnerViewController;
 import edu.neu.universityeventmanagementsystem.business.ui.users.account.view.AccountSettingsView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -18,7 +19,7 @@ import java.awt.*;
  */
 @Controller
 @Lazy
-public final class AccountSettingsController extends FormController {
+public final class AccountSettingsController extends FormController implements InnerViewController {
 
     private AccountSettingsView accountSettingsView;
     private CurrentUserBean currentUserBean;
@@ -36,6 +37,7 @@ public final class AccountSettingsController extends FormController {
         accountSettingsView.fillDetails();
     }
 
+    @Override
     public Component getView() {
         prepareAndOpenForm();
         return accountSettingsView;

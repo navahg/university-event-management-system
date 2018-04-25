@@ -3,6 +3,7 @@ package edu.neu.universityeventmanagementsystem.business.ui.admin.users.controll
 import edu.neu.universityeventmanagementsystem.business.service.UsersService;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.users.view.UsersView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
+import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.InnerViewController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,7 @@ import java.awt.event.ActionEvent;
  */
 @Controller
 @Lazy
-public final class UsersController extends FormController {
+public final class UsersController extends FormController implements InnerViewController {
 
     private UsersView usersView;
     private UsersService usersService;
@@ -81,6 +82,7 @@ public final class UsersController extends FormController {
         usersView.populateTable(usersService.findByRole(selectedViewByRole));
     }
 
+    @Override
     public Component getView() {
         prepareAndOpenForm();
         return usersView;

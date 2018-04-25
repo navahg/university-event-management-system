@@ -10,6 +10,7 @@ import edu.neu.universityeventmanagementsystem.business.service.CouncilsService;
 import edu.neu.universityeventmanagementsystem.business.service.ProgramsService;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.infrastructure.view.InfrastructureView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
+import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.InnerViewController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ import java.util.List;
  */
 @Controller
 @Lazy
-public final class InfrastructureController extends FormController {
+public final class InfrastructureController extends FormController implements InnerViewController {
 
     private InfrastructureView infrastructureView;
     private CollegesService collegesService;
@@ -83,6 +84,7 @@ public final class InfrastructureController extends FormController {
         infrastructureView.populateLists(sublistEntities, InfrastructureView.SUB_LIST_INDEX);
     }
 
+    @Override
     public Component getView() {
         prepareAndOpenForm();
         return infrastructureView;

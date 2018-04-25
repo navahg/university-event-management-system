@@ -61,8 +61,10 @@ public class UsersLandingPanelView extends javax.swing.JPanel {
     }
 
     public void showOnlyPrivileged(int privilegeLevel) {
-        if (privilegeLevel <= ConstantValues.MinimumPrivilegeLevel.STUDENT) {
-
+        if (privilegeLevel < ConstantValues.MinimumPrivilegeLevel.SPECIAL_STUDENT) {
+            btnEvents.setVisible(false);
+        } else {
+            btnEvents.setVisible(true);
         }
     }
 
@@ -87,7 +89,7 @@ public class UsersLandingPanelView extends javax.swing.JPanel {
         btnAccountSettings = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
+        javax.swing.JSeparator jSeparator2 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1366, 768));
@@ -126,7 +128,7 @@ public class UsersLandingPanelView extends javax.swing.JPanel {
         btnSchedule.setBackground(new java.awt.Color(5, 119, 119));
         btnSchedule.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSchedule.setForeground(new java.awt.Color(255, 255, 255));
-        btnSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user_setting_icon_48px.png"))); // NOI18N
+        btnSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/invite_icon_48px.png"))); // NOI18N
         btnSchedule.setText("Schedule & Invites");
         btnSchedule.setBorderPainted(false);
         btnSchedule.setContentAreaFilled(false);
@@ -253,7 +255,6 @@ public class UsersLandingPanelView extends javax.swing.JPanel {
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnSchedule;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUserFullName;
     // End of variables declaration//GEN-END:variables

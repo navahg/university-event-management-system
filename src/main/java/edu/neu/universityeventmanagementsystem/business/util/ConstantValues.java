@@ -16,7 +16,13 @@ public interface ConstantValues {
     interface MinimumPrivilegeLevel {
         Integer ADMIN = 90;
         Integer STUDENT = 50;
+        Integer SPECIAL_STUDENT = 60;
         Integer FACULTY = 70;
+        Integer EVENT_MANAGER = 80;
         Integer STRANGER = 0;
+    }
+
+    interface EventStatus {
+        String CANCELLED = "CANCELLED";
     }
 }

@@ -3,6 +3,7 @@ package edu.neu.universityeventmanagementsystem.business.ui.admin.events.control
 import edu.neu.universityeventmanagementsystem.business.ui.admin.events.view.EventsView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.CreateEventController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
+import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.InnerViewController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
@@ -21,7 +22,7 @@ import java.util.Objects;
  */
 @Controller
 @Lazy
-public class EventsController extends FormController {
+public class EventsController extends FormController implements InnerViewController {
 
     private static final String MANAGE_EVENTS = "Manage";
     private static final String APPROVAL = "Approval Requests";
@@ -76,6 +77,7 @@ public class EventsController extends FormController {
         renderView();
     }
 
+    @Override
     public java.awt.Component getView() {
         prepareAndOpenForm();
         return eventsView;

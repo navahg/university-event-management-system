@@ -31,6 +31,7 @@ public class EventView extends javax.swing.JPanel {
     public static final String EVENT_STATUS_OVER = "Over";
     public static final String EVENT_STATUS_PARTICIPATED = "Participated";
     public static final String EVENT_STATUS_HOST = "Hosted by you";
+    public static final String EVENT_STATUS_ACTIVE = "Active";
 
     /**
      * Creates new form EventEntityView
@@ -53,7 +54,8 @@ public class EventView extends javax.swing.JPanel {
                 !Objects.equals(status, EVENT_STATUS_REGISTER_NOW) &&
                 !Objects.equals(status, EVENT_STATUS_REGISTERED) &&
                 !Objects.equals(status, EVENT_STATUS_PARTICIPATED) &&
-                !Objects.equals(status, EVENT_STATUS_HOST))
+                !Objects.equals(status, EVENT_STATUS_HOST) &&
+                !Objects.equals(status, EVENT_STATUS_ACTIVE))
             status = "Unknown Status";
 
         status = adjustStatusBasedOnDate(status);

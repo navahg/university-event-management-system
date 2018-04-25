@@ -1,9 +1,12 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
 import edu.neu.universityeventmanagementsystem.business.entity.EventsEntity;
+import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.EventsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * EventsService class
@@ -28,5 +31,13 @@ public class EventsService {
 
     public EventsEntity save(EventsEntity newEvent) {
         return eventsRepository.save(newEvent);
+    }
+
+    public List<EventsEntity> findAll() {
+        return eventsRepository.findAll();
+    }
+
+    public List<EventsEntity> findAllByCreator(UsersEntity creator) {
+        return eventsRepository.findAllByIdCreator(creator);
     }
 }

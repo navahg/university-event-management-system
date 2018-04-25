@@ -149,6 +149,8 @@ public class CreateEventView extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(ConstantMessages.Titles.ADD_EVENT_TITLE);
+        setModal(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setPreferredSize(new java.awt.Dimension(1366, 768));
@@ -496,6 +498,7 @@ public class CreateEventView extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

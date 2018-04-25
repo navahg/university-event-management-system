@@ -8,6 +8,7 @@ import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.service.InvitesService;
 import edu.neu.universityeventmanagementsystem.business.service.SchedulesService;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
+import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.InnerViewController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.view.EventView;
 import edu.neu.universityeventmanagementsystem.business.ui.users.schedule.view.SchedulePanelView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ import java.util.Objects;
  */
 @Controller
 @Lazy
-public final class SchedulePanelController extends FormController {
+public final class SchedulePanelController extends FormController implements InnerViewController {
 
     private SchedulePanelView schedulePanelView;
     private ApplicationContext context;
@@ -126,6 +127,7 @@ public final class SchedulePanelController extends FormController {
         schedulePanelView.addToPanel(view, SchedulePanelView.UPCOMING_EVENTS_PANE);
     }
 
+    @Override
     public Component getView() {
         prepareAndOpenForm();
         return schedulePanelView;

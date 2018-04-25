@@ -1,7 +1,10 @@
 package edu.neu.universityeventmanagementsystem.business.ui.admin.events.view;
 
+import edu.neu.universityeventmanagementsystem.business.ui.shared.view.EventView;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
+
+import javax.swing.*;
 
 /**
  * ManageEventView class
@@ -14,9 +17,53 @@ import org.springframework.stereotype.Component;
 @Lazy
 public class ManageEventView extends javax.swing.JPanel {
 
+    public static final int UPCOMING_EVENTS_PANEL = 0;
+    public static final int PAST_EVENTS_PANEL = 1;
+    public static final int[] ALL_PANELS = new int[]{0, 1};
+
     /** Creates new form ManageEventView */
     public ManageEventView() {
         initComponents();
+    }
+
+    public void addToPanel(java.awt.Component component, int panelIndex) {
+        switch (panelIndex) {
+            case UPCOMING_EVENTS_PANEL:
+                lblNoUpcomingEvents.setVisible(false);
+                upcomingEventsPanel.add(component);
+                break;
+            case PAST_EVENTS_PANEL:
+                lblNoPastEvents.setVisible(false);
+                pastEventsPanel.add(component);
+                break;
+        }
+    }
+
+    private void resetPanel(javax.swing.JPanel panel) {
+        for (java.awt.Component comp : panel.getComponents()) {
+            if (comp instanceof EventView)
+                panel.remove(comp);
+        }
+        java.awt.Component comp = panel.getComponent(0);
+        if (comp instanceof JLabel)
+            comp.setVisible(true);
+        panel.revalidate();
+        panel.repaint();
+    }
+
+    public void resetPanel(int panelIndex) {
+        switch (panelIndex) {
+            case UPCOMING_EVENTS_PANEL:
+                resetPanel(upcomingEventsPanel);
+                break;
+            case PAST_EVENTS_PANEL:
+                resetPanel(pastEventsPanel);
+        }
+    }
+
+    public void resetPanels(int[] panelIndices) {
+        for (int panelIndex : panelIndices)
+            resetPanel(panelIndex);
     }
 
     /** This method is called from within the constructor to
@@ -31,9 +78,20 @@ public class ManageEventView extends javax.swing.JPanel {
         javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
         javax.swing.JPanel jPanel3 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
-        javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
-        javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
-        eventContentPane = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        javax.swing.JPanel eventContentPane = new javax.swing.JPanel();
+        javax.swing.JPanel jPanel4 = new javax.swing.JPanel();
+        javax.swing.JPanel jPanel6 = new javax.swing.JPanel();
+        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
+        javax.swing.JScrollPane jScrollPane2 = new javax.swing.JScrollPane();
+        upcomingEventsPanel = new javax.swing.JPanel();
+        lblNoUpcomingEvents = new javax.swing.JLabel();
+        javax.swing.JPanel jPanel5 = new javax.swing.JPanel();
+        javax.swing.JPanel jPanel7 = new javax.swing.JPanel();
+        javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
+        javax.swing.JScrollPane jScrollPane3 = new javax.swing.JScrollPane();
+        pastEventsPanel = new javax.swing.JPanel();
+        lblNoPastEvents = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1116, 635));
@@ -69,37 +127,150 @@ public class ManageEventView extends javax.swing.JPanel {
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.PAGE_START);
 
-        jScrollPane1.setBorder(null);
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
         eventContentPane.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel4.setPreferredSize(new java.awt.Dimension(350, 100));
+
+        jPanel6.setPreferredSize(new java.awt.Dimension(350, 50));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Upcoming Events");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jScrollPane2.setBorder(null);
+
+        upcomingEventsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        upcomingEventsPanel.setLayout(new javax.swing.BoxLayout(upcomingEventsPanel, javax.swing.BoxLayout.Y_AXIS));
+
+        lblNoUpcomingEvents.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        lblNoUpcomingEvents.setForeground(new java.awt.Color(153, 153, 153));
+        lblNoUpcomingEvents.setText("No upcoming events");
+        upcomingEventsPanel.add(lblNoUpcomingEvents);
+
+        jScrollPane2.setViewportView(upcomingEventsPanel);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))
+        );
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel5.setPreferredSize(new java.awt.Dimension(350, 100));
+
+        jPanel7.setPreferredSize(new java.awt.Dimension(350, 50));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Past Events");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jScrollPane3.setBorder(null);
+
+        pastEventsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        pastEventsPanel.setLayout(new javax.swing.BoxLayout(pastEventsPanel, javax.swing.BoxLayout.Y_AXIS));
+
+        lblNoPastEvents.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        lblNoPastEvents.setForeground(new java.awt.Color(153, 153, 153));
+        lblNoPastEvents.setText("No past events");
+        pastEventsPanel.add(lblNoPastEvents);
+
+        jScrollPane3.setViewportView(pastEventsPanel);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+            .addComponent(jScrollPane3)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane3))
+        );
 
         javax.swing.GroupLayout eventContentPaneLayout = new javax.swing.GroupLayout(eventContentPane);
         eventContentPane.setLayout(eventContentPaneLayout);
         eventContentPaneLayout.setHorizontalGroup(
             eventContentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(eventContentPaneLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         eventContentPaneLayout.setVerticalGroup(
             eventContentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(eventContentPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(eventContentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE))
+                .addContainerGap())
         );
-
-        jScrollPane1.setViewportView(eventContentPane);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 748, Short.MAX_VALUE)
+            .addGap(0, 1090, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE))
+                .addComponent(eventContentPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 547, Short.MAX_VALUE)
+            .addGap(0, 535, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE))
+                .addComponent(eventContentPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -110,21 +281,25 @@ public class ManageEventView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
+                .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel eventContentPane;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblNoPastEvents;
+    private javax.swing.JLabel lblNoUpcomingEvents;
+    private javax.swing.JPanel pastEventsPanel;
+    private javax.swing.JPanel upcomingEventsPanel;
     // End of variables declaration//GEN-END:variables
 
 }
