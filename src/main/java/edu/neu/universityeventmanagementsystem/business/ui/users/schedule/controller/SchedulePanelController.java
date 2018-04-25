@@ -15,9 +15,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * SchedulePanelController class
@@ -80,17 +83,47 @@ public final class SchedulePanelController extends FormController {
     }
 
     private void addEventToThePane(EventsEntity event, String eventStatus, int where) {
-        EventView eventView = context.getBean(EventView.class,
-                event.getName(), eventStatus, event.getStartTime(), event.getVenue());
+        EventView eventView = context.getBean(EventView.class, event, eventStatus);
         schedulePanelView.addToPanel(eventView, where);
     }
 
     private void addInviteToThePane(EventsEntity event) {
-        EventView eventView = context.getBean(EventView.class,
-                event.getName(), EventView.EVENT_STATUS_REGISTER_NOW, event.getStartTime(), event.getVenue(),
-                String.format("%s, %s", event.getUsersByIdCreator().getLastName(), event.getUsersByIdCreator().getFirstName()));
-
+        EventView eventView = context.getBean(EventView.class, event, EventView.EVENT_STATUS_REGISTER_NOW);
+        registerMouseClick(eventView.getLblEventStatus(), this::registerForEvent);
         schedulePanelView.addToPanel(eventView, SchedulePanelView.INVITES_PANE);
+    }
+
+    private void registerForEvent(MouseEvent event) {
+        if (!(event.getSource() instanceof JLabel))
+            return;
+
+        boolean isRegisterNowLabel = Objects.equals(((JLabel) event.getSource()).getText(), EventView.EVENT_STATUS_REGISTER_NOW);
+
+        if (!isRegisterNowLabel)
+            return;
+
+        if (!(((JLabel) event.getSource()).getParent().getParent() instanceof EventView))
+            return;
+
+        EventView selectedEventView = (EventView) ((JLabel) event.getSource()).getParent().getParent();
+
+        removeFromInviteAndAddToSchedule(selectedEventView);
+    }
+
+    private void removeFromInviteAndAddToSchedule(EventView view) {
+        EventsEntity event = view.getEvent();
+        UsersEntity user = context.getBean(CurrentUserBean.class).getCurrentUser();
+
+        SchedulesEntity newSchedule = schedulesService.create();
+        newSchedule.setEventsByIdEvent(event);
+        newSchedule.setUsersByIdUser(user);
+
+        schedulesService.save(newSchedule);
+
+        invitesService.deleteByInviteeAndEvent(user, event);
+
+        schedulePanelView.removeFromPanel(view, SchedulePanelView.INVITES_PANE);
+        schedulePanelView.addToPanel(view, SchedulePanelView.UPCOMING_EVENTS_PANE);
     }
 
     public Component getView() {

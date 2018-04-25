@@ -57,10 +57,10 @@ public class UserView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
         lblUserFullName = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        javax.swing.JSeparator jSeparator1 = new javax.swing.JSeparator();
+        btnDelete = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(250, 50));
@@ -73,11 +73,11 @@ public class UserView extends javax.swing.JPanel {
         lblUserFullName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user_16px.png"))); // NOI18N
         lblUserFullName.setText("John Doe");
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/remove_icon_16px.png"))); // NOI18N
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setFocusable(false);
+        btnDelete.setBackground(new java.awt.Color(255, 255, 255));
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/remove_icon_16px.png"))); // NOI18N
+        btnDelete.setContentAreaFilled(false);
+        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDelete.setFocusable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,7 +90,7 @@ public class UserView extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblUserFullName, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -99,7 +99,7 @@ public class UserView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUserFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -122,9 +122,7 @@ public class UserView extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JLabel lblUserFullName;
     // End of variables declaration//GEN-END:variables
 

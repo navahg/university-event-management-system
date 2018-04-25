@@ -1,5 +1,6 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
+import edu.neu.universityeventmanagementsystem.business.entity.EventsEntity;
 import edu.neu.universityeventmanagementsystem.business.entity.InvitesEntity;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.InvitesRepository;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * InvitesService class
@@ -35,5 +37,10 @@ public class InvitesService {
 
     public InvitesEntity save(InvitesEntity invite) {
         return invitesRepository.save(invite);
+    }
+
+    public InvitesEntity deleteByInviteeAndEvent(UsersEntity invitee, EventsEntity event) {
+        Optional<InvitesEntity> result = invitesRepository.deleteByInviteeAndEvent(invitee, event);
+        return result.orElse(null);
     }
 }

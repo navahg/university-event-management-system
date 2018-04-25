@@ -28,4 +28,12 @@ public class SchedulesService {
     public List<SchedulesEntity> findByUser(UsersEntity user) {
         return schedulesRepository.findAllByUser(user);
     }
+
+    public SchedulesEntity create() {
+        return new SchedulesEntity();
+    }
+
+    public SchedulesEntity save(SchedulesEntity schedule) {
+        return schedulesRepository.save(schedule);
+    }
 }

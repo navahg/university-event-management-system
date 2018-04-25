@@ -1,5 +1,6 @@
 package edu.neu.universityeventmanagementsystem.business.repository;
 
+import edu.neu.universityeventmanagementsystem.business.entity.EventsEntity;
 import edu.neu.universityeventmanagementsystem.business.entity.InvitesEntity;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * InvitesRepository class
@@ -21,4 +23,7 @@ public interface InvitesRepository extends JpaRepository<InvitesEntity, Integer>
 
     @Query("SELECT i FROM InvitesEntity i WHERE i.usersByIdInvitee = :invitee")
     List<InvitesEntity> findAllByInvitee(@Param("invitee") UsersEntity invitee);
+
+    @Query("DELETE FROM InvitesEntity i WHERE i.usersByIdInvitee = :invitee AND i.eventsByIdEvent = :event")
+    Optional<InvitesEntity> deleteByInviteeAndEvent(@Param("invitee") UsersEntity invitee, @Param("event") EventsEntity event);
 }

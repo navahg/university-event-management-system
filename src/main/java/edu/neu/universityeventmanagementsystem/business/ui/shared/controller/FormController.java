@@ -3,6 +3,8 @@ package edu.neu.universityeventmanagementsystem.business.ui.shared.controller;
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.util.function.Consumer;
 
 /**
  * FormController class, an abstract class with necessary methods for any form controller
@@ -25,6 +27,15 @@ public abstract class FormController {
 
     protected void registerAction(JList list, ListSelectionListener listSelectionListener) {
         list.addListSelectionListener(listSelectionListener);
+    }
+
+    protected void registerMouseClick(JComponent component, Consumer<MouseEvent> listener) {
+        component.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                listener.accept(e);
+            }
+        });
     }
 
 }

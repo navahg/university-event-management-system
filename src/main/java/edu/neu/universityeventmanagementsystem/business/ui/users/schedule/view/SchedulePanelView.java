@@ -50,6 +50,31 @@ public final class SchedulePanelView extends javax.swing.JPanel {
         }
     }
 
+    public void removeFromPanel(java.awt.Component component, int panelIndex) {
+        switch (panelIndex) {
+            case UPCOMING_EVENTS_PANE:
+                upcomingEventsContentPane.remove(component);
+                if (upcomingEventsContentPane.getComponents().length == 1)
+                    lblNoUpcomingEvents.setVisible(true);
+                break;
+            case PAST_EVENTS_PANE:
+                pastEventsContentPane.remove(component);
+                if (pastEventsContentPane.getComponents().length == 1)
+                    lblNoPastEvents.setVisible(true);
+                break;
+            case INVITES_PANE:
+                invitesContentPane.remove(component);
+                if (invitesContentPane.getComponents().length == 1)
+                    lblNoInvites.setVisible(true);
+                break;
+            case HOSTED_EVENTS_PANE:
+                hostedEventsContentPane.remove(component);
+                if (hostedEventsContentPane.getComponents().length == 1)
+                    lblNoHostedEvents.setVisible(true);
+                break;
+        }
+    }
+
     private void resetPanel(JPanel panel) {
         for (java.awt.Component comp : panel.getComponents()) {
             if (comp instanceof EventView)

@@ -1,9 +1,11 @@
 package edu.neu.universityeventmanagementsystem.business.ui.shared.view;
 
+import edu.neu.universityeventmanagementsystem.business.entity.EventsEntity;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.swing.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,6 +24,8 @@ import java.util.Objects;
 @Scope(value = "prototype")
 public class EventView extends javax.swing.JPanel {
 
+    private EventsEntity event;
+
     public static final String EVENT_STATUS_REGISTERED = "Registered";
     public static final String EVENT_STATUS_REGISTER_NOW = "Register Now";
     public static final String EVENT_STATUS_OVER = "Over";
@@ -38,50 +42,38 @@ public class EventView extends javax.swing.JPanel {
     /**
      * Creates an event view with specified name and status
      *
-     * @param name   Event name
-     * @param status Event registration status
-     * @param date Date of the event
-     * @param location Location of the event
+     * @param event EventEntity object for which the view is being created
+     * @param status Event status with respect to the user
      */
-    public EventView(String name, String status, Date date, String location) {
-        if (!Objects.equals(status, EVENT_STATUS_OVER) ||
-                !Objects.equals(status, EVENT_STATUS_REGISTER_NOW) ||
-                !Objects.equals(status, EVENT_STATUS_REGISTERED) ||
-                !Objects.equals(status, EVENT_STATUS_PARTICIPATED) ||
+    public EventView(EventsEntity event, String status) {
+        initComponents();
+
+        this.event = event;
+        if (!Objects.equals(status, EVENT_STATUS_OVER) &&
+                !Objects.equals(status, EVENT_STATUS_REGISTER_NOW) &&
+                !Objects.equals(status, EVENT_STATUS_REGISTERED) &&
+                !Objects.equals(status, EVENT_STATUS_PARTICIPATED) &&
                 !Objects.equals(status, EVENT_STATUS_HOST))
             status = "Unknown Status";
 
-        initComponents();
-        setEventName(name);
+        status = adjustStatusBasedOnDate(status);
+
+        setEventName(event.getName());
         setEventStatus(status);
-        setEventDate(date);
-        setEventLocation(location);
-        setInvitedBy(" ");
+        setEventDate(event.getStartTime());
+        setEventLocation(event.getVenue());
+        setInvitedBy(String.format("%s, %s", event.getUsersByIdCreator().getLastName(),
+                                             event.getUsersByIdCreator().getFirstName()));
     }
 
-    /**
-     * Creates an event view with specified name and status
-     *
-     * @param name   Event name
-     * @param status Event registration status
-     * @param date Date of the event
-     * @param location Location of the event
-     * @param invitedBy The person who invited the user
-     */
-    public EventView(String name, String status, Date date, String location, String invitedBy) {
-        if (!Objects.equals(status, EVENT_STATUS_OVER) ||
-                !Objects.equals(status, EVENT_STATUS_REGISTER_NOW) ||
-                !Objects.equals(status, EVENT_STATUS_REGISTERED) ||
-                !Objects.equals(status, EVENT_STATUS_PARTICIPATED) ||
-                !Objects.equals(status, EVENT_STATUS_HOST))
-            status = "Unknown Status";
+    private String adjustStatusBasedOnDate(String status) {
+        if (event.getStartTime().before(new Date()))
+            return EVENT_STATUS_OVER;
+        return status;
+    }
 
-        initComponents();
-        setEventName(name);
-        setEventStatus(status);
-        setEventDate(date);
-        setEventLocation(location);
-        setInvitedBy(invitedBy);
+    public EventsEntity getEvent() {
+        return event;
     }
 
     public void setEventStatus(String status) {
@@ -106,6 +98,10 @@ public class EventView extends javax.swing.JPanel {
         lblDate.setText(df.format(date));
     }
 
+    public JLabel getLblEventStatus() {
+        return lblEventStatus;
+    }
+
     public void setEventLocation(String location) {
         lblLocation.setText(location);
     }
@@ -123,6 +119,7 @@ public class EventView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
         javax.swing.JSeparator jSeparator1 = new javax.swing.JSeparator();
         lblDate = new javax.swing.JLabel();
         lblEventName = new javax.swing.JLabel();
@@ -131,6 +128,9 @@ public class EventView extends javax.swing.JPanel {
         lblInvitedBy = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(480, 100));
 
         lblDate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDate.setForeground(new java.awt.Color(204, 0, 0));
@@ -146,47 +146,61 @@ public class EventView extends javax.swing.JPanel {
         lblEventStatus.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         lblEventStatus.setForeground(new java.awt.Color(0, 102, 204));
         lblEventStatus.setText("Event Status");
+        lblEventStatus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblInvitedBy.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblInvitedBy.setForeground(new java.awt.Color(0, 153, 153));
         lblInvitedBy.setText(" ");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblDate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
+                        .addComponent(lblLocation))
+                    .addComponent(lblEventName)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblInvitedBy)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblEventStatus)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDate)
+                    .addComponent(lblLocation))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblEventName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEventStatus)
+                    .addComponent(lblInvitedBy))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblDate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblLocation))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblEventName)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblInvitedBy)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblEventStatus)))
-                .addContainerGap())
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDate)
-                    .addComponent(lblLocation))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblEventName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEventStatus)
-                    .addComponent(lblInvitedBy))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

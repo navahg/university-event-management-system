@@ -96,6 +96,8 @@ public class CreateEventController extends FormController {
         newEvent = eventsService.save(newEvent);
 
         sendInvites(newEvent);
+
+        createEventView.dispose();
     }
 
     private void sendInvites(EventsEntity event) {
