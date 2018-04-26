@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * InvitesService class
@@ -39,8 +38,7 @@ public class InvitesService {
         return invitesRepository.save(invite);
     }
 
-    public InvitesEntity deleteByInviteeAndEvent(UsersEntity invitee, EventsEntity event) {
-        Optional<InvitesEntity> result = invitesRepository.deleteByInviteeAndEvent(invitee, event);
-        return result.orElse(null);
+    public int deleteByInviteeAndEvent(UsersEntity invitee, EventsEntity event) {
+        return invitesRepository.deleteByInviteeAndEvent(invitee, event);
     }
 }

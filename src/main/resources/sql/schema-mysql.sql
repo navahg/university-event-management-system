@@ -6,6 +6,8 @@ DROP TABLE IF EXISTS admin_wing_members CASCADE;
 
 DROP TABLE IF EXISTS club_members CASCADE;
 
+DROP TABLE IF EXISTS college_members CASCADE;
+
 DROP TABLE IF EXISTS council_members CASCADE;
 
 DROP TABLE IF EXISTS event_participants CASCADE;
@@ -95,6 +97,7 @@ CREATE TABLE admin_wing (
 /*======================================================================================================*/
 CREATE TABLE hierarchy (
   id_hierarchy INTEGER      NOT NULL  AUTO_INCREMENT,
+  level        INTEGER      NOT NULL,
   table_name   VARCHAR(255) NOT NULL,
   description  VARCHAR(255) NOT NULL,
   PRIMARY KEY (id_hierarchy)
@@ -108,7 +111,6 @@ CREATE TABLE roles (
   name            VARCHAR(255) NOT NULL,
   privilege_level INTEGER      NOT NULL,
   id_hierarchy    INTEGER      NOT NULL,
-  id_entity       INTEGER      NOT NULL,
   PRIMARY KEY (id_role),
   FOREIGN KEY (id_hierarchy) REFERENCES hierarchy (id_hierarchy)
     ON DELETE CASCADE
@@ -171,11 +173,13 @@ CREATE TABLE event_status (
 CREATE TABLE events (
   id_event     INTEGER      NOT NULL  AUTO_INCREMENT,
   id_hierarchy INTEGER      NOT NULL,
+  id_entity    INTEGER,
   id_creator   INTEGER      NOT NULL,
   name         VARCHAR(255) NOT NULL,
   venue        VARCHAR(255) NOT NULL,
   start_time   TIMESTAMP    NOT NULL  DEFAULT CURRENT_TIMESTAMP,
   end_time     TIMESTAMP    NOT NULL  DEFAULT CURRENT_TIMESTAMP,
+  max_seats    INTEGER      NOT NULL  DEFAULT 0,
   status       INTEGER      NOT NULL,
   PRIMARY KEY (id_event),
   FOREIGN KEY (id_hierarchy) REFERENCES hierarchy (id_hierarchy)
@@ -183,6 +187,20 @@ CREATE TABLE events (
   FOREIGN KEY (id_creator) REFERENCES users (id_user)
     ON DELETE CASCADE,
   FOREIGN KEY (status) REFERENCES event_status (id_status)
+    ON DELETE CASCADE
+);
+
+/*======================================================================================================*/
+/* Table: college_members                                                                               */
+/*======================================================================================================*/
+CREATE TABLE college_members (
+  id_college_members INTEGER NOT NULL AUTO_INCREMENT,
+  id_user            INTEGER NOT NULL UNIQUE,
+  id_college         INTEGER NOT NULL,
+  PRIMARY KEY (id_college_members),
+  FOREIGN KEY (id_user) REFERENCES users (id_user)
+    ON DELETE CASCADE,
+  FOREIGN KEY (id_college) REFERENCES colleges (id_college)
     ON DELETE CASCADE
 );
 
@@ -290,9 +308,12 @@ CREATE TABLE schedules (
 CREATE TABLE notifications (
   id_notification INTEGER      NOT NULL AUTO_INCREMENT,
   id_user         INTEGER      NOT NULL,
+  id_event        INTEGER      NOT NULL,
   message         VARCHAR(255) NOT NULL,
   read_flag       BIT(1)       NOT NULL,
   PRIMARY KEY (id_notification),
   FOREIGN KEY (id_user) REFERENCES users (id_user)
+    ON DELETE CASCADE,
+  FOREIGN KEY (id_event) REFERENCES events (id_event)
     ON DELETE CASCADE
 );

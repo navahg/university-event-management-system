@@ -13,9 +13,9 @@ import java.awt.*;
 /**
  * AccountSettingsController class
  *
- * @author  Raghavan Renganathan <renganathan.r@husky.neu.edu>
+ * @author Raghavan Renganathan <renganathan.r@husky.neu.edu>
  * @version 1.0
- * @since   Apr 20, 2018
+ * @since Apr 20, 2018
  */
 @Controller
 @Lazy

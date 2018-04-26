@@ -35,7 +35,7 @@ public final class AdminLandingPanelView extends javax.swing.JPanel {
         initComponents();
     }
 
-    public java.awt.Component getLogoutButton() {
+    public javax.swing.JButton getLogoutButton() {
         return btnLogout;
     }
 
@@ -54,13 +54,19 @@ public final class AdminLandingPanelView extends javax.swing.JPanel {
         contentPanel.repaint();
     }
 
-    public List<java.awt.Component> getPanelButtons() {
+    public List<javax.swing.JButton> getPanelButtons() {
         return new ArrayList<>(Arrays.asList(btnDashboard, btnInfrastructures, btnEvents, btnUsers));
     }
 
-    public void setActiveButton(java.awt.Component activeButton) {
+    public void setActiveButton(javax.swing.JButton activeButton) {
         getPanelButtons().forEach(button -> button.setBackground(INACTIVE));
         activeButton.setBackground(ACTIVE);
+    }
+
+    public void reset() {
+        contentPanel.removeAll();
+        lblTitle.setText("Dashboard");
+        setActiveButton(btnDashboard);
     }
 
     /**
@@ -84,7 +90,7 @@ public final class AdminLandingPanelView extends javax.swing.JPanel {
         contentPanel = new javax.swing.JPanel();
         btnLogout = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
+        javax.swing.JSeparator jSeparator2 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1366, 768));
@@ -238,9 +244,7 @@ public final class AdminLandingPanelView extends javax.swing.JPanel {
                         .addComponent(lblTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
+                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -255,7 +259,6 @@ public final class AdminLandingPanelView extends javax.swing.JPanel {
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnUsers;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUserFullName;
     // End of variables declaration//GEN-END:variables

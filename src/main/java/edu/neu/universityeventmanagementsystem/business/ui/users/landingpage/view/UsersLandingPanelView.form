@@ -30,12 +30,12 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="contentPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="contentPanel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="lblTitle" max="32767" attributes="0"/>
-                          <Component id="jSeparator2" min="-2" pref="134" max="-2" attributes="0"/>
+                          <Component id="jSeparator2" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnLogout" min="-2" pref="48" max="-2" attributes="0"/>
@@ -47,7 +47,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel2" alignment="0" pref="779" max="32767" attributes="0"/>
+          <Component id="jPanel2" alignment="0" pref="771" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -58,7 +58,7 @@
                   </Group>
                   <Component id="btnLogout" min="-2" pref="48" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Component id="contentPanel" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -71,7 +71,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1066, 700]"/>
+          <Dimension value="[1116, 700]"/>
         </Property>
       </Properties>
 

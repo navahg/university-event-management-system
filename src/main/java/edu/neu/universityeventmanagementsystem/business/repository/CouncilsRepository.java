@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * CouncilsRepository class
  *
@@ -20,4 +22,7 @@ public interface CouncilsRepository extends JpaRepository<CouncilsEntity, Intege
     @Modifying
     @Query("DELETE FROM CouncilsEntity c WHERE c.name = :name")
     void deleteByName(@Param("name") String name);
+
+    @Query("SELECT c FROM CouncilsEntity c WHERE c.name = :name")
+    Optional<CouncilsEntity> findOneByName(@Param("name") String name);
 }

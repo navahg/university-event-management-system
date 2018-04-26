@@ -1,8 +1,12 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
+import edu.neu.universityeventmanagementsystem.business.entity.NotificationsEntity;
+import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.NotificationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * NotificationsService class
@@ -19,5 +23,17 @@ public class NotificationsService {
     @Autowired
     public NotificationsService(NotificationsRepository notificationsRepository) {
         this.notificationsRepository = notificationsRepository;
+    }
+
+    public NotificationsEntity create() {
+        return new NotificationsEntity();
+    }
+
+    public NotificationsEntity save(NotificationsEntity notification) {
+        return notificationsRepository.save(notification);
+    }
+
+    public List<NotificationsEntity> findAllByIdUser(UsersEntity user) {
+        return notificationsRepository.findAllByIdUser(user);
     }
 }

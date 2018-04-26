@@ -20,6 +20,7 @@ public class UsersEntity {
     private String middleName;
     private String lastName;
     private String email;
+    private CollegeMembersEntity collegeMembersByIdUser;
     private AdminWingMembersEntity adminWingMembersByIdUser;
     private CouncilMembersEntity councilMembersByIdUser;
     private ProgramMembersEntity programMembersByIdUser;
@@ -111,6 +112,15 @@ public class UsersEntity {
     public int hashCode() {
 
         return Objects.hash(idUser, rolesByIdRole.getIdRole(), userName, firstName, middleName, lastName, email);
+    }
+
+    @OneToOne(mappedBy = "usersByIdUser")
+    public CollegeMembersEntity getCollegeMembersByIdUser() {
+        return collegeMembersByIdUser;
+    }
+
+    public void setCollegeMembersByIdUser(CollegeMembersEntity collegeMembersByIdUser) {
+        this.collegeMembersByIdUser = collegeMembersByIdUser;
     }
 
     @OneToOne(mappedBy = "usersByIdUser")

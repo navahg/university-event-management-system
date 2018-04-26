@@ -34,7 +34,15 @@ public abstract class FormController {
         comboBox.addActionListener(actionListener);
     }
 
-    protected void registerAction(JList list, ListSelectionListener listSelectionListener) {
+    protected void registerAction(JCheckBox checkBox, ActionListener actionListener) {
+        for (ActionListener listener : checkBox.getActionListeners()) {
+            checkBox.removeActionListener(listener);
+        }
+
+        checkBox.addActionListener(actionListener);
+    }
+
+    protected void registerListSelection(JList list, ListSelectionListener listSelectionListener) {
         for (ListSelectionListener listener : list.getListSelectionListeners()) {
             list.removeListSelectionListener(listener);
         }

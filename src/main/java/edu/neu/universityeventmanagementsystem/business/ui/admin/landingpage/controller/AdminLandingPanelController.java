@@ -3,7 +3,6 @@ package edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.co
 import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.events.controller.EventsController;
-import edu.neu.universityeventmanagementsystem.business.ui.admin.events.view.EventsView;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.infrastructure.controller.InfrastructureController;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.view.AdminLandingPanelView;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.users.controller.UsersController;
@@ -27,18 +26,17 @@ import org.springframework.stereotype.Controller;
 @Lazy
 public final class AdminLandingPanelController extends FormController {
 
+    private final static Logger log = Logger.getLogger(AdminLandingPanelController.class);
     private MainFrameController mainFrameController;
     private AdminLandingPanelView landingPanelView;
     private CurrentUserBean currentUserBean;
     private ApplicationContext context;
 
-    private final static Logger log = Logger.getLogger(AdminLandingPanelController.class);
-
     @Autowired
-    public AdminLandingPanelController (MainFrameController mainFrameController,
-                                        AdminLandingPanelView landingPanelView,
-                                        CurrentUserBean currentUserBean,
-                                        ApplicationContext context) {
+    public AdminLandingPanelController(MainFrameController mainFrameController,
+                                       AdminLandingPanelView landingPanelView,
+                                       CurrentUserBean currentUserBean,
+                                       ApplicationContext context) {
         this.mainFrameController = mainFrameController;
         this.landingPanelView = landingPanelView;
         this.currentUserBean = currentUserBean;
@@ -53,7 +51,7 @@ public final class AdminLandingPanelController extends FormController {
             log.error("Current user is null");
             return;
         }
-        registerAction((javax.swing.JButton) landingPanelView.getLogoutButton(), event -> doLogout());
+        registerAction(landingPanelView.getLogoutButton(), event -> doLogout());
         registerPanelEvents();
         landingPanelView.setUserText(user.getFirstName());
         viewPanel();
@@ -61,7 +59,7 @@ public final class AdminLandingPanelController extends FormController {
 
     private void registerPanelEvents() {
         landingPanelView.getPanelButtons().forEach(button -> {
-            registerAction((javax.swing.JButton) button, this::changeView);
+            registerAction(button, this::changeView);
         });
     }
 
@@ -87,8 +85,10 @@ public final class AdminLandingPanelController extends FormController {
         }
     }
 
-    private void doLogout () {
+    private void doLogout() {
         currentUserBean.setCurrentUser(null);
+        landingPanelView.reset();
+
         mainFrameController.removeFromLayout(landingPanelView);
     }
 

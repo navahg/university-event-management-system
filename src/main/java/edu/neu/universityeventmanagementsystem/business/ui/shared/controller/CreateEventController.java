@@ -1,14 +1,15 @@
 package edu.neu.universityeventmanagementsystem.business.ui.shared.controller;
 
 import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
-import edu.neu.universityeventmanagementsystem.business.entity.EventsEntity;
-import edu.neu.universityeventmanagementsystem.business.entity.InvitesEntity;
-import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
+import edu.neu.universityeventmanagementsystem.business.entity.*;
 import edu.neu.universityeventmanagementsystem.business.service.*;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.view.CreateEventView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.view.UserView;
+import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
 import edu.neu.universityeventmanagementsystem.business.util.ConstantValues;
-import edu.neu.universityeventmanagementsystem.business.util.validation.Validator;
+import edu.neu.universityeventmanagementsystem.business.validation.EventValidator;
+import edu.neu.universityeventmanagementsystem.business.validation.SimpleValidator;
+import edu.neu.universityeventmanagementsystem.business.validation.ValidationError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
@@ -19,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * CreateEventController class
@@ -40,6 +42,11 @@ public class CreateEventController extends FormController {
     private ApplicationContext context;
     private EventsService eventsService;
     private EventStatusService eventStatusService;
+    private SchedulesService schedulesService;
+    private FactoryService factoryService;
+    private SimpleValidator simpleValidator;
+    private EventValidator eventValidator;
+    private NotificationsService notificationsService;
 
     @Autowired
     public CreateEventController(CreateEventView createEventView,
@@ -49,7 +56,12 @@ public class CreateEventController extends FormController {
                                  InvitesService invitesService,
                                  ApplicationContext context,
                                  EventsService eventsService,
-                                 EventStatusService eventStatusService) {
+                                 EventStatusService eventStatusService,
+                                 SchedulesService schedulesService,
+                                 FactoryService factoryService,
+                                 SimpleValidator simpleValidator,
+                                 EventValidator eventValidator,
+                                 NotificationsService notificationsService) {
         this.createEventView = createEventView;
         this.hierarchyService = hierarchyService;
         this.usersService = usersService;
@@ -58,13 +70,18 @@ public class CreateEventController extends FormController {
         this.context = context;
         this.eventsService = eventsService;
         this.eventStatusService = eventStatusService;
+        this.schedulesService = schedulesService;
+        this.factoryService = factoryService;
+        this.simpleValidator = simpleValidator;
+        this.eventValidator = eventValidator;
+        this.notificationsService = notificationsService;
 
         invitees = new ArrayList<>();
     }
 
     @Override
     public void prepareAndOpenForm() {
-        populateData(currentUserBean.getCurrentUser());
+        populateData();
 
         registerEvents();
         createEventView.setVisible(true);
@@ -75,6 +92,11 @@ public class CreateEventController extends FormController {
         registerAction(createEventView.getBtnAddInvitee(), this::populateInvitees);
         registerAction(createEventView.getBtnCreate(), this::createEvent);
         registerAction(createEventView.getBtnCancel(), this::close);
+        registerAction(createEventView.getCheckBoxOpenEvent(), this::changeEventType);
+    }
+
+    private void changeEventType(ActionEvent event) {
+        createEventView.toggleEventType(((JCheckBox) event.getSource()).isSelected());
     }
 
     private void close(ActionEvent event) {
@@ -82,22 +104,73 @@ public class CreateEventController extends FormController {
     }
 
     private void createEvent(ActionEvent event) {
+        createEventView.hideAllErrors();
+
         EventsEntity newEvent = eventsService.create();
+        UsersEntity user = currentUserBean.getCurrentUser();
+        int privilegeLevel = user.getRolesByIdRole().getPrivilegeLevel();
 
         newEvent.setName(createEventView.getEventName());
         newEvent.setVenue(createEventView.getEventLocation());
         newEvent.setStartTime(new Timestamp(createEventView.getEventStartDate().getTime()));
         newEvent.setEndTime(new Timestamp(createEventView.getEventEndDate().getTime()));
-        newEvent.setEventStatusByStatus(eventStatusService.findByStatusMessage("active"));
-        newEvent.setHierarchyByIdHierarchy(hierarchyService.findByTableName("university"));
+        newEvent.setUsersByIdCreator(user);
+        newEvent.setMaxSeats(createEventView.getMaxSeats());
 
-        newEvent.setUsersByIdCreator(currentUserBean.getCurrentUser());
+        if (createEventView.isOpenEvent()) {
+            newEvent.setHierarchyByIdHierarchy(hierarchyService.findByTableName(ConstantValues.Hierarchy.UNIVERSITY));
+            newEvent.setIdEntity(0);
+        } else {
+            newEvent.setHierarchyByIdHierarchy(hierarchyService.findByTableName(createEventView.getSelectedEventLevel()));
+            newEvent.setIdEntity(factoryService.findEntityId(createEventView.getSelectedEventLevel(), createEventView.getSelectedGroup()));
+        }
+
+        if (privilegeLevel >= ConstantValues.Values.PRIVILEGE_LIMIT_FOR_EVENT_CREATION_WITHOUT_APPROVAL) {
+            newEvent.setEventStatusByStatus(eventStatusService.findByStatusMessage(ConstantValues.EventStatus.APPROVED));
+        } else {
+            newEvent.setEventStatusByStatus(eventStatusService.findByStatusMessage(ConstantValues.EventStatus.PENDING_APPROVAL));
+        }
+
+        Optional<ValidationError> validationError = eventValidator.validate(newEvent);
+
+        if (validationError.isPresent()) {
+            validationError.get().getErroneousFields().forEach(createEventView::showError);
+            return;
+        }
 
         newEvent = eventsService.save(newEvent);
 
+        if (createEventView.isSendNotifications())
+            sendNotifications(newEvent);
         sendInvites(newEvent);
+        addToCreatorsSchedule(newEvent);
 
         createEventView.dispose();
+    }
+
+    private void sendNotifications(EventsEntity event) {
+        List<UsersEntity> users = factoryService.getAllUsers(event.getHierarchyByIdHierarchy().getTableName(), event.getIdEntity());
+
+        for (UsersEntity user : users) {
+            NotificationsEntity notification = notificationsService.create();
+
+            notification.setUsersByIdUser(user);
+            notification.setEventsByIdEvent(event);
+            notification.setMessage(ConstantMessages.Titles.NEW_EVENT_NOTIFICATION);
+
+            notificationsService.save(notification);
+        }
+    }
+
+    private void addToCreatorsSchedule(EventsEntity event) {
+        if (currentUserBean.getCurrentUser().getRolesByIdRole().getPrivilegeLevel() <= ConstantValues.MinimumPrivilegeLevel.FACULTY) {
+            SchedulesEntity newSchedule = schedulesService.create();
+
+            newSchedule.setUsersByIdUser(currentUserBean.getCurrentUser());
+            newSchedule.setEventsByIdEvent(event);
+
+            schedulesService.save(newSchedule);
+        }
     }
 
     private void sendInvites(EventsEntity event) {
@@ -116,7 +189,7 @@ public class CreateEventController extends FormController {
         StringBuilder invalidEmails = new StringBuilder();
 
         for (String email : inviteesEmails) {
-            if (Validator.isValidEmail(email)) {
+            if (simpleValidator.isValidEmail(email)) {
                 UsersEntity user = usersService.findByEmail(email);
                 if (user != null && !invitees.contains(user)) {
                     invitees.add(user);
@@ -137,17 +210,21 @@ public class CreateEventController extends FormController {
         JComboBox<String> comboBox = (JComboBox<String>) event.getSource();
 
         String selectedLevel = (String) comboBox.getSelectedItem();
+
+        List<String> eventGroups = factoryService.getAllNameFromTable(selectedLevel);
+        eventGroups.sort(String::compareToIgnoreCase);
+        createEventView.setEventGroup(eventGroups);
     }
 
-    private void populateData(UsersEntity user) {
-        int privilegeLevel = user.getRolesByIdRole().getPrivilegeLevel();
+    private void populateData() {
         List<String> eventLevels = new ArrayList<>();
 
-        if (privilegeLevel >= ConstantValues.MinimumPrivilegeLevel.ADMIN) {
-            hierarchyService.findAll().forEach(hierarchyEntity -> eventLevels.add(hierarchyEntity.getTableName()));
-        } else if (privilegeLevel >= ConstantValues.MinimumPrivilegeLevel.FACULTY){
-            hierarchyService.findAll().forEach(hierarchyEntity -> eventLevels.add(hierarchyEntity.getTableName()));
+        for (HierarchyEntity hierarchyEntity : hierarchyService.findAll()) {
+            eventLevels.add(hierarchyEntity.getTableName());
         }
+
+        eventLevels.sort(String::compareToIgnoreCase);
+        createEventView.setEventLevel(eventLevels);
     }
 
 }

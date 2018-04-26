@@ -1,11 +1,15 @@
 package edu.neu.universityeventmanagementsystem.business.ui.shared.view;
 
 import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * CreateEventView class
@@ -18,6 +22,14 @@ import java.util.Date;
 @Lazy
 public class CreateEventView extends javax.swing.JDialog {
 
+    public static final int NAME_ERROR = 0;
+    public static final int LOCATION_ERROR = 1;
+    public static final int TIME_ERROR = 2;
+    public static final int AUDIENCE_ERROR = 3;
+
+    private static final Logger log = Logger.getLogger(CreateEventView.class);
+    private List<JLabel> errorLabels;
+
     private CreateEventView() {
         this(new JFrame(), true);
     }
@@ -28,6 +40,21 @@ public class CreateEventView extends javax.swing.JDialog {
     public CreateEventView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        errorLabels = new ArrayList<>(Arrays.asList(lblEventNameError, lblEventLocationError, lblEventTimeError,
+                lblEventAudienceError));
+        hideAllErrors();
+    }
+
+    public void hideAllErrors() {
+        errorLabels.forEach(label -> label.setVisible(false));
+    }
+
+    public void showError(int choice) {
+        try {
+            errorLabels.get(choice).setVisible(true);
+        } catch (IndexOutOfBoundsException | NullPointerException ex) {
+            log.error("Invalid choice", ex);
+        }
     }
 
     public JComboBox<String> getComboEventLevel() {
@@ -52,6 +79,14 @@ public class CreateEventView extends javax.swing.JDialog {
 
     public JButton getBtnCreate() {
         return btnCreate;
+    }
+
+    public JCheckBox getCheckBoxOpenEvent() {
+        return checkBoxOpenEvent;
+    }
+
+    public JCheckBox getCheckBoxSendNotifications() {
+        return checkBoxSendNotifications;
     }
 
     public void addInviteeView(java.awt.Component component) {
@@ -99,6 +134,47 @@ public class CreateEventView extends javax.swing.JDialog {
         panelInvites.removeAll();
     }
 
+    public boolean isOpenEvent() {
+        return checkBoxOpenEvent.isSelected();
+    }
+
+    public boolean isSendNotifications() {
+        return checkBoxSendNotifications.isSelected();
+    }
+
+    public void setCheckBoxOpenEvent(boolean state) {
+        checkBoxOpenEvent.setSelected(state);
+    }
+
+    public int getMaxSeats() {
+        return (Integer) spinnerMaxSeats.getValue();
+    }
+
+    public void setMaxSeats(int maxSeats) {
+        spinnerMaxSeats.setValue(maxSeats);
+    }
+
+    public void setEventLevel(List<String> levels) {
+        comboEventLevel.setModel(new DefaultComboBoxModel<>(levels.toArray(new String[0])));
+    }
+
+    public String getSelectedEventLevel() {
+        return (String) comboEventLevel.getSelectedItem();
+    }
+
+    public void setEventGroup(List<String> groups) {
+        comboEventGroup.setModel(new DefaultComboBoxModel<>(groups.toArray(new String[0])));
+    }
+
+    public String getSelectedGroup() {
+        return (String) comboEventGroup.getSelectedItem();
+    }
+
+    public void toggleEventType(boolean isOpenEvent) {
+        comboEventLevel.setEnabled(!isOpenEvent);
+        comboEventGroup.setEnabled(!isOpenEvent);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -127,8 +203,8 @@ public class CreateEventView extends javax.swing.JDialog {
         javax.swing.JLabel jLabel10 = new javax.swing.JLabel();
         javax.swing.JLabel jLabel11 = new javax.swing.JLabel();
         javax.swing.JSeparator jSeparator2 = new javax.swing.JSeparator();
-        isOpenEvent = new javax.swing.JCheckBox();
-        isNotification = new javax.swing.JCheckBox();
+        checkBoxOpenEvent = new javax.swing.JCheckBox();
+        checkBoxSendNotifications = new javax.swing.JCheckBox();
         javax.swing.JLabel jLabel12 = new javax.swing.JLabel();
         spinnerMaxSeats = new javax.swing.JSpinner();
         javax.swing.JScrollPane panelInviteesScrollPane = new javax.swing.JScrollPane();
@@ -140,8 +216,12 @@ public class CreateEventView extends javax.swing.JDialog {
         comboEventLevel = new javax.swing.JComboBox<>();
         javax.swing.JLabel jLabel16 = new javax.swing.JLabel();
         comboEventGroup = new javax.swing.JComboBox<>();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        javax.swing.JScrollPane jScrollPane3 = new javax.swing.JScrollPane();
         panelInvites = new javax.swing.JPanel();
+        lblEventNameError = new javax.swing.JLabel();
+        lblEventLocationError = new javax.swing.JLabel();
+        lblEventTimeError = new javax.swing.JLabel();
+        lblEventAudienceError = new javax.swing.JLabel();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         javax.swing.JPanel jPanel4 = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
@@ -209,11 +289,11 @@ public class CreateEventView extends javax.swing.JDialog {
 
         jSeparator2.setForeground(new java.awt.Color(0, 102, 102));
 
-        isOpenEvent.setBackground(new java.awt.Color(255, 255, 255));
-        isOpenEvent.setText("Open Event");
+        checkBoxOpenEvent.setBackground(new java.awt.Color(255, 255, 255));
+        checkBoxOpenEvent.setText("Open Event");
 
-        isNotification.setBackground(new java.awt.Color(255, 255, 255));
-        isNotification.setText("Send Notifications");
+        checkBoxSendNotifications.setBackground(new java.awt.Color(255, 255, 255));
+        checkBoxSendNotifications.setText("Send Notifications");
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setText("Max Seats");
@@ -254,6 +334,22 @@ public class CreateEventView extends javax.swing.JDialog {
         panelInvites.setLayout(new javax.swing.BoxLayout(panelInvites, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane3.setViewportView(panelInvites);
 
+        lblEventNameError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblEventNameError.setForeground(new java.awt.Color(255, 0, 0));
+        lblEventNameError.setText("Field cannot be empty");
+
+        lblEventLocationError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblEventLocationError.setForeground(new java.awt.Color(255, 0, 0));
+        lblEventLocationError.setText("Field cannot be empty");
+
+        lblEventTimeError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblEventTimeError.setForeground(new java.awt.Color(255, 0, 0));
+        lblEventTimeError.setText("End time should be after start time");
+
+        lblEventAudienceError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblEventAudienceError.setForeground(new java.awt.Color(255, 0, 0));
+        lblEventAudienceError.setText("Make the evnt global or choose the audience");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -270,6 +366,8 @@ public class CreateEventView extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(462, 462, 462)
+                        .addComponent(lblEventNameError)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jSeparator1)
@@ -297,6 +395,10 @@ public class CreateEventView extends javax.swing.JDialog {
                         .addComponent(spinnerEventEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtFieldEventLocation)
                     .addComponent(txtFieldEventName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEventLocationError)
+                    .addComponent(lblEventTimeError))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
@@ -304,22 +406,25 @@ public class CreateEventView extends javax.swing.JDialog {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel11)
-                            .addComponent(isOpenEvent))
+                            .addComponent(checkBoxOpenEvent))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator2)
                         .addGap(50, 50, 50))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel16))
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboEventGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboEventLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spinnerMaxSeats, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(isNotification))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel16))
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboEventGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboEventLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(spinnerMaxSeats, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(checkBoxSendNotifications)))
+                            .addComponent(lblEventAudienceError))
                         .addGap(96, 96, 96)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -332,7 +437,7 @@ public class CreateEventView extends javax.swing.JDialog {
                                 .addComponent(btnAddInvitee, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(166, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,14 +450,17 @@ public class CreateEventView extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(txtFieldEventName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtFieldEventName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblEventNameError))
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFieldEventLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtFieldEventLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblEventLocationError))
                             .addComponent(jLabel6))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -368,15 +476,17 @@ public class CreateEventView extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(spinnerEventStart, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spinnerEventEnd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(spinnerEventEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblEventTimeError)))))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(isOpenEvent)
-                    .addComponent(isNotification)
+                    .addComponent(checkBoxOpenEvent)
+                    .addComponent(checkBoxSendNotifications)
                     .addComponent(jLabel13)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -397,7 +507,9 @@ public class CreateEventView extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel16)
-                                    .addComponent(comboEventGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(comboEventGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblEventAudienceError))
                     .addComponent(panelInviteesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(48, 48, 48))
@@ -505,11 +617,14 @@ public class CreateEventView extends javax.swing.JDialog {
     private javax.swing.JButton btnAddInvitee;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCreate;
+    private javax.swing.JCheckBox checkBoxOpenEvent;
+    private javax.swing.JCheckBox checkBoxSendNotifications;
     private javax.swing.JComboBox<String> comboEventGroup;
     private javax.swing.JComboBox<String> comboEventLevel;
-    private javax.swing.JCheckBox isNotification;
-    private javax.swing.JCheckBox isOpenEvent;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblEventAudienceError;
+    private javax.swing.JLabel lblEventLocationError;
+    private javax.swing.JLabel lblEventNameError;
+    private javax.swing.JLabel lblEventTimeError;
     private javax.swing.JPanel panelInvites;
     private javax.swing.JSpinner spinnerEventEnd;
     private javax.swing.JSpinner spinnerEventStart;

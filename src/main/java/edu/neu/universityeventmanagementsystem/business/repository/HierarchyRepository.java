@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -20,4 +21,7 @@ public interface HierarchyRepository extends JpaRepository<HierarchyEntity, Inte
 
     @Query("SELECT h FROM HierarchyEntity h WHERE LOWER(h.tableName) = LOWER(:tableName)")
     Optional<HierarchyEntity> findByTableName(@Param("tableName") String tableName);
+
+    @Query("SELECT h FROM HierarchyEntity h WHERE h.level < :level")
+    List<HierarchyEntity> findAllLesserThanLevel(@Param("level") int level);
 }

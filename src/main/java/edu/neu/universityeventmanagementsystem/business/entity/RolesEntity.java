@@ -17,11 +17,8 @@ public class RolesEntity {
     private int idRole;
     private String name;
     private int privilegeLevel;
-    private int idEntity;
     private HierarchyEntity hierarchyByIdHierarchy;
     private Collection<UsersEntity> usersByIdRole;
-
-    public final static int SYSTEM_ADMIN = 99;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,16 +51,6 @@ public class RolesEntity {
         this.privilegeLevel = privilegeLevel;
     }
 
-    @Basic
-    @Column(name = "id_entity")
-    public int getIdEntity() {
-        return idEntity;
-    }
-
-    public void setIdEntity(int idEntity) {
-        this.idEntity = idEntity;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,14 +59,13 @@ public class RolesEntity {
         return idRole == that.idRole &&
                 privilegeLevel == that.privilegeLevel &&
                 getHierarchyByIdHierarchy().getIdHierarchy() == that.getHierarchyByIdHierarchy().getIdHierarchy() &&
-                idEntity == that.idEntity &&
                 Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idRole, name, privilegeLevel, getHierarchyByIdHierarchy().getIdHierarchy(), idEntity);
+        return Objects.hash(idRole, name, privilegeLevel, getHierarchyByIdHierarchy().getIdHierarchy());
     }
 
     @ManyToOne

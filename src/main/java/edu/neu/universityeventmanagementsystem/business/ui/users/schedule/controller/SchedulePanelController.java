@@ -26,9 +26,9 @@ import java.util.Objects;
 /**
  * SchedulePanelController class
  *
- * @author  Raghavan Renganathan <renganathan.r@husky.neu.edu>
+ * @author Raghavan Renganathan <renganathan.r@husky.neu.edu>
  * @version 1.0
- * @since   Apr 19, 2018
+ * @since Apr 19, 2018
  */
 @Controller
 @Lazy
@@ -76,7 +76,7 @@ public final class SchedulePanelController extends FormController implements Inn
             if (event.getUsersByIdCreator().equals(currentUser))
                 addEventToThePane(event, EventView.EVENT_STATUS_HOST, SchedulePanelView.HOSTED_EVENTS_PANE);
 
-            if (event.getStartTime().after(new Date()))
+            if (event.getEndTime().after(new Date()))
                 addEventToThePane(event, EventView.EVENT_STATUS_REGISTERED, SchedulePanelView.UPCOMING_EVENTS_PANE);
             else
                 addEventToThePane(event, EventView.EVENT_STATUS_PARTICIPATED, SchedulePanelView.PAST_EVENTS_PANE);

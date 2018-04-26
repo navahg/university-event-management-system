@@ -3,6 +3,7 @@ package edu.neu.universityeventmanagementsystem;
 import edu.neu.universityeventmanagementsystem.business.ui.account.login.controller.LoginPanelController;
 import edu.neu.universityeventmanagementsystem.business.ui.loader.controller.LoaderFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.loader.view.LoaderFrameView;
+import edu.neu.universityeventmanagementsystem.system.maintenance.UpdateDatabase;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -31,6 +32,9 @@ public class UniversityEventManagementSystemApplication {
 
         // Closing the loader screen
         loaderFrameController.closeFrame();
+
+        // Updating all the events' status in the database
+        context.getBean(UpdateDatabase.class).updateEventStatus();
 
         // Opening the main application
         LoginPanelController loginPanelController = context.getBean(LoginPanelController.class);

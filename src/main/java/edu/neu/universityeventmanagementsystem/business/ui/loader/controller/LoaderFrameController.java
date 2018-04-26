@@ -23,7 +23,7 @@ public final class LoaderFrameController extends FormController {
         loaderFrameView.setVisible(true);
     }
 
-    public void closeFrame () {
+    public void closeFrame() {
         loaderFrameView.setVisible(false);
     }
 }

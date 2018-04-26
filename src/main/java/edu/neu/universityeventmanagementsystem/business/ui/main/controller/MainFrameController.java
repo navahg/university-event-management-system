@@ -29,7 +29,7 @@ public final class MainFrameController extends FormController {
         mainFrameView.setVisible(true);
     }
 
-    public void addToLayout (java.awt.Component component) {
+    public void addToLayout(java.awt.Component component) {
         mainFrameView.addToPanel(component);
     }
 

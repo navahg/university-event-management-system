@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
  * CouncilsService class
  *
@@ -19,7 +22,7 @@ public class CouncilsService {
     private CouncilsRepository councilsRepository;
 
     @Autowired
-    public CouncilsService (CouncilsRepository councilsRepository) {
+    public CouncilsService(CouncilsRepository councilsRepository) {
         this.councilsRepository = councilsRepository;
     }
 
@@ -34,5 +37,19 @@ public class CouncilsService {
     @Transactional
     public void deleteByName(String name) {
         councilsRepository.deleteByName(name);
+    }
+
+    public List<CouncilsEntity> findAll() {
+        return councilsRepository.findAll();
+    }
+
+    public CouncilsEntity findOneByName(String name) {
+        Optional<CouncilsEntity> result = councilsRepository.findOneByName(name);
+        return result.orElse(null);
+    }
+
+    public CouncilsEntity findById(int id) {
+        Optional<CouncilsEntity> result = councilsRepository.findById(id);
+        return result.orElse(null);
     }
 }

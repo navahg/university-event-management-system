@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Optional;
 
 /**
  * CollegesRepository class
@@ -19,5 +19,5 @@ import java.util.List;
 public interface CollegesRepository extends JpaRepository<CollegesEntity, Integer> {
 
     @Query("SELECT c FROM CollegesEntity c WHERE LOWER(c.name) = LOWER(:name)")
-    List<CollegesEntity> findByName(@Param("name") String name);
+    Optional<CollegesEntity> findByName(@Param("name") String name);
 }

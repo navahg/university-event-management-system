@@ -52,15 +52,15 @@ public class ManageEventController extends FormController implements InnerViewCo
     private void populateEvents() {
         for (EventsEntity eventsEntity : eventsService.findAll()) {
             if (eventsEntity.getStartTime().before(new Date())) {
-                addEventToThePane(eventsEntity, EventView.EVENT_STATUS_OVER, ManageEventView.PAST_EVENTS_PANEL);
+                addEventToThePane(eventsEntity, ManageEventView.PAST_EVENTS_PANEL);
             } else {
-                addEventToThePane(eventsEntity, EventView.EVENT_STATUS_ACTIVE, ManageEventView.UPCOMING_EVENTS_PANEL);
+                addEventToThePane(eventsEntity, ManageEventView.UPCOMING_EVENTS_PANEL);
             }
         }
     }
 
-    private void addEventToThePane(EventsEntity event, String eventStatus, int where) {
-        EventView eventView = context.getBean(EventView.class, event, eventStatus);
+    private void addEventToThePane(EventsEntity event, int where) {
+        EventView eventView = context.getBean(EventView.class, event, event.getEventStatusByStatus().getStatusMessage());
         manageEventView.addToPanel(eventView, where);
     }
 }

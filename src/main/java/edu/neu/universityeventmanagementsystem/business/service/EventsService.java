@@ -1,6 +1,8 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
+import edu.neu.universityeventmanagementsystem.business.entity.EventStatusEntity;
 import edu.neu.universityeventmanagementsystem.business.entity.EventsEntity;
+import edu.neu.universityeventmanagementsystem.business.entity.HierarchyEntity;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.EventsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +41,13 @@ public class EventsService {
 
     public List<EventsEntity> findAllByCreator(UsersEntity creator) {
         return eventsRepository.findAllByIdCreator(creator);
+    }
+
+    public List<EventsEntity> findAllByEventStatus(EventStatusEntity status) {
+        return eventsRepository.findAllByEventStatus(status);
+    }
+
+    public List<EventsEntity> findAllByHierarchyAndIdEntity(HierarchyEntity hierarchy, Integer idEntity) {
+        return eventsRepository.findAllByHierarchyAndIdEntity(hierarchy, idEntity);
     }
 }

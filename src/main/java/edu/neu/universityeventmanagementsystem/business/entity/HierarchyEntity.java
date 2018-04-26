@@ -15,6 +15,7 @@ import java.util.Objects;
 @Table(name = "hierarchy", schema = "university_event_management_system")
 public class HierarchyEntity {
     private int idHierarchy;
+    private int level;
     private String tableName;
     private String description;
     private Collection<ClubsEntity> clubsByIdHierarchy;
@@ -29,6 +30,16 @@ public class HierarchyEntity {
 
     public void setIdHierarchy(int idHierarchy) {
         this.idHierarchy = idHierarchy;
+    }
+
+    @Basic
+    @Column(name = "level", nullable = false)
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     @Basic

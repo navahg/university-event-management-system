@@ -4,7 +4,9 @@ import edu.neu.universityeventmanagementsystem.business.entity.AdminWingEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.AdminWingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * AdminWingService class
@@ -31,8 +33,21 @@ public class AdminWingService {
         return adminWingRepository.save(adminWingEntity);
     }
 
-    @Transactional
     public void deleteByName(String name) {
         adminWingRepository.deleteByName(name);
+    }
+
+    public List<AdminWingEntity> findAll() {
+        return adminWingRepository.findAll();
+    }
+
+    public AdminWingEntity findOneByName(String name) {
+        Optional<AdminWingEntity> result = adminWingRepository.findOneByName(name);
+        return result.orElse(null);
+    }
+
+    public AdminWingEntity findById(int id) {
+        Optional<AdminWingEntity> result = adminWingRepository.findById(id);
+        return result.orElse(null);
     }
 }

@@ -1,9 +1,8 @@
-package edu.neu.universityeventmanagementsystem.business.util.validation;
+package edu.neu.universityeventmanagementsystem.business.validation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * ValidationError class
@@ -13,17 +12,21 @@ import java.util.Stack;
  * @since 4/24/2018
  */
 public class ValidationError extends Throwable {
-    String message;
-    List<String> fields;
+    private String message;
+    private List<Integer> erroneousFields;
 
-    ValidationError(String message, String ...fields) {
+    ValidationError(String message, Integer... erroneousFields) {
         super(message);
         this.message = message;
-        this.fields = new ArrayList<>(Arrays.asList(fields));
+        this.erroneousFields = new ArrayList<>(Arrays.asList(erroneousFields));
     }
 
     ValidationError() {
         this("Validation failed!");
+    }
+
+    public Iterable<Integer> getErroneousFields() {
+        return erroneousFields;
     }
 
     @Override

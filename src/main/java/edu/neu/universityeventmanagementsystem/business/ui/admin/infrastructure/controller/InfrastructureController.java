@@ -91,18 +91,18 @@ public final class InfrastructureController extends FormController implements In
     }
 
     private void registerEvents() {
-        registerAction((javax.swing.JList) infrastructureView.getListComponent(InfrastructureView.MAIN_LIST_INDEX),
+        registerListSelection(infrastructureView.getListComponent(InfrastructureView.MAIN_LIST_INDEX),
                 this::selectedCollegeChanged);
         infrastructureView.getPanelButtons().forEach(button -> {
-            registerAction((javax.swing.JButton) button, this::changeView);
+            registerAction(button, this::changeView);
         });
 
         infrastructureView.getAddButtons().forEach(button -> {
-            registerAction((javax.swing.JButton) button, this::addEntity);
+            registerAction(button, this::addEntity);
         });
 
         infrastructureView.getRemoveButtons().forEach(button -> {
-            registerAction((javax.swing.JButton) button, this::removeEntity);
+            registerAction(button, this::removeEntity);
         });
     }
 
@@ -253,7 +253,7 @@ public final class InfrastructureController extends FormController implements In
     }
 
     private void removeProgram() {
-        JList list = (JList) infrastructureView.getListComponent(InfrastructureView.SUB_LIST_INDEX);
+        JList list = infrastructureView.getListComponent(InfrastructureView.SUB_LIST_INDEX);
 
         if (list.isSelectionEmpty()) {
             showMessageBox("Cannot delete a program", "Select a program first");
@@ -271,7 +271,7 @@ public final class InfrastructureController extends FormController implements In
     }
 
     private void removeAdminWing() {
-        JList list = (JList) infrastructureView.getListComponent(InfrastructureView.SUB_LIST_INDEX);
+        JList list = infrastructureView.getListComponent(InfrastructureView.SUB_LIST_INDEX);
 
         if (list.isSelectionEmpty()) {
             showMessageBox("Cannot delete an admin wing", "Select an admin wing first");
@@ -289,7 +289,7 @@ public final class InfrastructureController extends FormController implements In
     }
 
     private void removeCouncil() {
-        JList list = (JList) infrastructureView.getListComponent(InfrastructureView.SUB_LIST_INDEX);
+        JList list = infrastructureView.getListComponent(InfrastructureView.SUB_LIST_INDEX);
 
         if (list.isSelectionEmpty()) {
             showMessageBox("Cannot delete a council", "Select a council first");

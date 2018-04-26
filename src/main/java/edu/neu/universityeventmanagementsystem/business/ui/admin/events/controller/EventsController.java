@@ -9,7 +9,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
-import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionEvent;
 import java.util.Objects;
 
@@ -52,16 +51,14 @@ public class EventsController extends FormController implements InnerViewControl
 
     private void renderView() {
         if (Objects.equals(currentView, APPROVAL))
-            eventsView.setContent(null);
+            eventsView.setContent(context.getBean(EventApprovalController.class).getView());
         else
             eventsView.setContent(context.getBean(ManageEventController.class).getView());
     }
 
     private void registerEvents() {
-        eventsView.getPanelButtons().forEach(component -> {
-            registerAction((javax.swing.JButton) component, this::changeView);
-        });
-        registerAction((javax.swing.JButton) eventsView.getAddEventButton(), this::showAddEventForm);
+        eventsView.getPanelButtons().forEach(button -> registerAction(button, this::changeView));
+        registerAction(eventsView.getAddEventButton(), this::showAddEventForm);
     }
 
     private void showAddEventForm(ActionEvent event) {

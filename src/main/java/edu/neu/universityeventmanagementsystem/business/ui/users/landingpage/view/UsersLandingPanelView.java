@@ -15,7 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * @author Srinithi
  */
 @Component
@@ -32,7 +31,7 @@ public class UsersLandingPanelView extends javax.swing.JPanel {
         initComponents();
     }
 
-    public java.awt.Component getLogoutButton() {
+    public javax.swing.JButton getLogoutButton() {
         return btnLogout;
     }
 
@@ -51,12 +50,12 @@ public class UsersLandingPanelView extends javax.swing.JPanel {
         contentPanel.repaint();
     }
 
-    public void setActiveButton(java.awt.Component activeButton) {
+    public void setActiveButton(javax.swing.JButton activeButton) {
         getPanelButtons().forEach(button -> button.setBackground(INACTIVE));
         activeButton.setBackground(ACTIVE);
     }
 
-    public List<java.awt.Component> getPanelButtons() {
+    public List<javax.swing.JButton> getPanelButtons() {
         return new ArrayList<>(Arrays.asList(btnDashboard, btnSchedule, btnEvents, btnAccountSettings));
     }
 
@@ -66,6 +65,12 @@ public class UsersLandingPanelView extends javax.swing.JPanel {
         } else {
             btnEvents.setVisible(true);
         }
+    }
+
+    public void reset() {
+        contentPanel.removeAll();
+        lblTitle.setText("Dashboard");
+        setActiveButton(btnDashboard);
     }
 
 
@@ -96,7 +101,7 @@ public class UsersLandingPanelView extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1366, 768));
 
         contentPanel.setBackground(new java.awt.Color(255, 255, 255));
-        contentPanel.setPreferredSize(new java.awt.Dimension(1066, 700));
+        contentPanel.setPreferredSize(new java.awt.Dimension(1116, 700));
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
         jPanel2.setPreferredSize(new java.awt.Dimension(250, 768));
@@ -221,19 +226,19 @@ public class UsersLandingPanelView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,7 +247,7 @@ public class UsersLandingPanelView extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
                 .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents

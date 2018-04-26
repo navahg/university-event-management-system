@@ -24,7 +24,7 @@ public class UserAccountsService {
         this.userAccountsRepository = userAccountsRepository;
     }
 
-    public UserAccountsEntity findOne (String identifier, String password) {
+    public UserAccountsEntity findOne(String identifier, String password) {
         List<UserAccountsEntity> users = userAccountsRepository.authorizeUser(identifier, password);
         if (users.size() == 0)
             return null;

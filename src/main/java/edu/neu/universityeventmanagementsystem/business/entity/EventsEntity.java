@@ -1,5 +1,8 @@
 package edu.neu.universityeventmanagementsystem.business.entity;
 
+import org.hibernate.Hibernate;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -16,16 +19,19 @@ import java.util.Objects;
 @Table(name = "events", schema = "university_event_management_system")
 public class EventsEntity {
     private int idEvent;
+    private int idEntity;
     private String name;
     private String venue;
     private Timestamp startTime;
     private Timestamp endTime;
+    private int maxSeats;
     private Collection<EventParticipantsEntity> eventParticipantsByIdEvent;
     private HierarchyEntity hierarchyByIdHierarchy;
     private UsersEntity usersByIdCreator;
     private EventStatusEntity eventStatusByStatus;
     private Collection<InvitesEntity> invitesByIdEvent;
     private Collection<SchedulesEntity> schedulesByIdEvent;
+    private Collection<NotificationsEntity> notificationsByIdEvent;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +42,16 @@ public class EventsEntity {
 
     public void setIdEvent(int idEvent) {
         this.idEvent = idEvent;
+    }
+
+    @Basic
+    @Column(name = "id_entity")
+    public int getIdEntity() {
+        return idEntity;
+    }
+
+    public void setIdEntity(int idEntity) {
+        this.idEntity = idEntity;
     }
 
     @Basic
@@ -76,6 +92,16 @@ public class EventsEntity {
 
     public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
+    }
+
+    @Basic
+    @Column(name = "max_seats")
+    public int getMaxSeats() {
+        return maxSeats;
+    }
+
+    public void setMaxSeats(int maxSeats) {
+        this.maxSeats = maxSeats;
     }
 
     @Override
@@ -155,5 +181,14 @@ public class EventsEntity {
 
     public void setSchedulesByIdEvent(Collection<SchedulesEntity> schedulesByIdEvent) {
         this.schedulesByIdEvent = schedulesByIdEvent;
+    }
+
+    @OneToMany(mappedBy = "eventsByIdEvent")
+    public Collection<NotificationsEntity> getNotificationsByIdEvent() {
+        return notificationsByIdEvent;
+    }
+
+    public void setNotificationsByIdEvent(Collection<NotificationsEntity> notificationsByIdEvent) {
+        this.notificationsByIdEvent = notificationsByIdEvent;
     }
 }

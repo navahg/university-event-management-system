@@ -6,8 +6,8 @@ import java.nio.file.Paths;
  * Interface containing constant paths for the application.
  *
  * @author Raghavan Renganathan <renganathan.r@husky.neu.edu>
- * @since Apr 10, 2018
  * @version 1.0
+ * @since Apr 10, 2018
  */
 public interface ConstantPaths {
 

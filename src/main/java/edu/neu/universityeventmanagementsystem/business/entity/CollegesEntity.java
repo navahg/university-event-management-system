@@ -22,6 +22,7 @@ public class CollegesEntity {
     private Collection<AdminWingEntity> adminWingsByIdCollege;
     private Collection<CouncilsEntity> councilsByIdCollege;
     private Collection<ProgramsEntity> programsByIdCollege;
+    private Collection<CollegeMembersEntity> collegeMembersByIdCollege;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,7 +60,7 @@ public class CollegesEntity {
         return Objects.hash(idCollege, name);
     }
 
-    @OneToMany(mappedBy = "collegesByIdCollege", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "collegesByIdCollege")
     @Fetch(FetchMode.SUBSELECT)
     public Collection<AdminWingEntity> getAdminWingsByIdCollege() {
         return adminWingsByIdCollege;
@@ -69,7 +70,7 @@ public class CollegesEntity {
         this.adminWingsByIdCollege = adminWingsByIdCollege;
     }
 
-    @OneToMany(mappedBy = "collegesByIdCollege", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "collegesByIdCollege")
     @Fetch(FetchMode.SUBSELECT)
     public Collection<CouncilsEntity> getCouncilsByIdCollege() {
         return councilsByIdCollege;
@@ -79,7 +80,7 @@ public class CollegesEntity {
         this.councilsByIdCollege = councilsByIdCollege;
     }
 
-    @OneToMany(mappedBy = "collegesByIdCollege", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "collegesByIdCollege")
     @Fetch(FetchMode.SUBSELECT)
     public Collection<ProgramsEntity> getProgramsByIdCollege() {
         return programsByIdCollege;
@@ -87,5 +88,14 @@ public class CollegesEntity {
 
     public void setProgramsByIdCollege(Collection<ProgramsEntity> programsByIdCollege) {
         this.programsByIdCollege = programsByIdCollege;
+    }
+
+    @OneToMany(mappedBy = "collegesByIdCollege")
+    public Collection<CollegeMembersEntity> getCollegeMembersByIdCollege() {
+        return collegeMembersByIdCollege;
+    }
+
+    public void setCollegeMembersByIdCollege(Collection<CollegeMembersEntity> collegeMembersByIdCollege) {
+        this.collegeMembersByIdCollege = collegeMembersByIdCollege;
     }
 }

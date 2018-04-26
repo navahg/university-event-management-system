@@ -10,7 +10,6 @@ import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainF
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.util.ConstantValues;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 

@@ -155,6 +155,8 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="jLabel4" min="-2" pref="18" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="462" max="-2" attributes="0"/>
+                                  <Component id="lblEventNameError" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
@@ -191,6 +193,11 @@
                               <Component id="txtFieldEventLocation" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtFieldEventName" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblEventLocationError" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblEventTimeError" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -199,7 +206,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                      <Component id="isOpenEvent" min="-2" max="-2" attributes="0"/>
+                                      <Component id="checkBoxOpenEvent" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jSeparator2" max="32767" attributes="0"/>
@@ -208,16 +215,21 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="comboEventGroup" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Component id="comboEventLevel" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Component id="spinnerMaxSeats" min="-2" pref="50" max="-2" attributes="0"/>
-                                      <Component id="isNotification" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="comboEventGroup" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <Component id="comboEventLevel" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <Component id="spinnerMaxSeats" min="-2" pref="50" max="-2" attributes="0"/>
+                                              <Component id="checkBoxSendNotifications" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Component id="lblEventAudienceError" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -234,7 +246,7 @@
                                           <Component id="jScrollPane3" min="-2" pref="250" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="166" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -253,6 +265,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtFieldEventName" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="lblEventNameError" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -261,7 +274,10 @@
                               <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtFieldEventLocation" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="txtFieldEventLocation" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="lblEventLocationError" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -282,7 +298,10 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="spinnerEventStart" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="spinnerEventEnd" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                          <Component id="spinnerEventEnd" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="lblEventTimeError" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -293,8 +312,8 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="isOpenEvent" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="isNotification" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="checkBoxOpenEvent" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="checkBoxSendNotifications" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -323,6 +342,8 @@
                                           </Group>
                                       </Group>
                                   </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="lblEventAudienceError" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="panelInviteesScrollPane" alignment="0" pref="200" max="32767" attributes="0"/>
                               <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
@@ -521,7 +542,7 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="isOpenEvent">
+                <Component class="javax.swing.JCheckBox" name="checkBoxOpenEvent">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -529,7 +550,7 @@
                     <Property name="text" type="java.lang.String" value="Open Event"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="isNotification">
+                <Component class="javax.swing.JCheckBox" name="checkBoxSendNotifications">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -682,6 +703,8 @@
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jScrollPane3.getVerticalScrollBar().setUnitIncrement(10);"/>
+                    <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
@@ -694,6 +717,50 @@
                     </Container>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JLabel" name="lblEventNameError">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="14" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Field cannot be empty"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblEventLocationError">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="14" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Field cannot be empty"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblEventTimeError">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="14" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="End time should be after start time"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblEventAudienceError">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="14" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Make the evnt global or choose the audience"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Component class="javax.swing.JLabel" name="jLabel1">

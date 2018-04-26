@@ -22,15 +22,15 @@ import java.awt.event.ActionEvent;
 @Lazy
 public final class UsersController extends FormController implements InnerViewController {
 
-    private UsersView usersView;
-    private UsersService usersService;
-    private AddUserController addUserController;
-    private String selectedViewByRole;
     private static final String ADMIN_ROLE = "SYSTEM_ADMIN";
     private static final String STUDENT_ROLE = "STUDENT";
     private static final String FACULTY_ROLE = "FACULTY";
     private static final String SPONSOR_ROLE = "SPONSOR";
     private static final String GUEST_ROLE = "GUEST";
+    private UsersView usersView;
+    private UsersService usersService;
+    private AddUserController addUserController;
+    private String selectedViewByRole;
 
     @Autowired
     public UsersController(UsersView usersView, UsersService usersService, AddUserController addUserController) {
@@ -48,9 +48,9 @@ public final class UsersController extends FormController implements InnerViewCo
 
     private void registerEvents() {
         usersView.getPanelButtons().forEach(button -> {
-            registerAction((javax.swing.JButton) button, this::changeView);
+            registerAction(button, this::changeView);
         });
-        registerAction((javax.swing.JButton) usersView.getAddUserButton(), this::openAddUserForm);
+        registerAction(usersView.getAddUserButton(), this::openAddUserForm);
     }
 
     private void openAddUserForm(ActionEvent event) {

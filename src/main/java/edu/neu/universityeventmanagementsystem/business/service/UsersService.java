@@ -48,4 +48,8 @@ public class UsersService {
         Optional<UsersEntity> result = usersRepository.findByEmail(email);
         return result.orElse(null);
     }
+
+    public List<UsersEntity> findAll() {
+        return usersRepository.findAll();
+    }
 }

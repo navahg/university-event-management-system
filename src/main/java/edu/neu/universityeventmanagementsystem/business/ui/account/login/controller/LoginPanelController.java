@@ -1,7 +1,6 @@
 package edu.neu.universityeventmanagementsystem.business.ui.account.login.controller;
 
 import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
-import edu.neu.universityeventmanagementsystem.business.entity.RolesEntity;
 import edu.neu.universityeventmanagementsystem.business.entity.UserAccountsEntity;
 import edu.neu.universityeventmanagementsystem.business.service.UserAccountsService;
 import edu.neu.universityeventmanagementsystem.business.ui.account.login.view.LoginPanelView;
@@ -10,6 +9,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.con
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.ui.users.landingpage.controller.UsersLandingPanelController;
+import edu.neu.universityeventmanagementsystem.business.util.ConstantValues;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
@@ -47,8 +47,8 @@ public final class LoginPanelController extends FormController {
     @Override
     public void prepareAndOpenForm() {
         mainFrameController.prepareAndOpenForm();
-        registerAction((javax.swing.JButton) loginPanelView.getSignInButton(), (event) -> doSignIn());
-        registerAction((javax.swing.JButton) loginPanelView.getSignUpButton(), (event) -> showRegisterView());
+        registerAction(loginPanelView.getSignInButton(), (event) -> doSignIn());
+        registerAction(loginPanelView.getSignUpButton(), (event) -> showRegisterView());
         viewPanel();
     }
 
@@ -72,7 +72,7 @@ public final class LoginPanelController extends FormController {
     private void showRespectiveView() {
         if (currentUserBean.getCurrentUser() == null) return;
 
-        if (currentUserBean.getCurrentUser().getRolesByIdRole().getPrivilegeLevel() == RolesEntity.SYSTEM_ADMIN) {
+        if (currentUserBean.getCurrentUser().getRolesByIdRole().getPrivilegeLevel() >= ConstantValues.MinimumPrivilegeLevel.ADMIN) {
             (context.getBean(AdminLandingPanelController.class)).prepareAndOpenForm();
         } else {
             (context.getBean(UsersLandingPanelController.class)).prepareAndOpenForm();

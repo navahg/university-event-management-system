@@ -4,7 +4,9 @@ import edu.neu.universityeventmanagementsystem.business.entity.ProgramsEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.ProgramsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * ProgramsService class
@@ -31,9 +33,21 @@ public class ProgramsService {
         return programsRepository.save(programsEntity);
     }
 
-    @Transactional
-    @javax.transaction.Transactional
     public void deleteByName(String name) {
         programsRepository.deleteByName(name);
+    }
+
+    public List<ProgramsEntity> findAll() {
+        return programsRepository.findAll();
+    }
+
+    public ProgramsEntity findOneByName(String name) {
+        Optional<ProgramsEntity> result = programsRepository.findOneByName(name);
+        return result.orElse(null);
+    }
+
+    public ProgramsEntity findById(int id) {
+        Optional<ProgramsEntity> result = programsRepository.findById(id);
+        return result.orElse(null);
     }
 }

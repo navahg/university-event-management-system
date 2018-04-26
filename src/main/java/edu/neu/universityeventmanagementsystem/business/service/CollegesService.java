@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * CollegesService class
@@ -30,10 +31,8 @@ public class CollegesService {
     }
 
     public CollegesEntity findOneByName(String name) {
-        List<CollegesEntity> colleges = collegesRepository.findByName(name);
-        if(colleges.size() == 0)
-            return null;
-        return colleges.get(0);
+        Optional<CollegesEntity> result = collegesRepository.findByName(name);
+        return result.orElse(null);
     }
 
     public CollegesEntity save(CollegesEntity collegesEntity) {
@@ -47,5 +46,10 @@ public class CollegesService {
     @Transactional
     public void delete(CollegesEntity collegesEntity) {
         collegesRepository.delete(collegesEntity);
+    }
+
+    public CollegesEntity findById(int id) {
+        Optional<CollegesEntity> result = collegesRepository.findById(id);
+        return result.orElse(null);
     }
 }

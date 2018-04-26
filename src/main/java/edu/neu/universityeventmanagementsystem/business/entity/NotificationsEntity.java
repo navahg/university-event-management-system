@@ -17,6 +17,7 @@ public class NotificationsEntity {
     private String message;
     private boolean readFlag;
     private UsersEntity usersByIdUser;
+    private EventsEntity eventsByIdEvent;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,5 +75,15 @@ public class NotificationsEntity {
 
     public void setUsersByIdUser(UsersEntity usersByIdUser) {
         this.usersByIdUser = usersByIdUser;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_event", referencedColumnName = "id_event", nullable = false)
+    public EventsEntity getEventsByIdEvent() {
+        return eventsByIdEvent;
+    }
+
+    public void setEventsByIdEvent(EventsEntity eventsByIdEvent) {
+        this.eventsByIdEvent = eventsByIdEvent;
     }
 }

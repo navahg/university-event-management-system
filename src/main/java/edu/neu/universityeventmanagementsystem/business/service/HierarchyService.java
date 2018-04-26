@@ -33,4 +33,8 @@ public class HierarchyService {
         Optional<HierarchyEntity> result = hierarchyRepository.findByTableName(tableName);
         return result.orElse(null);
     }
+
+    public List<HierarchyEntity> findAllLesserThanLevel(int level) {
+        return hierarchyRepository.findAllLesserThanLevel(level);
+    }
 }
