@@ -37,6 +37,9 @@ public final class RegisterPanelView extends javax.swing.JPanel {
     public void resetView() {
         removeAll();
         initComponents();
+        suppressUsernameMessage();
+        suppressInValidEmailId();
+        suppressPasswordNoMatch();
     }
 
     public java.awt.Component getBackButton() {
