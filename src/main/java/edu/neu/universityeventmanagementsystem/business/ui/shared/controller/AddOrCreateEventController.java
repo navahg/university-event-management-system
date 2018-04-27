@@ -46,6 +46,7 @@ public class CreateEventController extends FormController {
     private FactoryService factoryService;
     private SimpleValidator simpleValidator;
     private EventValidator eventValidator;
+    private EventRequestService eventRequestService;
     private NotificationsService notificationsService;
 
     @Autowired
@@ -61,6 +62,7 @@ public class CreateEventController extends FormController {
                                  FactoryService factoryService,
                                  SimpleValidator simpleValidator,
                                  EventValidator eventValidator,
+                                 EventRequestService eventRequestService,
                                  NotificationsService notificationsService) {
         this.createEventView = createEventView;
         this.hierarchyService = hierarchyService;
@@ -74,6 +76,7 @@ public class CreateEventController extends FormController {
         this.factoryService = factoryService;
         this.simpleValidator = simpleValidator;
         this.eventValidator = eventValidator;
+        this.eventRequestService = eventRequestService;
         this.notificationsService = notificationsService;
 
         invitees = new ArrayList<>();
@@ -145,7 +148,21 @@ public class CreateEventController extends FormController {
         sendInvites(newEvent);
         addToCreatorsSchedule(newEvent);
 
+        if (privilegeLevel < ConstantValues.Values.PRIVILEGE_LIMIT_FOR_EVENT_CREATION_WITHOUT_APPROVAL)
+            addForApproval(newEvent);
+
         createEventView.dispose();
+    }
+
+    private void addForApproval(EventsEntity event) {
+        UsersEntity creator = event.getUsersByIdCreator();
+        EventRequestEntity eventRequest = eventRequestService.create();
+
+        eventRequest.setEventsByIdEvent(event);
+        eventRequest.setHierarchyByIdHierarchy(creator.getRolesByIdRole().getHierarchyByIdHierarchy());
+        eventRequest.setIdEntity(factoryService.findOrganizationOfUser(creator).getValue());
+
+        eventRequestService.save(eventRequest);
     }
 
     private void sendNotifications(EventsEntity event) {
