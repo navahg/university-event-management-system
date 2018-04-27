@@ -1,6 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
-import edu.neu.universityeventmanagementsystem.business.repository.ProgramMembersRepository;
+import edu.neu.universityeventmanagementsystem.business.entity.CollegeMembersEntity;
+import edu.neu.universityeventmanagementsystem.business.repository.CollegeMembersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +15,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class CollegeMembersService {
 
-    private ProgramMembersRepository programMembersRepository;
+    private CollegeMembersRepository collegeMembersRepository;
 
     @Autowired
-    public CollegeMembersService(ProgramMembersRepository programMembersRepository) {
-        this.programMembersRepository = programMembersRepository;
+    public CollegeMembersService(CollegeMembersRepository collegeMembersRepository) {
+        this.collegeMembersRepository = collegeMembersRepository;
+    }
+
+    public CollegeMembersEntity create() {
+        return new CollegeMembersEntity();
+    }
+
+    public CollegeMembersEntity save(CollegeMembersEntity collegeMembersEntity) {
+        return collegeMembersRepository.save(collegeMembersEntity);
     }
 }

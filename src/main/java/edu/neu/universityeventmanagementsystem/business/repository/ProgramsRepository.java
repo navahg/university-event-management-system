@@ -26,5 +26,5 @@ public interface ProgramsRepository extends JpaRepository<ProgramsEntity, Intege
     void deleteByName(@Param("name") String name);
 
     @Query("SELECT p FROM ProgramsEntity p WHERE p.name = :name")
-    Optional<ProgramsEntity> findOneByName(@Param("name") String name);
+    Optional<ProgramsEntity> findByName(@Param("name") String name);
 }

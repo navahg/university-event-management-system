@@ -1,5 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
+import edu.neu.universityeventmanagementsystem.business.entity.AdminWingMembersEntity;
+import edu.neu.universityeventmanagementsystem.business.entity.ProgramMembersEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.AdminWingMembersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,5 +21,13 @@ public class AdminWingMembersService {
     @Autowired
     public AdminWingMembersService(AdminWingMembersRepository adminWingMembersRepository) {
         this.adminWingMembersRepository = adminWingMembersRepository;
+    }
+
+    public AdminWingMembersEntity create() {
+        return new AdminWingMembersEntity();
+    }
+
+    public AdminWingMembersEntity save(AdminWingMembersEntity adminWingMembersEntity) {
+        return adminWingMembersRepository.save(adminWingMembersEntity);
     }
 }

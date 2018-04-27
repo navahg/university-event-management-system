@@ -8,11 +8,14 @@ import edu.neu.universityeventmanagementsystem.business.service.UsersService;
 import edu.neu.universityeventmanagementsystem.business.ui.account.register.view.RegisterPanelView;
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
+import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
 import edu.neu.universityeventmanagementsystem.business.util.ConstantValues;
+import edu.neu.universityeventmanagementsystem.business.util.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import javax.mail.MessagingException;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,16 +36,18 @@ public final class RegisterPanelController extends FormController {
     private UserAccountsService userAccountsService;
     private UsersService usersService;
     private RolesService rolesService;
+    private EmailService emailService;
 
     @Autowired
     public RegisterPanelController(RegisterPanelView registerPanelView, MainFrameController mainFrameController,
                                    UserAccountsService userAccountsService, UsersService usersService,
-                                   RolesService rolesService) {
+                                   RolesService rolesService, EmailService emailService) {
         this.registerPanelView = registerPanelView;
         this.mainFrameController = mainFrameController;
         this.userAccountsService = userAccountsService;
         this.usersService = usersService;
         this.rolesService = rolesService;
+        this.emailService = emailService;
     }
 
     @Override
@@ -80,9 +85,23 @@ public final class RegisterPanelController extends FormController {
         newUserAccount.setUsersByIdUser(newUser);
         userAccountsService.save(newUserAccount);
 
-        JOptionPane.showMessageDialog(null, "Account registered successfully!");
+        try {
+            sendConfirmationMail(newUser, newUserAccount);
+            JOptionPane.showMessageDialog(null, "Account registered successfully and a mail has been sent!");
+
+        } catch (MessagingException e) {
+            JOptionPane.showMessageDialog(null, "Account registered successfully! But cannot send confirmation mail.");
+        }
 
         navigateBack();
+    }
+
+    private void sendConfirmationMail(UsersEntity user, UserAccountsEntity account) throws MessagingException {
+        String subject = ConstantMessages.EmailSubjects.SUCCESSFUL_REGISTRATION;
+        String message = String.format(ConstantMessages.EmailBodyTemplates.SUCCESSFUL_REGISTRATION,
+                user.getFirstName(), account.getUserName(), account.getPassword());
+
+        emailService.sendEmail(user.getEmail(), subject, message);
     }
 
     private void viewPanel() {

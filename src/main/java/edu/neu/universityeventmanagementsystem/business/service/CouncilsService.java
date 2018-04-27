@@ -1,6 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
 import edu.neu.universityeventmanagementsystem.business.entity.CouncilsEntity;
+import edu.neu.universityeventmanagementsystem.business.entity.ProgramsEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.CouncilsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,7 @@ public class CouncilsService {
         return councilsRepository.findAll();
     }
 
-    public CouncilsEntity findOneByName(String name) {
+    public CouncilsEntity findByName(String name) {
         Optional<CouncilsEntity> result = councilsRepository.findOneByName(name);
         return result.orElse(null);
     }
@@ -52,4 +53,5 @@ public class CouncilsService {
         Optional<CouncilsEntity> result = councilsRepository.findById(id);
         return result.orElse(null);
     }
+
 }

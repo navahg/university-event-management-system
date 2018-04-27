@@ -27,4 +27,18 @@ public interface ConstantMessages {
 
         String NEW_EVENT_NOTIFICATION = "New Event Added.";
     }
+
+    interface EmailSubjects {
+        String SUCCESSFUL_REGISTRATION = "Registration Successful.";
+    }
+
+    interface EmailBodyTemplates {
+        String SUCCESSFUL_REGISTRATION = "Hi %s,\n\n" +
+                                         "Congratulations!\n\n" +
+                                         "You have been successfully registered into Northeastern University Event Management System.\n" +
+                                         "Below are your login credentials:\n" +
+                                         "Username: %s\n" +
+                                         "Password: %s\n\n" +
+                                         "Thanks,\nEvent Management Team,\nNortheastern University";
+    }
 }

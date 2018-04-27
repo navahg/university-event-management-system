@@ -41,8 +41,8 @@ public class ProgramsService {
         return programsRepository.findAll();
     }
 
-    public ProgramsEntity findOneByName(String name) {
-        Optional<ProgramsEntity> result = programsRepository.findOneByName(name);
+    public ProgramsEntity findByName(String name) {
+        Optional<ProgramsEntity> result = programsRepository.findByName(name);
         return result.orElse(null);
     }
 

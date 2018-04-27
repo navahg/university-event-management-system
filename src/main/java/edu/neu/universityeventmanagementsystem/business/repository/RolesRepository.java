@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * RolesRepository class
  *
@@ -16,5 +18,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RolesRepository extends JpaRepository<RolesEntity, Integer> {
     @Query("SELECT r FROM RolesEntity r WHERE LOWER(r.name) = LOWER(:name)")
-    RolesEntity findByName(@Param("name") String role);
+    List<RolesEntity> findByName(@Param("name") String role);
 }

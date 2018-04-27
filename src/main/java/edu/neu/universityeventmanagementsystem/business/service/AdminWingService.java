@@ -41,7 +41,7 @@ public class AdminWingService {
         return adminWingRepository.findAll();
     }
 
-    public AdminWingEntity findOneByName(String name) {
+    public AdminWingEntity findByName(String name) {
         Optional<AdminWingEntity> result = adminWingRepository.findOneByName(name);
         return result.orElse(null);
     }

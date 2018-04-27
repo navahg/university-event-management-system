@@ -62,6 +62,20 @@ public class FactoryService {
         return result;
     }
 
+    public List<String> getAllOrganizations(CollegesEntity college, String table) {
+        List<String> result = new ArrayList<>();
+
+        if (Objects.equals(PROGRAM_TABLE, table)) {
+            college.getProgramsByIdCollege().forEach(programsEntity -> result.add(programsEntity.getName()));
+        } else if (Objects.equals(ADMIN_WING_TABLE, table)) {
+            college.getAdminWingsByIdCollege().forEach(adminWingEntity -> result.add(adminWingEntity.getName()));
+        } else if (Objects.equals(COUNCIL_TABLE, table)) {
+            college.getCouncilsByIdCollege().forEach(councilsEntity -> result.add(councilsEntity.getName()));
+        }
+
+        return result;
+    }
+
     public Map.Entry<String, Integer> findOrganizationOfUser(UsersEntity user) {
         Map<String, Integer> result = new HashMap<>(1);
         if (user.getCollegeMembersByIdUser() != null) {
@@ -79,6 +93,23 @@ public class FactoryService {
         return result.entrySet().iterator().next();
     }
 
+    public Map.Entry<String, String> findOrganizationNameOfUser(UsersEntity user) {
+        Map<String, String> result = new HashMap<>(1);
+        if (user.getCollegeMembersByIdUser() != null) {
+            result.put("colleges", user.getCollegeMembersByIdUser().getCollegesByIdCollege().getName());
+        } else if (user.getProgramMembersByIdUser() != null) {
+            result.put("programs", user.getProgramMembersByIdUser().getProgramsByIdProgram().getName());
+        } else if (user.getAdminWingMembersByIdUser() != null) {
+            result.put("admin_wing", user.getAdminWingMembersByIdUser().getAdminWingByIdAdminWing().getName());
+        } else if (user.getCouncilMembersByIdUser() != null) {
+            result.put("councils", user.getCouncilMembersByIdUser().getCouncilsByIdCouncil().getName());
+        } else {
+            return null;
+        }
+
+        return result.entrySet().iterator().next();
+    }
+
     public int findEntityId(String table, String recordName) {
         if (Objects.equals(COLLEGE_TABLE, table)) {
             CollegesEntity result = collegesService.findOneByName(recordName);
@@ -86,17 +117,17 @@ public class FactoryService {
                 return result.getIdCollege();
             return -1;
         } else if (Objects.equals(PROGRAM_TABLE, table)) {
-            ProgramsEntity result = programsService.findOneByName(recordName);
+            ProgramsEntity result = programsService.findByName(recordName);
             if (result != null)
                 return result.getIdProgram();
             return -1;
         } else if (Objects.equals(ADMIN_WING_TABLE, table)) {
-            AdminWingEntity result = adminWingService.findOneByName(recordName);
+            AdminWingEntity result = adminWingService.findByName(recordName);
             if (result != null)
                 return result.getIdAdminWing();
             return -1;
         } else if (Objects.equals(COUNCIL_TABLE, table)) {
-            CouncilsEntity result = councilsService.findOneByName(recordName);
+            CouncilsEntity result = councilsService.findByName(recordName);
             if (result != null)
                 return result.getIdCouncil();
             return -1;

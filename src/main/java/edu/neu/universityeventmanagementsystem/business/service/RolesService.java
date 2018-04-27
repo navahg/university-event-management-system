@@ -25,6 +25,14 @@ public class RolesService {
     }
 
     public RolesEntity findByName(String role) {
+        List<RolesEntity> result = rolesRepository.findByName(role);
+        if (result.isEmpty())
+            return null;
+
+        return rolesRepository.findByName(role).get(0);
+    }
+
+    public List<RolesEntity> findAllByName(String role) {
         return rolesRepository.findByName(role);
     }
 

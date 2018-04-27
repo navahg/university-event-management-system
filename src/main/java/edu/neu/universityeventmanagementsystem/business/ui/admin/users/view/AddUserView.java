@@ -2,10 +2,13 @@ package edu.neu.universityeventmanagementsystem.business.ui.admin.users.view;
 
 import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
 import edu.neu.universityeventmanagementsystem.business.util.ImageTools;
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,7 +22,20 @@ import java.util.List;
 @Lazy
 public final class AddUserView extends javax.swing.JDialog {
 
+    private static final Logger log = Logger.getLogger(AddUserView.class);
+
+    public static final int COLLEGE = 0;
+    public static final int ENTERPRISE = 1;
+    public static final int ORGANIZATION = 2;
+    public static final int ROLE = 3;
+
+    public static final int EMAIL_ERROR_LABEL = 0;
+    public static final int USERNAME_ERROR_LABEL = 1;
+    public static final int PASSWORD_ERROR_LABEL = 2;
+
+
     private static final int TITLE_BAR_ICON_SIZE = 64;
+    private final List<JLabel> errorLabels;
 
     private static boolean modal = true;
 
@@ -29,11 +45,24 @@ public final class AddUserView extends javax.swing.JDialog {
     public AddUserView() {
         super(new JFrame(), modal);
         initComponents();
+        errorLabels = new ArrayList<>(Arrays.asList(lblInvalidEmail, lblUserNameAvailability, lblPasswordError));
+        hideAllErrors();
         setLocationRelativeTo(null);
-        comboBoxCollege.setVisible(false);
-        comboBoxOrganization.setVisible(false);
-        lblCollege.setVisible(false);
-        lblEnterprise.setVisible(false);
+        setCollegeDetailsVisible(false);
+        setEnterpriseDetailsVisible(false);
+        setOrganizationDetailsVisible(false);
+    }
+
+    public void hideAllErrors() {
+        errorLabels.forEach(label -> label.setVisible(false));
+    }
+
+    public void showError(int choice) {
+        try {
+            errorLabels.get(choice).setVisible(true);
+        } catch (IndexOutOfBoundsException | NullPointerException ex) {
+            log.error("Invalid choice", ex);
+        }
     }
 
     /**
@@ -45,9 +74,6 @@ public final class AddUserView extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.JLayeredPane mainPanelContainer = new javax.swing.JLayeredPane();
-        javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
-        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         javax.swing.JPanel contentsPanel = new javax.swing.JPanel();
         javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
@@ -64,52 +90,32 @@ public final class AddUserView extends javax.swing.JDialog {
         javax.swing.JLabel jLabel8 = new javax.swing.JLabel();
         pwdField = new javax.swing.JPasswordField();
         pwdFieldConfirm = new javax.swing.JPasswordField();
-        lblUserNameAvailablity = new javax.swing.JLabel();
+        lblUserNameAvailability = new javax.swing.JLabel();
         lblInvalidEmail = new javax.swing.JLabel();
         lblPasswordError = new javax.swing.JLabel();
         javax.swing.JLabel jLabel9 = new javax.swing.JLabel();
         comboBoxRole = new javax.swing.JComboBox<>();
         btnCreateUser = new javax.swing.JButton();
         comboBoxCollege = new javax.swing.JComboBox<>();
-        comboBoxOrganization = new javax.swing.JComboBox<>();
+        comboBoxEnterprise = new javax.swing.JComboBox<>();
         lblCollege = new javax.swing.JLabel();
         lblEnterprise = new javax.swing.JLabel();
-        lblEnterprise1 = new javax.swing.JLabel();
-        comboBoxOrganization1 = new javax.swing.JComboBox<>();
+        lblOrganization = new javax.swing.JLabel();
+        comboBoxOrganization = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(ConstantMessages.Titles.ADD_USER_TITLE);
         setIconImage(ImageTools.loadImage("add_user_icon_64px.png", TITLE_BAR_ICON_SIZE, TITLE_BAR_ICON_SIZE, true));
+        setPreferredSize(new java.awt.Dimension(840, 709));
         setResizable(false);
 
-        mainPanelContainer.setBackground(new java.awt.Color(255, 255, 255));
-        mainPanelContainer.setPreferredSize(new java.awt.Dimension(1366, 768));
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_user_icon2_125px.jpg"))); // NOI18N
-        jLabel1.setPreferredSize(new java.awt.Dimension(145, 145));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
-
         contentsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        contentsPanel.setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 2, true));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("First Name");
@@ -132,7 +138,9 @@ public final class AddUserView extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Confirm Password");
 
-        lblUserNameAvailablity.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblUserNameAvailability.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblUserNameAvailability.setForeground(new java.awt.Color(255, 0, 51));
+        lblUserNameAvailability.setText("Invalid username.");
 
         lblInvalidEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblInvalidEmail.setForeground(new java.awt.Color(255, 0, 51));
@@ -144,12 +152,6 @@ public final class AddUserView extends javax.swing.JDialog {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Account Role");
-
-        comboBoxRole.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxRoleActionPerformed(evt);
-            }
-        });
 
         btnCreateUser.setBackground(new java.awt.Color(0, 102, 102));
         btnCreateUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -168,35 +170,22 @@ public final class AddUserView extends javax.swing.JDialog {
         lblEnterprise.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblEnterprise.setText("Enterprise");
 
-        lblEnterprise1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblEnterprise1.setText("Organization");
+        lblOrganization.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblOrganization.setText("Organization");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(75, 75, 75)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCreateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblInvalidEmail))
                     .addComponent(jLabel5)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFieldMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(160, 160, 160)
@@ -206,7 +195,7 @@ public final class AddUserView extends javax.swing.JDialog {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(txtFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblUserNameAvailablity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(lblUserNameAvailability, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(pwdField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -221,14 +210,28 @@ public final class AddUserView extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(comboBoxOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboBoxEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblEnterprise1)
+                                .addComponent(lblOrganization)
                                 .addGap(18, 18, 18)
-                                .addComponent(comboBoxOrganization1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(comboBoxOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(comboBoxRole, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxCollege, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(441, Short.MAX_VALUE))
+                            .addComponent(comboBoxCollege, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnCreateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtFieldMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4)))))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,8 +260,8 @@ public final class AddUserView extends javax.swing.JDialog {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblUserNameAvailablity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtFieldUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                    .addComponent(lblUserNameAvailability, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -277,93 +280,62 @@ public final class AddUserView extends javax.swing.JDialog {
                     .addComponent(comboBoxCollege, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCollege))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEnterprise)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(comboBoxOrganization1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblEnterprise1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addComponent(comboBoxOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblOrganization))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboBoxEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblEnterprise)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addComponent(btnCreateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addGap(50, 50, 50))
         );
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_user_icon_64px.png"))); // NOI18N
+        jLabel1.setText("Add New User");
 
         javax.swing.GroupLayout contentsPanelLayout = new javax.swing.GroupLayout(contentsPanel);
         contentsPanel.setLayout(contentsPanelLayout);
         contentsPanelLayout.setHorizontalGroup(
             contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentsPanelLayout.createSequentialGroup()
-                .addContainerGap(160, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addGap(20, 20, 20)
+                .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
         contentsPanelLayout.setVerticalGroup(
             contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentsPanelLayout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
-        );
-
-        mainPanelContainer.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        mainPanelContainer.setLayer(contentsPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout mainPanelContainerLayout = new javax.swing.GroupLayout(mainPanelContainer);
-        mainPanelContainer.setLayout(mainPanelContainerLayout);
-        mainPanelContainerLayout.setHorizontalGroup(
-            mainPanelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(mainPanelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(mainPanelContainerLayout.createSequentialGroup()
-                    .addGap(100, 100, 100)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(1141, 1141, 1141)))
-        );
-        mainPanelContainerLayout.setVerticalGroup(
-            mainPanelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(mainPanelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(mainPanelContainerLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(630, 630, 630)))
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanelContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(contentsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanelContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(contentsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void comboBoxRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxRoleActionPerformed
-
-        if (comboBoxRole.getSelectedItem().equals("STUDENT")) {
-            comboBoxCollege.setVisible(true);
-            comboBoxOrganization.setVisible(true);
-            lblCollege.setVisible(true);
-            lblEnterprise.setVisible(true);
-        } else if (comboBoxRole.getSelectedItem().equals("FACULTY")) {
-            comboBoxCollege.setVisible(true);
-            comboBoxOrganization.setVisible(true);
-            lblCollege.setVisible(true);
-            lblEnterprise.setVisible(true);
-        } else {
-            comboBoxCollege.setVisible(false);
-            comboBoxOrganization.setVisible(false);
-            lblCollege.setVisible(false);
-            lblEnterprise.setVisible(false);
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxRoleActionPerformed
 
     public String getFirstName() {
         return txtFieldFirstName.getText();
@@ -393,22 +365,6 @@ public final class AddUserView extends javax.swing.JDialog {
         return String.valueOf(comboBoxRole.getSelectedItem());
     }
 
-    public void setFirstName(String firstName) {
-        txtFieldFirstName.setText(firstName);
-    }
-
-    public void setMiddleName(String middleName) {
-        txtFieldMiddleName.setText(middleName);
-    }
-
-    public void setLastName(String lastName) {
-        txtFieldLastName.setText(lastName);
-    }
-
-    public void setUserName(String userName) {
-        txtFieldUsername.setText(userName);
-    }
-
     public void setEmail(String email) {
         txtFieldEmail.setText(email);
     }
@@ -429,23 +385,56 @@ public final class AddUserView extends javax.swing.JDialog {
         comboBoxCollege.setModel(new DefaultComboBoxModel<>(colleges.toArray(new String[0])));
     }
 
-    public void populatePrograms(List<String> programs) {
-        comboBoxOrganization.setModel(new DefaultComboBoxModel<>(programs.toArray(new String[0])));
+    public void populateEnterprise(List<String> enterprises) {
+        comboBoxEnterprise.setModel(new DefaultComboBoxModel<>(enterprises.toArray(new String[0])));
     }
 
+    public void populateOrganization(List<String> organizations) {
+        comboBoxOrganization.setModel(new DefaultComboBoxModel<>(organizations.toArray(new String[0])));
+    }
+
+    public void setCollegeDetailsVisible(boolean isVisible) {
+        lblCollege.setVisible(isVisible);
+        comboBoxCollege.setVisible(isVisible);
+    }
+
+    public void setEnterpriseDetailsVisible(boolean isVisible) {
+        lblEnterprise.setVisible(isVisible);
+        comboBoxEnterprise.setVisible(isVisible);
+    }
+
+    public void setOrganizationDetailsVisible(boolean isVisible) {
+        lblOrganization.setVisible(isVisible);
+        comboBoxOrganization.setVisible(isVisible);
+    }
+
+    public JComboBox<String> getComboBox(int which) {
+        if (which == COLLEGE) return comboBoxCollege;
+        else if (which == ENTERPRISE) return comboBoxEnterprise;
+        else if (which == ORGANIZATION) return comboBoxOrganization;
+        else return comboBoxRole;
+    }
+
+    public String getComboxBoxValue(int which) {
+        if (which == COLLEGE) return (String) comboBoxCollege.getSelectedItem();
+        else if (which == ENTERPRISE) return (String) comboBoxEnterprise.getSelectedItem();
+        else if (which == ORGANIZATION) return (String) comboBoxOrganization.getSelectedItem();
+        else return (String) comboBoxRole.getSelectedItem();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateUser;
     private javax.swing.JComboBox<String> comboBoxCollege;
+    private javax.swing.JComboBox<String> comboBoxEnterprise;
     private javax.swing.JComboBox<String> comboBoxOrganization;
-    private javax.swing.JComboBox<String> comboBoxOrganization1;
     private javax.swing.JComboBox<String> comboBoxRole;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCollege;
     private javax.swing.JLabel lblEnterprise;
-    private javax.swing.JLabel lblEnterprise1;
     private javax.swing.JLabel lblInvalidEmail;
+    private javax.swing.JLabel lblOrganization;
     private javax.swing.JLabel lblPasswordError;
-    private javax.swing.JLabel lblUserNameAvailablity;
+    private javax.swing.JLabel lblUserNameAvailability;
     private javax.swing.JPasswordField pwdField;
     private javax.swing.JPasswordField pwdFieldConfirm;
     private javax.swing.JTextField txtFieldEmail;

@@ -1,6 +1,6 @@
 package edu.neu.universityeventmanagementsystem.business.repository;
 
-import edu.neu.universityeventmanagementsystem.business.entity.ProgramMembersEntity;
+import edu.neu.universityeventmanagementsystem.business.entity.CollegeMembersEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +12,4 @@ import org.springframework.stereotype.Repository;
  * @since 4/9/18
  */
 @Repository
-public interface CollegeMembersRepository extends JpaRepository<ProgramMembersEntity, Integer> { }
+public interface CollegeMembersRepository extends JpaRepository<CollegeMembersEntity, Integer> { }
