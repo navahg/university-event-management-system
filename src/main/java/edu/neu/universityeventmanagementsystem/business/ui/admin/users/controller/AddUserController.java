@@ -256,8 +256,8 @@ public final class AddUserController extends FormController {
     }
 
     private void addToCorrespondingOrganization(UsersEntity user) throws NullPointerException {
-        String enterprise = addUserView.getComboxBoxValue(AddUserView.ENTERPRISE);
-        String organization = addUserView.getComboxBoxValue(AddUserView.ORGANIZATION);
+        String enterprise = addUserView.getComboBoxValue(AddUserView.ENTERPRISE);
+        String organization = addUserView.getComboBoxValue(AddUserView.ORGANIZATION);
 
         if (Objects.equals(ConstantValues.Hierarchy.PROGRAM, enterprise)) {
             ProgramsEntity programsEntity = programsService.findByName(organization);
@@ -289,7 +289,7 @@ public final class AddUserController extends FormController {
     private RolesEntity getRole(String role) {
         if (ConstantValues.Roles.ENTERPRISE_LEVEL.contains(role) ||
                 ConstantValues.Roles.ORGANIZATION_LEVEL.contains(role)) {
-            String hierarchy = addUserView.getComboxBoxValue(AddUserView.ENTERPRISE);
+            String hierarchy = addUserView.getComboBoxValue(AddUserView.ENTERPRISE);
             HierarchyEntity hierarchyEntity = hierarchyService.findByTableName(hierarchy);
 
             for (RolesEntity rolesEntity : rolesService.findAllByName(role)) {

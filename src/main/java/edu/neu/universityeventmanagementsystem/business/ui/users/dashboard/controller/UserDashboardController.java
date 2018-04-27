@@ -130,6 +130,7 @@ public class UserDashboardController extends FormController implements InnerView
             return;
         EventView selectedEventView = (EventView) ((JLabel) event.getSource()).getParent().getParent();
         addToEventParticipant(selectedEventView);
+        selectedEventView.setEventStatus(EventView.EVENT_STATUS_REGISTERED);
         removeFromInviteAndAddToSchedule(selectedEventView);
     }
 

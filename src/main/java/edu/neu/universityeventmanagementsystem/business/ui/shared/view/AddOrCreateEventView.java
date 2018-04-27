@@ -127,8 +127,13 @@ public class AddOrCreateEventView extends javax.swing.JDialog {
         return checkBoxOpenEvent;
     }
 
-    public JCheckBox getCheckBoxSendNotifications() {
-        return checkBoxSendNotifications;
+    public JButton getBtnSendMail() {
+        return btnSendMail;
+    }
+
+    public void toggleUserNotAvailableOptions(boolean flag) {
+        btnSendMail.setVisible(flag);
+        lblUsersNotAvailable.setVisible(flag);
     }
 
     public void addInviteeView(java.awt.Component component) {
@@ -268,6 +273,8 @@ public class AddOrCreateEventView extends javax.swing.JDialog {
         javax.swing.JPanel jPanel4 = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        lblUsersNotAvailable = new javax.swing.JLabel();
+        btnSendMail = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(ConstantMessages.Titles.ADD_EVENT_TITLE);
@@ -600,25 +607,48 @@ public class AddOrCreateEventView extends javax.swing.JDialog {
         btnCancel.setContentAreaFilled(false);
         btnCancel.setOpaque(true);
 
+        lblUsersNotAvailable.setText("Users not avaliable in the system.");
+
+        btnSendMail.setBackground(new java.awt.Color(153, 204, 255));
+        btnSendMail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/mail_icon.png"))); // NOI18N
+        btnSendMail.setText("Send a mail instead");
+        btnSendMail.setBorder(null);
+        btnSendMail.setContentAreaFilled(false);
+        btnSendMail.setOpaque(true);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(812, Short.MAX_VALUE)
-                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(412, 412, 412)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(btnSendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(lblUsersNotAvailable)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addComponent(lblUsersNotAvailable)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -659,6 +689,7 @@ public class AddOrCreateEventView extends javax.swing.JDialog {
     private javax.swing.JButton btnAddInvitee;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnSendMail;
     private javax.swing.JCheckBox checkBoxOpenEvent;
     private javax.swing.JCheckBox checkBoxSendNotifications;
     private javax.swing.JComboBox<String> comboEventGroup;
@@ -667,6 +698,7 @@ public class AddOrCreateEventView extends javax.swing.JDialog {
     private javax.swing.JLabel lblEventLocationError;
     private javax.swing.JLabel lblEventNameError;
     private javax.swing.JLabel lblEventTimeError;
+    private javax.swing.JLabel lblUsersNotAvailable;
     private javax.swing.JPanel panelInvites;
     private javax.swing.JSpinner spinnerEventEnd;
     private javax.swing.JSpinner spinnerEventStart;

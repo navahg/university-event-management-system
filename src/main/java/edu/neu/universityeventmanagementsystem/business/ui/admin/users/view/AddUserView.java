@@ -422,7 +422,7 @@ public final class AddUserView extends javax.swing.JDialog {
         else return comboBoxRole;
     }
 
-    public String getComboxBoxValue(int which) {
+    public String getComboBoxValue(int which) {
         if (which == COLLEGE) return (String) comboBoxCollege.getSelectedItem();
         else if (which == ENTERPRISE) return (String) comboBoxEnterprise.getSelectedItem();
         else if (which == ORGANIZATION) return (String) comboBoxOrganization.getSelectedItem();

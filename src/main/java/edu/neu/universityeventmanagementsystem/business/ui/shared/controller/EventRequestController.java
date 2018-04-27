@@ -115,10 +115,14 @@ public class EventRequestController extends FormController implements InnerViewC
             eventRequestService.save(request);
         } else {
             EventRequestEntity request = eventRequestService.findByEvent(event);
-            if (hierarchy.getLevel() == ConstantValues.HierarchyLevels.ORGANIZATION) {
+            if (hierarchy.getLevel() <= ConstantValues.HierarchyLevels.ORGANIZATION &&
+                    hierarchy.getLevel() > ConstantValues.HierarchyLevels.UNIVERSITY) {
                 HierarchyEntity newHierarchy = hierarchyService.findByLevel(hierarchy.getLevel() - 1);
-                int newIdEntity = currentUser.getCollegeMembersByIdUser().getCollegesByIdCollege().getIdCollege();
-
+                int newIdEntity = 0;
+                if (newHierarchy.getLevel() == ConstantValues.HierarchyLevels.COLLEGE)
+                    newIdEntity = currentUser.getCollegeMembersByIdUser().getCollegesByIdCollege().getIdCollege();
+                else if (newHierarchy.getLevel() == ConstantValues.HierarchyLevels.UNIVERSITY)
+                    newIdEntity = 0;
                 request.setHierarchyByIdHierarchy(newHierarchy);
                 request.setIdEntity(newIdEntity);
 

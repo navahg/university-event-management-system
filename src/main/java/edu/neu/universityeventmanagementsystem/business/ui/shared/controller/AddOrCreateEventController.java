@@ -7,6 +7,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.shared.view.AddOrCrea
 import edu.neu.universityeventmanagementsystem.business.ui.shared.view.UserView;
 import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
 import edu.neu.universityeventmanagementsystem.business.util.ConstantValues;
+import edu.neu.universityeventmanagementsystem.business.util.EmailService;
 import edu.neu.universityeventmanagementsystem.business.validation.EventValidator;
 import edu.neu.universityeventmanagementsystem.business.validation.SimpleValidator;
 import edu.neu.universityeventmanagementsystem.business.validation.ValidationError;
@@ -15,9 +16,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,6 +42,7 @@ public class AddOrCreateEventController extends FormController {
     private UsersService usersService;
     private CurrentUserBean currentUserBean;
     private ArrayList<UsersEntity> invitees;
+    private ArrayList<String> mailList;
     private InvitesService invitesService;
     private ApplicationContext context;
     private EventsService eventsService;
@@ -50,6 +54,7 @@ public class AddOrCreateEventController extends FormController {
     private EventValidator eventValidator;
     private EventRequestService eventRequestService;
     private NotificationsService notificationsService;
+    private EmailService emailService;
 
     @Autowired
     public AddOrCreateEventController(AddOrCreateEventView addOrCreateEventView,
@@ -66,7 +71,8 @@ public class AddOrCreateEventController extends FormController {
                                       SimpleValidator simpleValidator,
                                       EventValidator eventValidator,
                                       EventRequestService eventRequestService,
-                                      NotificationsService notificationsService) {
+                                      NotificationsService notificationsService,
+                                      EmailService emailService) {
         this.addOrCreateEventView = addOrCreateEventView;
         this.hierarchyService = hierarchyService;
         this.usersService = usersService;
@@ -82,16 +88,19 @@ public class AddOrCreateEventController extends FormController {
         this.eventValidator = eventValidator;
         this.eventRequestService = eventRequestService;
         this.notificationsService = notificationsService;
+        this.emailService = emailService;
 
         invitees = new ArrayList<>();
+        mailList = new ArrayList<>();
     }
 
     @Override
     public void prepareAndOpenForm() {
+        addOrCreateEventView.resetView();
         addOrCreateEventView.makeEditable();
         populateData();
-
         registerEvents();
+        addOrCreateEventView.toggleUserNotAvailableOptions(false);
         addOrCreateEventView.setVisible(true);
     }
 
@@ -99,6 +108,7 @@ public class AddOrCreateEventController extends FormController {
         addOrCreateEventView.resetView();
         addOrCreateEventView.makeReadOnly();
         populateData(eventsEntity);
+        addOrCreateEventView.toggleUserNotAvailableOptions(false);
         addOrCreateEventView.setVisible(true);
     }
 
@@ -108,6 +118,38 @@ public class AddOrCreateEventController extends FormController {
         registerAction(addOrCreateEventView.getBtnCreate(), this::createEvent);
         registerAction(addOrCreateEventView.getBtnCancel(), this::close);
         registerAction(addOrCreateEventView.getCheckBoxOpenEvent(), this::changeEventType);
+        registerAction(addOrCreateEventView.getBtnSendMail(), this::addToMailingList);
+    }
+
+    private void addToMailingList(ActionEvent event) {
+        addOrCreateEventView.toggleUserNotAvailableOptions(false);
+        String[] inviteesEmails = addOrCreateEventView.getInviteeList();
+
+        for (String email : inviteesEmails) {
+            if (simpleValidator.isValidEmail(email)) {
+                UsersEntity user = usersService.findByEmail(email);
+                if (user == null && !mailList.contains(email)) {
+                    mailList.add(email);
+                }
+            }
+        }
+        addOrCreateEventView.refreshInviteeView();
+        addOrCreateEventView.setTxtAreaInvites("");
+    }
+
+    private void sendMail(EventsEntity event) {
+        SimpleDateFormat df = new SimpleDateFormat("MMMM, dd yyyy 'at' h:mm a");
+        String message = String.format(ConstantMessages.EmailBodyTemplates.EVENT_INVITE,
+                                       event.getName(), event.getVenue(), df.format(event.getStartTime()),
+                                       event.getUsersByIdCreator().getFirstName() + " " + event.getUsersByIdCreator().getLastName());
+
+        for (String email : mailList) {
+            try {
+                emailService.sendEmail(email, ConstantMessages.EmailSubjects.EVENT_INIVITE, message);
+            } catch (MessagingException e) {
+                JOptionPane.showMessageDialog(null, "Cannot send event invites!");
+            }
+        }
     }
 
     private void changeEventType(ActionEvent event) {
@@ -158,6 +200,7 @@ public class AddOrCreateEventController extends FormController {
         if (addOrCreateEventView.isSendNotifications())
             sendNotifications(newEvent);
         sendInvites(newEvent);
+        sendMail(newEvent);
         addToCreatorsSchedule(newEvent);
 
         if (privilegeLevel < ConstantValues.Values.PRIVILEGE_LIMIT_FOR_EVENT_CREATION_WITHOUT_APPROVAL)
@@ -224,6 +267,7 @@ public class AddOrCreateEventController extends FormController {
                     invitees.add(user);
                     addOrCreateEventView.addInviteeView(context.getBean(UserView.class, user));
                 } else {
+                    addOrCreateEventView.toggleUserNotAvailableOptions(true);
                     invalidEmails.append(email).append("\n");
                 }
             } else {

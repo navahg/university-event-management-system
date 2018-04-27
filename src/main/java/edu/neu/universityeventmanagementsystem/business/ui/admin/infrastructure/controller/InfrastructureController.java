@@ -176,7 +176,7 @@ public final class InfrastructureController extends FormController implements In
 
         collegesService.save(collegesEntity);
 
-        showMessageBox(String.format("College(%s)", name), "success");
+        showMessageBox(String.format("Adding College(%s)", name), "success");
     }
 
     private void addAdminWing() {
@@ -202,7 +202,7 @@ public final class InfrastructureController extends FormController implements In
 
         adminWingService.save(adminWingEntity);
 
-        showMessageBox(String.format("Admin Wing(%s)", name), "success");
+        showMessageBox(String.format("Adding Admin Wing(%s)", name), "success");
     }
 
     private void addCouncil() {
@@ -228,7 +228,7 @@ public final class InfrastructureController extends FormController implements In
 
         councilsService.save(councilsEntity);
 
-        showMessageBox(String.format("Council(%s)", name), "success");
+        showMessageBox(String.format("Adding Council(%s)", name), "success");
     }
 
     private void addProgram() {
@@ -254,7 +254,7 @@ public final class InfrastructureController extends FormController implements In
 
         programsService.save(programsEntity);
 
-        showMessageBox(String.format("Program(%s)", name), "success");
+        showMessageBox(String.format("Adding Program(%s)", name), "success");
     }
 
     private void removeEntity(java.awt.event.ActionEvent event) {
@@ -376,8 +376,8 @@ public final class InfrastructureController extends FormController implements In
         return JOptionPane.showInputDialog(null, String.format("Please enter a name for the new \"%s\"", name));
     }
 
-    private void showMessageBox(String name, String status) {
-        JOptionPane.showMessageDialog(null, String.format("Adding new %s: %s", name, status));
+    private void showMessageBox(String message, String status) {
+        JOptionPane.showMessageDialog(null, String.format("%s: %s", message, status));
     }
 
     private int showConfirmationBox(String message, String title) {

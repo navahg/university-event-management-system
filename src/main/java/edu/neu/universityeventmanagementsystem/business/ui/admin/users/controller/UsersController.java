@@ -2,6 +2,7 @@ package edu.neu.universityeventmanagementsystem.business.ui.admin.users.controll
 
 import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
 import edu.neu.universityeventmanagementsystem.business.entity.RolesEntity;
+import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.service.UsersService;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.users.view.UsersView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
@@ -13,7 +14,9 @@ import org.springframework.stereotype.Controller;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.Currency;
+import java.util.List;
 
 /**
  * UsersController class
@@ -59,6 +62,27 @@ public final class UsersController extends FormController implements InnerViewCo
             registerAction(button, this::changeView);
         });
         registerAction(usersView.getAddUserButton(), this::openAddUserForm);
+        registerAction(usersView.getBtnSearchUser(), this::filterResults);
+    }
+
+    private void filterResults(ActionEvent event) {
+        List<UsersEntity> filteredUsers = new ArrayList<>();
+
+        String query = usersView.getSearchQuery();
+
+        if ("".equals(query)) {
+            usersView.populateTable(usersService.findByRolesLike(selectedViewByRole));
+            return;
+        }
+
+        for (UsersEntity user : usersService.findByRolesLike(selectedViewByRole)) {
+            if (user.getFirstName().contains(query) ||
+                    user.getLastName().contains(query) ||
+                    user.getUserName().contains(query) ||
+                    user.getEmail().contains(query))
+                filteredUsers.add(user);
+        }
+        usersView.populateTable(filteredUsers);
     }
 
     private void openAddUserForm(ActionEvent event) {

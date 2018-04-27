@@ -30,6 +30,7 @@ public interface ConstantMessages {
 
     interface EmailSubjects {
         String SUCCESSFUL_REGISTRATION = "Registration Successful.";
+        String EVENT_INIVITE = "You have been invited to an event.";
     }
 
     interface EmailBodyTemplates {
@@ -40,5 +41,12 @@ public interface ConstantMessages {
                                          "Username: %s\n" +
                                          "Password: %s\n\n" +
                                          "Thanks,\nEvent Management Team,\nNortheastern University";
+        String EVENT_INVITE = "Hello!\n\n" +
+                              "You have been invited to an event at Northeastern University! Below are the details:\n\n" +
+                              "Event Name: %s\n" +
+                              "Event Venue: %s\n" +
+                              "Event Date: %s\n" +
+                              "Invited by: %s\n\n" +
+                              "Thanks,\nEvent Management Team,\nNortheastern University";
     }
 }

@@ -19,8 +19,6 @@ public abstract class ValidationHelper {
     static final int LEGAL_DATE_RANGE = 5;
     static final int PASSWORD = 6;
 
-
-
     static void validate(Object o, int errorIndicatorIndex, int... rules) throws ValidationError {
         String value;
         if (o instanceof String)
@@ -81,7 +79,7 @@ public abstract class ValidationHelper {
             }
         }
     }
-    
+
     static void validate(String password, String confirm_password, int errorIndicatorIndex, int... rules) throws ValidationError {
         for (int rule : rules) {
             switch (rule) {

@@ -125,7 +125,7 @@ public final class SchedulePanelController extends FormController implements Inn
             return;
 
         EventView selectedEventView = (EventView) ((JLabel) event.getSource()).getParent().getParent();
-
+        selectedEventView.setEventStatus(EventView.EVENT_STATUS_REGISTERED);
         removeFromInviteAndAddToSchedule(selectedEventView);
     }
 

@@ -23,7 +23,6 @@ public class AddUserFormValidator extends ValidationHelper implements Validator<
             validate(addUserView.getFirstName(), AddUserView.FIRSTNAME_ERROR, NOT_EMPTY, ALPHABETS, NOT_NULL);
             validate(addUserView.getEmail(), AddUserView.EMAIL_ERROR_LABEL, NOT_EMPTY, NOT_NULL, EMAIL);
             validate(addUserView.getLastName(), AddUserView.LASTNAME_ERROR, NOT_EMPTY, ALPHABETS, NOT_NULL);
-            validate(addUserView.getMiddleName(), AddUserView.MIDDLENAME_ERROR, ALPHABETS);
             validate(addUserView.getPassword(), addUserView.getConfirmPassword(), AddUserView.PASSWORD_ERROR_LABEL, NOT_EMPTY, NOT_NULL, PASSWORD);
             validate(addUserView.getUserName(), AddUserView.USERNAME_ERROR_LABEL, NOT_EMPTY, NOT_NULL, ALPHANUMERIC);
         } catch (ValidationError a) {

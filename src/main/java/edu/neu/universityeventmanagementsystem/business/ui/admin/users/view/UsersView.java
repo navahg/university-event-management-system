@@ -10,6 +10,7 @@ import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
@@ -46,6 +47,14 @@ public final class UsersView extends javax.swing.JPanel {
 
     public javax.swing.JButton getAddUserButton() {
         return btnAddUser;
+    }
+
+    public javax.swing.JButton getBtnSearchUser() {
+        return btnSearchUser;
+    }
+
+    public String getSearchQuery() {
+        return txtFieldSearch.getText();
     }
 
     public void populateTable(List<UsersEntity> users) {
