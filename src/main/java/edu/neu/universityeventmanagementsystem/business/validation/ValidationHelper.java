@@ -17,6 +17,8 @@ public abstract class ValidationHelper {
     static final int ALPHABETS = 3;
     static final int EMAIL = 4;
     static final int LEGAL_DATE_RANGE = 5;
+    static final int PASSWORD = 6;
+
 
 
     static void validate(Object o, int errorIndicatorIndex, int... rules) throws ValidationError {
@@ -75,6 +77,19 @@ public abstract class ValidationHelper {
                         throw new ValidationError("Both dates should be non-null", errorIndicatorIndex);
                     if (start.after(end) || start.equals(end))
                         throw new ValidationError("Illegal date range", errorIndicatorIndex);
+                    break;
+            }
+        }
+    }
+    
+    static void validate(String password, String confirm_password, int errorIndicatorIndex, int... rules) throws ValidationError {
+        for (int rule : rules) {
+            switch (rule) {
+                case PASSWORD:
+                    if (password == null || confirm_password == null)
+                        throw new ValidationError("Password should be non-null", errorIndicatorIndex);
+                    if (!password.equals(confirm_password))
+                        throw new ValidationError("Password doesn't match", errorIndicatorIndex);
                     break;
             }
         }

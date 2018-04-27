@@ -32,7 +32,10 @@ public final class AddUserView extends javax.swing.JDialog {
     public static final int EMAIL_ERROR_LABEL = 0;
     public static final int USERNAME_ERROR_LABEL = 1;
     public static final int PASSWORD_ERROR_LABEL = 2;
-
+    public static final int FIRSTNAME_ERROR = 3;
+    public static final int LASTNAME_ERROR = 4;
+    public static final int MIDDLENAME_ERROR = 5;
+    
 
     private static final int TITLE_BAR_ICON_SIZE = 64;
     private final List<JLabel> errorLabels;
@@ -313,7 +316,7 @@ public final class AddUserView extends javax.swing.JDialog {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
