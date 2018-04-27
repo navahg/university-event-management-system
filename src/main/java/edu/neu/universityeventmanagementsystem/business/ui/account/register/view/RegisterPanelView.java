@@ -34,6 +34,11 @@ public final class RegisterPanelView extends javax.swing.JPanel {
         suppressPasswordNoMatch();
     }
 
+    public void resetView() {
+        removeAll();
+        initComponents();
+    }
+
     public java.awt.Component getBackButton() {
         return btnBack;
     }

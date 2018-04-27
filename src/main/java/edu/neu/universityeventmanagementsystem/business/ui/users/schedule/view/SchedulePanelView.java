@@ -36,18 +36,26 @@ public final class SchedulePanelView extends javax.swing.JPanel {
             case UPCOMING_EVENTS_PANE:
                 lblNoUpcomingEvents.setVisible(false);
                 upcomingEventsContentPane.add(component);
+                upcomingEventsContentPane.revalidate();
+                upcomingEventsContentPane.repaint();
                 break;
             case PAST_EVENTS_PANE:
                 lblNoPastEvents.setVisible(false);
                 pastEventsContentPane.add(component);
+                pastEventsContentPane.revalidate();
+                pastEventsContentPane.repaint();
                 break;
             case INVITES_PANE:
                 lblNoInvites.setVisible(false);
                 invitesContentPane.add(component);
+                invitesContentPane.revalidate();
+                invitesContentPane.repaint();
                 break;
             case HOSTED_EVENTS_PANE:
                 lblNoHostedEvents.setVisible(false);
                 hostedEventsContentPane.add(component);
+                hostedEventsContentPane.revalidate();
+                hostedEventsContentPane.repaint();
                 break;
         }
     }
@@ -58,21 +66,29 @@ public final class SchedulePanelView extends javax.swing.JPanel {
                 upcomingEventsContentPane.remove(component);
                 if (upcomingEventsContentPane.getComponents().length == 1)
                     lblNoUpcomingEvents.setVisible(true);
+                upcomingEventsContentPane.revalidate();
+                upcomingEventsContentPane.repaint();
                 break;
             case PAST_EVENTS_PANE:
                 pastEventsContentPane.remove(component);
                 if (pastEventsContentPane.getComponents().length == 1)
                     lblNoPastEvents.setVisible(true);
+                pastEventsContentPane.revalidate();
+                pastEventsContentPane.repaint();
                 break;
             case INVITES_PANE:
                 invitesContentPane.remove(component);
                 if (invitesContentPane.getComponents().length == 1)
                     lblNoInvites.setVisible(true);
+                invitesContentPane.revalidate();
+                invitesContentPane.repaint();
                 break;
             case HOSTED_EVENTS_PANE:
                 hostedEventsContentPane.remove(component);
                 if (hostedEventsContentPane.getComponents().length == 1)
                     lblNoHostedEvents.setVisible(true);
+                hostedEventsContentPane.revalidate();
+                hostedEventsContentPane.repaint();
                 break;
         }
     }

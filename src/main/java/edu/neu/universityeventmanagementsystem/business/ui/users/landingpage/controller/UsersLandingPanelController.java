@@ -42,6 +42,7 @@ public class UsersLandingPanelController extends FormController {
 
     @Override
     public void prepareAndOpenForm() {
+        usersLandingPanelView.reset();
         UsersEntity user = currentUserBean.getCurrentUser();
 
         if (user == null) {

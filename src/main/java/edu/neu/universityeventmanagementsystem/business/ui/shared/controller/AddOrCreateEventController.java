@@ -96,6 +96,7 @@ public class AddOrCreateEventController extends FormController {
     }
 
     public void prepareAndOpenForm(EventsEntity eventsEntity) {
+        addOrCreateEventView.resetView();
         addOrCreateEventView.makeReadOnly();
         populateData(eventsEntity);
         addOrCreateEventView.setVisible(true);

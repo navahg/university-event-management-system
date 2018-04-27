@@ -74,6 +74,11 @@ public class UserDashboardController extends FormController implements InnerView
         userDashboardView.clearAllPanels();
         populateNotifications();
         populateEvents();
+        populateStats();
+    }
+
+    private void populateStats() {
+
     }
 
     private void populateEvents() {
@@ -90,7 +95,7 @@ public class UserDashboardController extends FormController implements InnerView
         for (EventsEntity event : eventsList) {
             String status = event.getEventStatusByStatus().getStatusMessage();
 
-            if (Objects.equals(status, ConstantValues.EventStatus.PENDING_APPROVAL))
+            if (!Objects.equals(status, ConstantValues.EventStatus.APPROVED))
                 continue;
 
             for (EventParticipantsEntity entity : event.getEventParticipantsByIdEvent()) {
@@ -150,7 +155,7 @@ public class UserDashboardController extends FormController implements InnerView
         for (NotificationsEntity notification : notificationsService.findAllByIdUser(currentUserBean.getCurrentUser())) {
             String status = notification.getEventsByIdEvent().getEventStatusByStatus().getStatusMessage();
 
-            if (Objects.equals(status, ConstantValues.EventStatus.PENDING_APPROVAL))
+            if (!Objects.equals(status, ConstantValues.EventStatus.APPROVED))
                 continue;
 
             userDashboardView.addToPanel(notificationController.getView(notification), UserDashboardView.NOTIFICATIONS_PANEL);

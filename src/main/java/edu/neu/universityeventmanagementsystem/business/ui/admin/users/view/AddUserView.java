@@ -364,6 +364,10 @@ public final class AddUserView extends javax.swing.JDialog {
         return String.valueOf(pwdField.getPassword());
     }
 
+    public String getConfirmPassword() {
+        return String.valueOf(pwdFieldConfirm.getPassword());
+    }
+
     public String getRole() {
         return String.valueOf(comboBoxRole.getSelectedItem());
     }
@@ -423,6 +427,11 @@ public final class AddUserView extends javax.swing.JDialog {
         else if (which == ENTERPRISE) return (String) comboBoxEnterprise.getSelectedItem();
         else if (which == ORGANIZATION) return (String) comboBoxOrganization.getSelectedItem();
         else return (String) comboBoxRole.getSelectedItem();
+    }
+
+    public void reset() {
+        removeAll();
+        initComponents();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

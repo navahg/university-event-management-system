@@ -5,6 +5,7 @@ import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.NotificationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,5 +36,10 @@ public class NotificationsService {
 
     public List<NotificationsEntity> findAllByIdUser(UsersEntity user) {
         return notificationsRepository.findAllByIdUser(user);
+    }
+
+    @Transactional
+    public void delete(NotificationsEntity notificationsEntity) {
+        notificationsRepository.delete(notificationsEntity);
     }
 }

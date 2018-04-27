@@ -92,6 +92,7 @@ public final class AddUserController extends FormController {
 
     @Override
     public void prepareAndOpenForm() {
+        addUserView.reset();
         restrictedToCollege = new ArrayList<>();
         restrictedToEnterprise = new ArrayList<>();
         restrictedToOrganization = new ArrayList<>();

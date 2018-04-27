@@ -45,6 +45,11 @@ public class AddOrCreateEventView extends javax.swing.JDialog {
         hideAllErrors();
     }
 
+    public void resetView() {
+        removeAll();
+        initComponents();
+    }
+
     public void makeReadOnly() {
         txtAreaInvites.setVisible(false);
         btnAddInvitee.setVisible(false);

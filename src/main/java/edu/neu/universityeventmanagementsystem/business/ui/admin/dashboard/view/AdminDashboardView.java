@@ -1,5 +1,8 @@
 package edu.neu.universityeventmanagementsystem.business.ui.admin.dashboard.view;
 
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
+
 /**
  * AdminDashboardView class
  *
@@ -7,6 +10,8 @@ package edu.neu.universityeventmanagementsystem.business.ui.admin.dashboard.view
  * @version 1.0
  * @since   Apr 26, 2018
  */
+@Component
+@Lazy
 public class AdminDashboardView extends javax.swing.JPanel {
 
     /** Creates new form AdminDashboardView */
@@ -30,16 +35,17 @@ public class AdminDashboardView extends javax.swing.JPanel {
         javax.swing.JPanel jPanel5 = new javax.swing.JPanel();
         javax.swing.JPanel jPanel6 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
-        javax.swing.JLabel lblTotalAttendedEvents = new javax.swing.JLabel();
+        lblTotalUsers = new javax.swing.JLabel();
         javax.swing.JPanel jPanel7 = new javax.swing.JPanel();
-        javax.swing.JLabel lblTotalHostedEvents = new javax.swing.JLabel();
+        lblEventsPending = new javax.swing.JLabel();
         javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
         javax.swing.JPanel jPanel9 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
-        javax.swing.JLabel lblTotalAttendedEvents1 = new javax.swing.JLabel();
+        lblEventsToday = new javax.swing.JLabel();
         javax.swing.JPanel jPanel10 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel7 = new javax.swing.JLabel();
-        javax.swing.JLabel lblTotalAttendedEvents2 = new javax.swing.JLabel();
+        lblTotalEvents = new javax.swing.JLabel();
+        chartPanel = new javax.swing.JPanel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1116, 700));
@@ -60,7 +66,7 @@ public class AdminDashboardView extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -77,14 +83,14 @@ public class AdminDashboardView extends javax.swing.JPanel {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel6.setPreferredSize(new java.awt.Dimension(305, 305));
+        jPanel6.setPreferredSize(new java.awt.Dimension(270, 305));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Total Events Attended");
+        jLabel3.setText("Total Users");
 
-        lblTotalAttendedEvents.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        lblTotalAttendedEvents.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTotalAttendedEvents.setText("0");
+        lblTotalUsers.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblTotalUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTotalUsers.setText("0");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -95,8 +101,8 @@ public class AdminDashboardView extends javax.swing.JPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(0, 105, Short.MAX_VALUE))
-                    .addComponent(lblTotalAttendedEvents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 157, Short.MAX_VALUE))
+                    .addComponent(lblTotalUsers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -105,17 +111,17 @@ public class AdminDashboardView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(lblTotalAttendedEvents, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                .addComponent(lblTotalUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel7.setPreferredSize(new java.awt.Dimension(305, 305));
+        jPanel7.setPreferredSize(new java.awt.Dimension(270, 305));
 
-        lblTotalHostedEvents.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        lblTotalHostedEvents.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTotalHostedEvents.setText("0");
+        lblEventsPending.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblEventsPending.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEventsPending.setText("0");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Events pending approval");
@@ -129,8 +135,8 @@ public class AdminDashboardView extends javax.swing.JPanel {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGap(0, 82, Short.MAX_VALUE))
-                    .addComponent(lblTotalHostedEvents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 47, Short.MAX_VALUE))
+                    .addComponent(lblEventsPending, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -139,20 +145,20 @@ public class AdminDashboardView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(lblTotalHostedEvents, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                .addComponent(lblEventsPending, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel9.setPreferredSize(new java.awt.Dimension(305, 305));
+        jPanel9.setPreferredSize(new java.awt.Dimension(270, 305));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Total Events Today");
 
-        lblTotalAttendedEvents1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        lblTotalAttendedEvents1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTotalAttendedEvents1.setText("0");
+        lblEventsToday.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblEventsToday.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEventsToday.setText("0");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -163,8 +169,8 @@ public class AdminDashboardView extends javax.swing.JPanel {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(0, 130, Short.MAX_VALUE))
-                    .addComponent(lblTotalAttendedEvents1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 95, Short.MAX_VALUE))
+                    .addComponent(lblEventsToday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -173,20 +179,20 @@ public class AdminDashboardView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
-                .addComponent(lblTotalAttendedEvents1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                .addComponent(lblEventsToday, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel10.setPreferredSize(new java.awt.Dimension(305, 305));
+        jPanel10.setPreferredSize(new java.awt.Dimension(270, 305));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setText("Total Events Attended");
+        jLabel7.setText("Total Events");
 
-        lblTotalAttendedEvents2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        lblTotalAttendedEvents2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTotalAttendedEvents2.setText("0");
+        lblTotalEvents.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblTotalEvents.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTotalEvents.setText("0");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -197,8 +203,8 @@ public class AdminDashboardView extends javax.swing.JPanel {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGap(0, 105, Short.MAX_VALUE))
-                    .addComponent(lblTotalAttendedEvents2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 149, Short.MAX_VALUE))
+                    .addComponent(lblTotalEvents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -207,9 +213,12 @@ public class AdminDashboardView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addComponent(lblTotalAttendedEvents2, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                .addComponent(lblTotalEvents, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        chartPanel.setBackground(new java.awt.Color(255, 255, 255));
+        chartPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -217,29 +226,37 @@ public class AdminDashboardView extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(512, 512, 512))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(chartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(chartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -248,18 +265,18 @@ public class AdminDashboardView extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(300, 300, 300))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 1116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1116, Short.MAX_VALUE))
+                .addGap(285, 285, 285))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -298,12 +315,29 @@ public class AdminDashboardView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void addChart(java.awt.Component comp) {
+        chartPanel.removeAll();
+        chartPanel.add(comp);
+    }
+
+    public void setStats(int eventsToday, int totalEvents, int totalUsers, int pendingRequests) {
+        lblEventsToday.setText(String.valueOf(eventsToday));
+        lblTotalEvents.setText(String.valueOf(totalEvents));
+        lblTotalUsers.setText(String.valueOf(totalUsers));
+        lblEventsPending.setText(String.valueOf(pendingRequests));
+    }
+
     public void clearAllPanels() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel chartPanel;
+    javax.swing.JLabel lblEventsPending;
+    javax.swing.JLabel lblEventsToday;
+    javax.swing.JLabel lblTotalEvents;
+    javax.swing.JLabel lblTotalUsers;
     // End of variables declaration//GEN-END:variables
 
 }

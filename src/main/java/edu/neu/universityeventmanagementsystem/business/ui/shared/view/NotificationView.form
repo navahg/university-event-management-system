@@ -189,6 +189,9 @@
               <Image iconType="3" name="/icons/remove_icon_16px.png"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

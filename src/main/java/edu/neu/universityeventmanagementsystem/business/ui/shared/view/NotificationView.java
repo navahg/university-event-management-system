@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.swing.*;
 import java.util.Date;
 
 /**
@@ -59,6 +60,14 @@ public class NotificationView extends javax.swing.JPanel {
         lblNewIcon.setVisible(!isRead);
     }
 
+    public JLabel getDeleteButton() {
+        return lblClearNotification;
+    }
+
+    public NotificationsEntity getNotification() {
+        return notification;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -75,7 +84,7 @@ public class NotificationView extends javax.swing.JPanel {
         lblEventName = new javax.swing.JLabel();
         lblEventDate = new javax.swing.JLabel();
         lblEventLocation = new javax.swing.JLabel();
-        javax.swing.JLabel lblClearNotification = new javax.swing.JLabel();
+        lblClearNotification = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(300, 100));
@@ -169,6 +178,7 @@ public class NotificationView extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JLabel lblClearNotification;
     javax.swing.JLabel lblEventDate;
     javax.swing.JLabel lblEventLocation;
     javax.swing.JLabel lblEventName;

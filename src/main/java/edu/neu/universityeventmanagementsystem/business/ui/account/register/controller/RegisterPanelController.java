@@ -52,6 +52,7 @@ public final class RegisterPanelController extends FormController {
 
     @Override
     public void prepareAndOpenForm() {
+        registerPanelView.resetView();
         List<String> roles = new ArrayList<>();
 
         rolesService.findAll().stream()

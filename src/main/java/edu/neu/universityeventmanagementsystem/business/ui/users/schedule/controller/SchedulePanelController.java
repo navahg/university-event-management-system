@@ -79,7 +79,7 @@ public final class SchedulePanelController extends FormController implements Inn
             EventsEntity event = schedule.getEventsByIdEvent();
 
             if (event.getUsersByIdCreator().equals(currentUser))
-                addEventToThePane(event, EventView.EVENT_STATUS_HOST, SchedulePanelView.HOSTED_EVENTS_PANE);
+                addEventToThePane(event, event.getEventStatusByStatus().getStatusMessage(), SchedulePanelView.HOSTED_EVENTS_PANE);
 
             if (event.getEndTime().after(new Date()))
                 addEventToThePane(event, EventView.EVENT_STATUS_REGISTERED, SchedulePanelView.UPCOMING_EVENTS_PANE);

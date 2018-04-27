@@ -3,6 +3,7 @@ package edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.co
 import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
 import edu.neu.universityeventmanagementsystem.business.entity.RolesEntity;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
+import edu.neu.universityeventmanagementsystem.business.ui.admin.dashboard.controller.AdminDashboardController;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.events.controller.EventsController;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.infrastructure.controller.InfrastructureController;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.view.AdminLandingPanelView;
@@ -47,6 +48,7 @@ public final class AdminLandingPanelController extends FormController {
 
     @Override
     public void prepareAndOpenForm() {
+        landingPanelView.reset();
         UsersEntity user = currentUserBean.getCurrentUser();
 
         if (user == null) {
@@ -57,7 +59,13 @@ public final class AdminLandingPanelController extends FormController {
         registerPanelEvents();
         landingPanelView.setUserText(user.getFirstName());
         restrictViewBasedOnPrivilege();
+        loadDefaultView();
         viewPanel();
+    }
+
+    private void loadDefaultView() {
+        landingPanelView.setTitle(ConstantMessages.Titles.ADMIN_DASHBOARD);
+        landingPanelView.setContentPanel((context.getBean(AdminDashboardController.class)).getView());
     }
 
     private void restrictViewBasedOnPrivilege() {
@@ -78,6 +86,8 @@ public final class AdminLandingPanelController extends FormController {
         landingPanelView.setActiveButton((javax.swing.JButton) event.getSource());
         switch (view) {
             case "Dashboard":
+                landingPanelView.setTitle(ConstantMessages.Titles.ADMIN_DASHBOARD);
+                landingPanelView.setContentPanel((context.getBean(AdminDashboardController.class)).getView());
                 break;
             case "Infrastructures":
                 landingPanelView.setTitle(ConstantMessages.Titles.ADMIN_INFRASTRUCTURE);
@@ -97,7 +107,6 @@ public final class AdminLandingPanelController extends FormController {
 
     private void doLogout() {
         currentUserBean.setCurrentUser(null);
-        landingPanelView.reset();
 
         mainFrameController.removeFromLayout(landingPanelView);
     }
