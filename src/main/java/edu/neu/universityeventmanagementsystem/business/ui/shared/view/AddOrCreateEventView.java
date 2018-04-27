@@ -46,8 +46,11 @@ public class AddOrCreateEventView extends javax.swing.JDialog {
     }
 
     public void resetView() {
-        removeAll();
+        getContentPane().removeAll();
         initComponents();
+        errorLabels = new ArrayList<>(Arrays.asList(lblEventNameError, lblEventLocationError, lblEventTimeError,
+                lblEventAudienceError));
+        hideAllErrors();
     }
 
     public void makeReadOnly() {

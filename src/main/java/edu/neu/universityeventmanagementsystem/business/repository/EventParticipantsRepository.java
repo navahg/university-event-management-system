@@ -22,4 +22,7 @@ public interface EventParticipantsRepository extends JpaRepository<EventParticip
 
     @Query("SELECT e FROM EventParticipantsEntity e WHERE e.eventsByIdEvent = :event")
     List<EventParticipantsEntity> findAllByEvent(@Param("event") EventsEntity event);
+
+    @Query("SELECT e FROM EventParticipantsEntity e WHERE e.usersByIdUser = :user")
+    List<EventParticipantsEntity> findAllByUser(@Param("user") UsersEntity user);
 }

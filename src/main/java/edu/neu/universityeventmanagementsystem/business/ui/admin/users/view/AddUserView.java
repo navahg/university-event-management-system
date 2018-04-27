@@ -38,7 +38,7 @@ public final class AddUserView extends javax.swing.JDialog {
     
 
     private static final int TITLE_BAR_ICON_SIZE = 64;
-    private final List<JLabel> errorLabels;
+    private List<JLabel> errorLabels;
 
     private static boolean modal = true;
 
@@ -105,7 +105,7 @@ public final class AddUserView extends javax.swing.JDialog {
         lblEnterprise = new javax.swing.JLabel();
         lblOrganization = new javax.swing.JLabel();
         comboBoxOrganization = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(ConstantMessages.Titles.ADD_USER_TITLE);
@@ -316,7 +316,7 @@ public final class AddUserView extends javax.swing.JDialog {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -430,8 +430,14 @@ public final class AddUserView extends javax.swing.JDialog {
     }
 
     public void reset() {
-        removeAll();
+        getContentPane().removeAll();
         initComponents();
+        errorLabels = new ArrayList<>(Arrays.asList(lblInvalidEmail, lblUserNameAvailability, lblPasswordError));
+        hideAllErrors();
+        setLocationRelativeTo(null);
+        setCollegeDetailsVisible(false);
+        setEnterpriseDetailsVisible(false);
+        setOrganizationDetailsVisible(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -440,7 +446,6 @@ public final class AddUserView extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> comboBoxEnterprise;
     private javax.swing.JComboBox<String> comboBoxOrganization;
     private javax.swing.JComboBox<String> comboBoxRole;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCollege;
     private javax.swing.JLabel lblEnterprise;
     private javax.swing.JLabel lblInvalidEmail;

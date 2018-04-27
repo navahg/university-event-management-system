@@ -38,4 +38,8 @@ public class EventParticipantsService {
     public List<EventParticipantsEntity> findAllByEvent(EventsEntity event) {
         return eventParticipantsRepository.findAllByEvent(event);
     }
+
+    public List<EventParticipantsEntity> findByUser(UsersEntity user) {
+        return eventParticipantsRepository.findAllByUser(user);
+    }
 }

@@ -58,6 +58,14 @@ public class UserDashboardView extends javax.swing.JPanel {
         }
     }
 
+    public void setTotalEventsAttended(String count) {
+        lblTotalAttendedEvents.setText(count);
+    }
+
+    public void setTotalEventsHosted(String count) {
+        lblTotalHostedEvents.setText(count);
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

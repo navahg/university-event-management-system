@@ -78,7 +78,11 @@ public class UserDashboardController extends FormController implements InnerView
     }
 
     private void populateStats() {
+        int totalEventsAttended = eventParticipantsService.findByUser(currentUserBean.getCurrentUser()).size();
+        int totalEventsHosted = eventsService.findAllByCreator(currentUserBean.getCurrentUser()).size();
 
+        userDashboardView.setTotalEventsAttended(String.valueOf(totalEventsAttended));
+        userDashboardView.setTotalEventsHosted(String.valueOf(totalEventsHosted));
     }
 
     private void populateEvents() {
