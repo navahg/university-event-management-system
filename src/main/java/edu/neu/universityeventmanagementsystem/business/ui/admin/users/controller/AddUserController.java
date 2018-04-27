@@ -8,8 +8,11 @@ import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.For
 import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
 import edu.neu.universityeventmanagementsystem.business.util.ConstantValues;
 import edu.neu.universityeventmanagementsystem.business.util.EmailService;
+import edu.neu.universityeventmanagementsystem.business.validation.AddUserFormValidator;
+import edu.neu.universityeventmanagementsystem.business.validation.ValidationError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.mail.MailException;
 import org.springframework.stereotype.Controller;
 
 import javax.mail.MessagingException;
@@ -49,6 +52,7 @@ public final class AddUserController extends FormController {
     private CurrentUserBean currentUserBean;
     private FactoryService factoryService;
     private EmailService emailService;
+    private AddUserFormValidator addUserFormValidator;
 
     private CollegesEntity selectedCollege;
     private int selectedRoleLevel;
@@ -64,7 +68,8 @@ public final class AddUserController extends FormController {
                              CouncilMembersService councilMembersService, AdminWingMembersService adminWingMembersService,
                              HierarchyService hierarchyService, UserAccountsService userAccountsService,
                              RolesService rolesService, CurrentUserBean currentUserBean,
-                             FactoryService factoryService, EmailService emailService) {
+                             FactoryService factoryService, EmailService emailService,
+                             AddUserFormValidator addUserFormValidator) {
         this.addUserView = addUserView;
         this.collegesService = collegesService;
         this.programsService = programsService;
@@ -81,6 +86,7 @@ public final class AddUserController extends FormController {
         this.currentUserBean =currentUserBean;
         this.factoryService = factoryService;
         this.emailService = emailService;
+        this.addUserFormValidator = addUserFormValidator;
 
         restrictedToCollege = new ArrayList<>();
         restrictedToEnterprise = new ArrayList<>();
@@ -205,6 +211,13 @@ public final class AddUserController extends FormController {
     }
 
     private void registerUser(ActionEvent actionEvent) {
+        Optional<ValidationError> result = addUserFormValidator.validate(addUserView);
+
+        if (result.isPresent()) {
+            JOptionPane.showMessageDialog(null, "There are error in the fields. Please check the fields");
+            return;
+        }
+
         UserAccountsEntity newUserAccount = userAccountsService.create();
         UsersEntity newUser = usersService.create();
 
@@ -248,7 +261,7 @@ public final class AddUserController extends FormController {
             sendConfirmationMail(newUser, newUserAccount);
             JOptionPane.showMessageDialog(null, "Account registered successfully and a mail has been sent!");
 
-        } catch (MessagingException e) {
+        } catch (MessagingException | MailException e) {
             JOptionPane.showMessageDialog(null, "Account registered successfully! But cannot send confirmation mail.");
         }
 
