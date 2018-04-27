@@ -1,14 +1,8 @@
 package edu.neu.universityeventmanagementsystem.business.ui.users.dashboard.controller;
 
 import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
-import edu.neu.universityeventmanagementsystem.business.entity.EventParticipantsEntity;
-import edu.neu.universityeventmanagementsystem.business.entity.EventsEntity;
-import edu.neu.universityeventmanagementsystem.business.entity.HierarchyEntity;
-import edu.neu.universityeventmanagementsystem.business.entity.NotificationsEntity;
-import edu.neu.universityeventmanagementsystem.business.service.EventsService;
-import edu.neu.universityeventmanagementsystem.business.service.FactoryService;
-import edu.neu.universityeventmanagementsystem.business.service.HierarchyService;
-import edu.neu.universityeventmanagementsystem.business.service.NotificationsService;
+import edu.neu.universityeventmanagementsystem.business.entity.*;
+import edu.neu.universityeventmanagementsystem.business.service.*;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.InnerViewController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.NotificationController;
@@ -20,7 +14,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -43,6 +39,9 @@ public class UserDashboardController extends FormController implements InnerView
     private HierarchyService hierarchyService;
     private CurrentUserBean currentUserBean;
     private NotificationController notificationController;
+    private EventParticipantsService eventParticipantsService;
+    private SchedulesService schedulesService;
+    private InvitesService invitesService;
     private ApplicationContext context;
 
     @Autowired
@@ -53,6 +52,9 @@ public class UserDashboardController extends FormController implements InnerView
                                    FactoryService factoryService,
                                    HierarchyService hierarchyService,
                                    NotificationController notificationController,
+                                   EventParticipantsService eventParticipantsService,
+                                   SchedulesService schedulesService,
+                                   InvitesService invitesService,
                                    ApplicationContext context) {
         this.userDashboardView = userDashboardView;
         this.eventsService = eventsService;
@@ -61,6 +63,9 @@ public class UserDashboardController extends FormController implements InnerView
         this.factoryService = factoryService;
         this.hierarchyService = hierarchyService;
         this.notificationController = notificationController;
+        this.eventParticipantsService = eventParticipantsService;
+        this.schedulesService = schedulesService;
+        this.invitesService = invitesService;
         this.context = context;
     }
 
@@ -101,8 +106,44 @@ public class UserDashboardController extends FormController implements InnerView
                 status = EventView.EVENT_STATUS_REGISTER_NOW;
 
             EventView eventView = context.getBean(EventView.class, event, status);
+            registerMouseClick(eventView.getLblEventStatus(), this::registerForEvent);
             userDashboardView.addToPanel(eventView, UserDashboardView.EVENTS_PANEL);
         }
+    }
+
+    private void registerForEvent(MouseEvent event) {
+        if (!(event.getSource() instanceof JLabel))
+            return;
+        boolean isRegisterNowLabel = Objects.equals(((JLabel) event.getSource()).getText(), EventView.EVENT_STATUS_REGISTER_NOW);
+        if (!isRegisterNowLabel)
+            return;
+        if (!(((JLabel) event.getSource()).getParent().getParent() instanceof EventView))
+            return;
+        EventView selectedEventView = (EventView) ((JLabel) event.getSource()).getParent().getParent();
+        addToEventParticipant(selectedEventView);
+        removeFromInviteAndAddToSchedule(selectedEventView);
+    }
+
+    private void removeFromInviteAndAddToSchedule(EventView view) {
+        EventsEntity event = view.getEvent();
+        UsersEntity user = context.getBean(CurrentUserBean.class).getCurrentUser();
+
+        eventParticipantsService.add(event, user);
+
+        SchedulesEntity newSchedule = schedulesService.create();
+        newSchedule.setEventsByIdEvent(event);
+        newSchedule.setUsersByIdUser(user);
+
+        schedulesService.save(newSchedule);
+
+        invitesService.deleteByInviteeAndEvent(user, event);
+    }
+
+    private void addToEventParticipant(EventView view) {
+        EventsEntity event = view.getEvent();
+        UsersEntity user = context.getBean(CurrentUserBean.class).getCurrentUser();
+
+        eventParticipantsService.add(event, user);
     }
 
     private void populateNotifications() {

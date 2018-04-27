@@ -86,10 +86,10 @@
                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               <Component id="jSeparator1" min="-2" pref="227" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="btnDashboard" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnInfrastructures" alignment="0" pref="250" max="32767" attributes="0"/>
-                          <Component id="btnUsers" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnEvents" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnDashboard" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                          <Component id="btnInfrastructures" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                          <Component id="btnUsers" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                          <Component id="btnEvents" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>

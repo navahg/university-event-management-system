@@ -1,6 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.ui.admin.landingpage.controller;
 
 import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
+import edu.neu.universityeventmanagementsystem.business.entity.RolesEntity;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.events.controller.EventsController;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.infrastructure.controller.InfrastructureController;
@@ -9,6 +10,7 @@ import edu.neu.universityeventmanagementsystem.business.ui.admin.users.controlle
 import edu.neu.universityeventmanagementsystem.business.ui.main.controller.MainFrameController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.util.ConstantMessages;
+import edu.neu.universityeventmanagementsystem.business.util.ConstantValues;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -54,7 +56,15 @@ public final class AdminLandingPanelController extends FormController {
         registerAction(landingPanelView.getLogoutButton(), event -> doLogout());
         registerPanelEvents();
         landingPanelView.setUserText(user.getFirstName());
+        restrictViewBasedOnPrivilege();
         viewPanel();
+    }
+
+    private void restrictViewBasedOnPrivilege() {
+        RolesEntity role = currentUserBean.getCurrentUser().getRolesByIdRole();
+
+        if (role.getPrivilegeLevel() < ConstantValues.RolePrivilegeLevel.ENTERPRISE_ADMIN)
+            landingPanelView.getPanelButtons().get(AdminLandingPanelView.INFRASTRUCTURE_BUTTON).setVisible(false);
     }
 
     private void registerPanelEvents() {

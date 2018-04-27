@@ -12,7 +12,7 @@ import java.util.Objects;
  * @since 4/9/18
  */
 @Entity
-@Table(name = "hierarchy", schema = "university_event_management_system")
+@Table(name = "hierarchy", schema = "university_event_management_system", catalog = "")
 public class HierarchyEntity {
     private int idHierarchy;
     private int level;
@@ -20,6 +20,7 @@ public class HierarchyEntity {
     private String description;
     private Collection<ClubsEntity> clubsByIdHierarchy;
     private Collection<EventsEntity> eventsByIdHierarchy;
+    private Collection<EventRequestEntity> eventRequestsByIdHierarchy;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -94,5 +95,14 @@ public class HierarchyEntity {
 
     public void setEventsByIdHierarchy(Collection<EventsEntity> eventsByIdHierarchy) {
         this.eventsByIdHierarchy = eventsByIdHierarchy;
+    }
+
+    @OneToMany(mappedBy = "hierarchyByIdHierarchy")
+    public Collection<EventRequestEntity> getEventRequestsByIdHierarchy() {
+        return eventRequestsByIdHierarchy;
+    }
+
+    public void setEventRequestsByIdHierarchy(Collection<EventRequestEntity> eventRequestsByIdHierarchy) {
+        this.eventRequestsByIdHierarchy = eventRequestsByIdHierarchy;
     }
 }

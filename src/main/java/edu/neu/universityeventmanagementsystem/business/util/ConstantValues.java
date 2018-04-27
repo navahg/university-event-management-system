@@ -31,6 +31,13 @@ public interface ConstantValues {
         String COLLEGE = "colleges";
     }
 
+    interface HierarchyLevels {
+        int UNIVERSITY = 1;
+        int COLLEGE = 2;
+        int ORGANIZATION = 3;
+        int CLUB = 4;
+    }
+
     interface MinimumPrivilegeLevel {
         Integer ADMIN = 90;
         Integer STUDENT = 50;
@@ -69,6 +76,15 @@ public interface ConstantValues {
         String COMPLETED = "COMPLETED";
         String CANCELLED = "CANCELLED";
         String EXPIRED = "EXPIRED";
-        String[] LEGAL_STATUS_VALUES = new String[]{PENDING_APPROVAL, APPROVED, COMPLETED, CANCELLED, EXPIRED};
+        String DENIED_APPROVAL = "DENIED_APPROVAL";
+        String[] LEGAL_STATUS_VALUES = new String[]{PENDING_APPROVAL, APPROVED, COMPLETED, CANCELLED, EXPIRED, DENIED_APPROVAL};
+    }
+
+    interface Operations {
+        int LESSER_THAN = -2;
+        int LESSER_THAN_OR_EQUAL_TO = -1;
+        int EQUAL_TO = 0;
+        int GREATER_THAN_OR_EQUAL_TO = 1;
+        int GREATER_THAN = 2;
     }
 }

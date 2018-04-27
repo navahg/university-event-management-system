@@ -1,14 +1,16 @@
 package edu.neu.universityeventmanagementsystem.business.ui.admin.events.controller;
 
-import edu.neu.universityeventmanagementsystem.business.entity.EventStatusEntity;
-import edu.neu.universityeventmanagementsystem.business.entity.EventsEntity;
+import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
+import edu.neu.universityeventmanagementsystem.business.entity.EventRequestEntity;
+import edu.neu.universityeventmanagementsystem.business.entity.HierarchyEntity;
+import edu.neu.universityeventmanagementsystem.business.service.EventRequestService;
 import edu.neu.universityeventmanagementsystem.business.service.EventStatusService;
 import edu.neu.universityeventmanagementsystem.business.service.EventsService;
+import edu.neu.universityeventmanagementsystem.business.service.FactoryService;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.events.view.EventApprovalView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.EventRequestController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.InnerViewController;
-import edu.neu.universityeventmanagementsystem.business.util.ConstantValues;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -26,20 +28,23 @@ import java.awt.*;
 @Lazy
 public class EventApprovalController extends FormController implements InnerViewController {
 
-    private EventsService eventsService;
-    private EventStatusService eventStatusService;
+    private EventRequestService eventRequestService;
     private EventApprovalView eventApprovalView;
     private EventRequestController eventRequestController;
+    private CurrentUserBean currentUserBean;
+    private FactoryService factoryService;
 
     @Autowired
-    public EventApprovalController(EventsService eventsService,
-                                  EventStatusService eventStatusService,
-                                  EventApprovalView eventApprovalView,
-                                  EventRequestController eventRequestController) {
-        this.eventsService = eventsService;
-        this.eventStatusService = eventStatusService;
+    public EventApprovalController(EventRequestService eventRequestService,
+                                   EventApprovalView eventApprovalView,
+                                   EventRequestController eventRequestController,
+                                   CurrentUserBean currentUserBean,
+                                   FactoryService factoryService) {
+        this.eventRequestService = eventRequestService;
         this.eventApprovalView = eventApprovalView;
         this.eventRequestController = eventRequestController;
+        this.currentUserBean = currentUserBean;
+        this.factoryService = factoryService;
     }
 
     @Override
@@ -49,9 +54,11 @@ public class EventApprovalController extends FormController implements InnerView
     }
 
     private void populateEvents() {
-        EventStatusEntity pendingApprovalStatus = eventStatusService.findByStatusMessage(ConstantValues.EventStatus.PENDING_APPROVAL);
-        for (EventsEntity event : eventsService.findAllByEventStatus(pendingApprovalStatus)) {
-            Component view = eventRequestController.getView(event);
+        Integer idEntity = factoryService.findOrganizationOfUser(currentUserBean.getCurrentUser()).getValue();
+        HierarchyEntity hierarchy = currentUserBean.getCurrentUser().getRolesByIdRole().getHierarchyByIdHierarchy();
+
+        for (EventRequestEntity request : eventRequestService.findAllByHierarchyAndIdEntity(hierarchy, idEntity)) {
+            Component view = eventRequestController.getView(request.getEventsByIdEvent());
             eventApprovalView.addToPanel(view);
         }
     }

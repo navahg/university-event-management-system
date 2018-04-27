@@ -1,7 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.validation;
 
 import edu.neu.universityeventmanagementsystem.business.entity.EventsEntity;
-import edu.neu.universityeventmanagementsystem.business.ui.shared.view.CreateEventView;
+import edu.neu.universityeventmanagementsystem.business.ui.shared.view.AddOrCreateEventView;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -19,11 +19,11 @@ public class EventValidator extends ValidationHelper implements Validator<Events
     @Override
     public Optional<ValidationError> validate(EventsEntity eventsEntity) {
         try {
-            validate(eventsEntity.getName(), CreateEventView.NAME_ERROR, NOT_EMPTY, NOT_NULL);
-            validate(eventsEntity.getVenue(), CreateEventView.LOCATION_ERROR, NOT_EMPTY, NOT_NULL);
-            validate(eventsEntity.getStartTime(), eventsEntity.getEndTime(), CreateEventView.TIME_ERROR, LEGAL_DATE_RANGE);
-            validate(eventsEntity.getHierarchyByIdHierarchy(), CreateEventView.AUDIENCE_ERROR, NOT_NULL);
-            validate(eventsEntity.getIdEntity(), CreateEventView.AUDIENCE_ERROR, NOT_NULL);
+            validate(eventsEntity.getName(), AddOrCreateEventView.NAME_ERROR, NOT_EMPTY, NOT_NULL);
+            validate(eventsEntity.getVenue(), AddOrCreateEventView.LOCATION_ERROR, NOT_EMPTY, NOT_NULL);
+            validate(eventsEntity.getStartTime(), eventsEntity.getEndTime(), AddOrCreateEventView.TIME_ERROR, LEGAL_DATE_RANGE);
+            validate(eventsEntity.getHierarchyByIdHierarchy(), AddOrCreateEventView.AUDIENCE_ERROR, NOT_NULL);
+            validate(eventsEntity.getIdEntity(), AddOrCreateEventView.AUDIENCE_ERROR, NOT_NULL);
         } catch (ValidationError e) {
             return Optional.of(e);
         }

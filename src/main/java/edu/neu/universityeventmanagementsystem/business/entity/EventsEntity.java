@@ -16,7 +16,7 @@ import java.util.Objects;
  * @since 4/9/18
  */
 @Entity
-@Table(name = "events", schema = "university_event_management_system")
+@Table(name = "events", schema = "university_event_management_system", catalog = "")
 public class EventsEntity {
     private int idEvent;
     private int idEntity;
@@ -32,6 +32,7 @@ public class EventsEntity {
     private Collection<InvitesEntity> invitesByIdEvent;
     private Collection<SchedulesEntity> schedulesByIdEvent;
     private Collection<NotificationsEntity> notificationsByIdEvent;
+    private Collection<EventRequestEntity> eventRequestsByIdEvent;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -190,5 +191,14 @@ public class EventsEntity {
 
     public void setNotificationsByIdEvent(Collection<NotificationsEntity> notificationsByIdEvent) {
         this.notificationsByIdEvent = notificationsByIdEvent;
+    }
+
+    @OneToMany(mappedBy = "eventsByIdEvent")
+    public Collection<EventRequestEntity> getEventRequestsByIdEvent() {
+        return eventRequestsByIdEvent;
+    }
+
+    public void setEventRequestsByIdEvent(Collection<EventRequestEntity> eventRequestsByIdEvent) {
+        this.eventRequestsByIdEvent = eventRequestsByIdEvent;
     }
 }

@@ -25,6 +25,11 @@ import java.util.List;
 @Lazy
 public final class AdminLandingPanelView extends javax.swing.JPanel {
 
+    public final static int DASHBOARD_BUTTON = 0;
+    public final static int INFRASTRUCTURE_BUTTON = 1;
+    public final static int EVENTS_BUTTON = 2;
+    public final static int USERS_BUTTON = 3;
+
     private final static Color ACTIVE = new Color(6, 136, 136);
     private final static Color INACTIVE = new Color(5, 119, 119);
 
@@ -65,6 +70,7 @@ public final class AdminLandingPanelView extends javax.swing.JPanel {
 
     public void reset() {
         contentPanel.removeAll();
+        getPanelButtons().forEach(button -> button.setVisible(true));
         lblTitle.setText("Dashboard");
         setActiveButton(btnDashboard);
     }
@@ -168,10 +174,10 @@ public final class AdminLandingPanelView extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGap(11, 11, 11)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(btnDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnInfrastructures, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                        .addComponent(btnUsers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEvents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnInfrastructures, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEvents, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)

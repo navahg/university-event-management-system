@@ -1,10 +1,12 @@
 package edu.neu.universityeventmanagementsystem.business.service;
 
+import edu.neu.universityeventmanagementsystem.business.entity.RolesEntity;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,13 +37,12 @@ public class UsersService {
         return usersRepository.save(user);
     }
 
-    public UsersEntity findById(int idUser) {
-        Optional<UsersEntity> result = usersRepository.findById(idUser);
-        return result.orElse(null);
-    }
-
-    public List<UsersEntity> findByRole(String role) {
-        return usersRepository.findByRole(rolesService.findByName(role));
+    public List<UsersEntity> findByRolesLike(String role) {
+        List<UsersEntity> users = new ArrayList<>();
+        for (RolesEntity rolesEntity : rolesService.findAllByNamesLike(role)) {
+            users.addAll(usersRepository.findByRole(rolesEntity));
+        }
+        return users;
     }
 
     public UsersEntity findByEmail(String email) {

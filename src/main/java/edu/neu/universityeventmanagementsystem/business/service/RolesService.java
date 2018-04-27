@@ -39,4 +39,8 @@ public class RolesService {
     public List<RolesEntity> findAll() {
         return rolesRepository.findAll();
     }
+
+    public List<RolesEntity> findAllByNamesLike(String name) {
+        return rolesRepository.findAllByNamesLike(name);
+    }
 }

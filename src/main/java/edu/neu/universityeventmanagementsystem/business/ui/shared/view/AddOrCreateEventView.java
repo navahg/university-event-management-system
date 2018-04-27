@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * CreateEventView class
+ * AddOrCreateEventView class
  *
  * @author Raghavan Renganathan <renganathan.r@husky.neu.edu>
  * @version 1.0
@@ -20,29 +20,63 @@ import java.util.List;
  */
 @Component
 @Lazy
-public class CreateEventView extends javax.swing.JDialog {
+public class AddOrCreateEventView extends javax.swing.JDialog {
 
     public static final int NAME_ERROR = 0;
     public static final int LOCATION_ERROR = 1;
     public static final int TIME_ERROR = 2;
     public static final int AUDIENCE_ERROR = 3;
 
-    private static final Logger log = Logger.getLogger(CreateEventView.class);
+    private static final Logger log = Logger.getLogger(AddOrCreateEventView.class);
     private List<JLabel> errorLabels;
 
-    private CreateEventView() {
+    private AddOrCreateEventView() {
         this(new JFrame(), true);
     }
 
     /**
      * Creates new form CreateEventView
      */
-    public CreateEventView(java.awt.Frame parent, boolean modal) {
+    public AddOrCreateEventView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         errorLabels = new ArrayList<>(Arrays.asList(lblEventNameError, lblEventLocationError, lblEventTimeError,
                 lblEventAudienceError));
         hideAllErrors();
+    }
+
+    public void makeReadOnly() {
+        txtAreaInvites.setVisible(false);
+        btnAddInvitee.setVisible(false);
+        btnCreate.setVisible(false);
+
+        txtFieldEventName.setEditable(false);
+        txtFieldEventLocation.setEditable(false);
+        spinnerEventStart.setEnabled(false);
+        spinnerEventEnd.setEnabled(false);
+        spinnerMaxSeats.setEnabled(false);
+
+        comboEventGroup.setVisible(false);
+        comboEventLevel.setVisible(false);
+        checkBoxOpenEvent.setEnabled(false);
+        checkBoxSendNotifications.setVisible(false);
+    }
+
+    public void makeEditable() {
+        txtAreaInvites.setVisible(true);
+        btnAddInvitee.setVisible(true);
+        btnCreate.setVisible(true);
+
+        txtFieldEventName.setEditable(true);
+        txtFieldEventLocation.setEditable(true);
+        spinnerEventStart.setEnabled(true);
+        spinnerEventEnd.setEnabled(true);
+        spinnerMaxSeats.setEnabled(true);
+
+        comboEventGroup.setVisible(true);
+        comboEventLevel.setVisible(true);
+        checkBoxOpenEvent.setEnabled(true);
+        checkBoxSendNotifications.setVisible(true);
     }
 
     public void hideAllErrors() {

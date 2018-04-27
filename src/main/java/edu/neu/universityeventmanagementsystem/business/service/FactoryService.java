@@ -78,16 +78,16 @@ public class FactoryService {
 
     public Map.Entry<String, Integer> findOrganizationOfUser(UsersEntity user) {
         Map<String, Integer> result = new HashMap<>(1);
-        if (user.getCollegeMembersByIdUser() != null) {
-            result.put("colleges", user.getCollegeMembersByIdUser().getCollegesByIdCollege().getIdCollege());
-        } else if (user.getProgramMembersByIdUser() != null) {
+        if (user.getProgramMembersByIdUser() != null) {
             result.put("programs", user.getProgramMembersByIdUser().getProgramsByIdProgram().getIdProgram());
         } else if (user.getAdminWingMembersByIdUser() != null) {
             result.put("admin_wing", user.getAdminWingMembersByIdUser().getAdminWingByIdAdminWing().getIdAdminWing());
         } else if (user.getCouncilMembersByIdUser() != null) {
             result.put("councils", user.getCouncilMembersByIdUser().getCouncilsByIdCouncil().getIdCouncil());
+        } else if (user.getCollegeMembersByIdUser() != null) {
+            result.put("colleges", user.getCollegeMembersByIdUser().getCollegesByIdCollege().getIdCollege());
         } else {
-            return null;
+            result.put("university", 0);
         }
 
         return result.entrySet().iterator().next();
@@ -95,16 +95,16 @@ public class FactoryService {
 
     public Map.Entry<String, String> findOrganizationNameOfUser(UsersEntity user) {
         Map<String, String> result = new HashMap<>(1);
-        if (user.getCollegeMembersByIdUser() != null) {
-            result.put("colleges", user.getCollegeMembersByIdUser().getCollegesByIdCollege().getName());
-        } else if (user.getProgramMembersByIdUser() != null) {
+        if (user.getProgramMembersByIdUser() != null) {
             result.put("programs", user.getProgramMembersByIdUser().getProgramsByIdProgram().getName());
         } else if (user.getAdminWingMembersByIdUser() != null) {
             result.put("admin_wing", user.getAdminWingMembersByIdUser().getAdminWingByIdAdminWing().getName());
         } else if (user.getCouncilMembersByIdUser() != null) {
             result.put("councils", user.getCouncilMembersByIdUser().getCouncilsByIdCouncil().getName());
+        } else if (user.getCollegeMembersByIdUser() != null) {
+            result.put("colleges", user.getCollegeMembersByIdUser().getCollegesByIdCollege().getName());
         } else {
-            return null;
+            result.put("university", "university");
         }
 
         return result.entrySet().iterator().next();

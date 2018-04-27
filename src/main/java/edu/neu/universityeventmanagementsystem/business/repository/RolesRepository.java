@@ -19,4 +19,7 @@ import java.util.List;
 public interface RolesRepository extends JpaRepository<RolesEntity, Integer> {
     @Query("SELECT r FROM RolesEntity r WHERE LOWER(r.name) = LOWER(:name)")
     List<RolesEntity> findByName(@Param("name") String role);
+
+    @Query("SELECT r FROM RolesEntity r WHERE r.name LIKE CONCAT('%', :name, '%')")
+    List<RolesEntity> findAllByNamesLike(@Param("name") String name);
 }

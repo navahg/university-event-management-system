@@ -191,6 +191,21 @@ CREATE TABLE events (
 );
 
 /*======================================================================================================*/
+/* Table: event_request                                                                                        */
+/*======================================================================================================*/
+CREATE TABLE event_request (
+  id_event_request  INTEGER   NOT NULL  AUTO_INCREMENT,
+  id_event          INTEGER   NOT NULL,
+  id_hierarchy      INTEGER   NOT NULL,
+  id_entity         INTEGER   NOT NULL,
+  PRIMARY KEY (id_event_request),
+  FOREIGN KEY (id_event) REFERENCES events (id_event)
+    ON DELETE CASCADE,
+  FOREIGN KEY (id_hierarchy) REFERENCES hierarchy (id_hierarchy)
+    ON DELETE CASCADE
+);
+
+/*======================================================================================================*/
 /* Table: college_members                                                                               */
 /*======================================================================================================*/
 CREATE TABLE college_members (

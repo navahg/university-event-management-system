@@ -35,6 +35,7 @@ public class EventRequestView extends javax.swing.JPanel {
 
     public EventRequestView(EventsEntity event, int role) {
         if (event == null) return;
+        this.event = event;
         initComponents();
 
         if (role == ADMIN_ROLE) {
@@ -82,6 +83,10 @@ public class EventRequestView extends javax.swing.JPanel {
     public void setEventView(java.awt.Component view) {
         eventPanel.removeAll();
         eventPanel.add(view);
+    }
+
+    public EventsEntity getEvent() {
+        return event;
     }
 
     /**

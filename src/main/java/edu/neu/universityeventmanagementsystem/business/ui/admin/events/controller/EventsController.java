@@ -1,7 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.ui.admin.events.controller;
 
 import edu.neu.universityeventmanagementsystem.business.ui.admin.events.view.EventsView;
-import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.CreateEventController;
+import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.AddOrCreateEventController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.InnerViewController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,17 +30,17 @@ public class EventsController extends FormController implements InnerViewControl
 
     private EventsView eventsView;
     private ApplicationContext context;
-    private CreateEventController createEventController;
+    private AddOrCreateEventController addOrCreateEventController;
 
     @Autowired
     public EventsController(EventsView eventsView,
                             ApplicationContext context,
-                            CreateEventController createEventController) {
+                            AddOrCreateEventController addOrCreateEventController) {
         currentView = MANAGE_EVENTS;
 
         this.eventsView = eventsView;
         this.context = context;
-        this.createEventController = createEventController;
+        this.addOrCreateEventController = addOrCreateEventController;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class EventsController extends FormController implements InnerViewControl
     }
 
     private void showAddEventForm(ActionEvent event) {
-        createEventController.prepareAndOpenForm();
+        addOrCreateEventController.prepareAndOpenForm();
     }
 
     private void changeView(ActionEvent event) {

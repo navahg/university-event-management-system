@@ -22,6 +22,6 @@ public interface HierarchyRepository extends JpaRepository<HierarchyEntity, Inte
     @Query("SELECT h FROM HierarchyEntity h WHERE LOWER(h.tableName) = LOWER(:tableName)")
     Optional<HierarchyEntity> findByTableName(@Param("tableName") String tableName);
 
-    @Query("SELECT h FROM HierarchyEntity h WHERE h.level < :level")
-    List<HierarchyEntity> findAllLesserThanLevel(@Param("level") int level);
+    @Query("SELECT h FROM HierarchyEntity h WHERE h.level = :level")
+    Optional<HierarchyEntity> findByLevel(@Param("level") int level);
 }

@@ -1,9 +1,7 @@
 package edu.neu.universityeventmanagementsystem.business.ui.admin.infrastructure.controller;
 
-import edu.neu.universityeventmanagementsystem.business.entity.AdminWingEntity;
-import edu.neu.universityeventmanagementsystem.business.entity.CollegesEntity;
-import edu.neu.universityeventmanagementsystem.business.entity.CouncilsEntity;
-import edu.neu.universityeventmanagementsystem.business.entity.ProgramsEntity;
+import edu.neu.universityeventmanagementsystem.business.beans.CurrentUserBean;
+import edu.neu.universityeventmanagementsystem.business.entity.*;
 import edu.neu.universityeventmanagementsystem.business.service.AdminWingService;
 import edu.neu.universityeventmanagementsystem.business.service.CollegesService;
 import edu.neu.universityeventmanagementsystem.business.service.CouncilsService;
@@ -11,6 +9,7 @@ import edu.neu.universityeventmanagementsystem.business.service.ProgramsService;
 import edu.neu.universityeventmanagementsystem.business.ui.admin.infrastructure.view.InfrastructureView;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.InnerViewController;
+import edu.neu.universityeventmanagementsystem.business.util.ConstantValues;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -19,6 +18,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * InfrastructureController class
@@ -37,17 +37,19 @@ public final class InfrastructureController extends FormController implements In
     private AdminWingService adminWingService;
     private CouncilsService councilsService;
     private CollegesEntity selectedCollege;
+    private CurrentUserBean currentUserBean;
     private int currentView;
 
     @Autowired
     public InfrastructureController(InfrastructureView infrastructureView, CollegesService collegesService,
                                     ProgramsService programsService, AdminWingService adminWingService,
-                                    CouncilsService councilsService) {
+                                    CouncilsService councilsService, CurrentUserBean currentUserBean) {
         this.infrastructureView = infrastructureView;
         this.collegesService = collegesService;
         this.programsService = programsService;
         this.adminWingService = adminWingService;
         this.councilsService = councilsService;
+        this.currentUserBean = currentUserBean;
         currentView = 0;
         selectedCollege = null;
     }
@@ -56,11 +58,42 @@ public final class InfrastructureController extends FormController implements In
     public void prepareAndOpenForm() {
         registerEvents();
         populateMainList();
+        restrictView();
+    }
+
+    private void restrictView() {
+        RolesEntity role = currentUserBean.getCurrentUser().getRolesByIdRole();
+        if (role.getPrivilegeLevel() < ConstantValues.RolePrivilegeLevel.SYSTEM_ADMIN)
+            infrastructureView.hideAddDeleteCollegesControl();
+
+        if (role.getPrivilegeLevel() < ConstantValues.RolePrivilegeLevel.NETWORK_ADMIN) {
+            for (JButton jButton : infrastructureView.getPanelButtons()) {
+                jButton.setVisible(false);
+            }
+            infrastructureView.setEnterpriseLabel(role.getHierarchyByIdHierarchy().getTableName());
+            switch (role.getHierarchyByIdHierarchy().getTableName()) {
+                case ConstantValues.Hierarchy.PROGRAM:
+                    currentView = 0;
+                    break;
+                case ConstantValues.Hierarchy.ADMIN_WING:
+                    currentView = 1;
+                    break;
+                case ConstantValues.Hierarchy.COUNCIL:
+                    currentView = 2;
+                    break;
+            }
+        }
     }
 
     private void populateMainList() {
         List<String> colleges = new ArrayList<>();
-        collegesService.findAll().forEach(collegesEntity -> colleges.add(collegesEntity.getName()));
+        RolesEntity role = currentUserBean.getCurrentUser().getRolesByIdRole();
+        if (role.getPrivilegeLevel() == ConstantValues.RolePrivilegeLevel.SYSTEM_ADMIN) {
+            collegesService.findAll().forEach(collegesEntity -> colleges.add(collegesEntity.getName()));
+        } else {
+            colleges.add(currentUserBean.getCurrentUser().getCollegeMembersByIdUser().getCollegesByIdCollege().getName());
+        }
+
         infrastructureView.populateLists(colleges, InfrastructureView.MAIN_LIST_INDEX);
     }
 

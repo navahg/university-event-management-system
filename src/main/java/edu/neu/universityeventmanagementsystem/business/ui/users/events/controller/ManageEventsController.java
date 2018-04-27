@@ -5,7 +5,7 @@ import edu.neu.universityeventmanagementsystem.business.entity.EventStatusEntity
 import edu.neu.universityeventmanagementsystem.business.entity.EventsEntity;
 import edu.neu.universityeventmanagementsystem.business.entity.UsersEntity;
 import edu.neu.universityeventmanagementsystem.business.service.EventsService;
-import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.CreateEventController;
+import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.AddOrCreateEventController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.EventRequestController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.FormController;
 import edu.neu.universityeventmanagementsystem.business.ui.shared.controller.InnerViewController;
@@ -34,19 +34,19 @@ public class ManageEventsController extends FormController implements InnerViewC
     private ManageEventsView manageEventsView;
     private CurrentUserBean currentUserBean;
     private EventRequestController eventRequestController;
-    private CreateEventController createEventController;
+    private AddOrCreateEventController addOrCreateEventController;
 
     @Autowired
     public ManageEventsController(EventsService eventsService,
                                   ManageEventsView manageEventsView,
                                   CurrentUserBean currentUserBean,
                                   EventRequestController eventRequestController,
-                                  CreateEventController createEventController) {
+                                  AddOrCreateEventController addOrCreateEventController) {
         this.eventsService = eventsService;
         this.manageEventsView = manageEventsView;
         this.currentUserBean = currentUserBean;
         this.eventRequestController = eventRequestController;
-        this.createEventController = createEventController;
+        this.addOrCreateEventController = addOrCreateEventController;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ManageEventsController extends FormController implements InnerViewC
     }
 
     private void showAddEventForm(ActionEvent event) {
-        createEventController.prepareAndOpenForm();
+        addOrCreateEventController.prepareAndOpenForm();
     }
 
     private void populateEvents() {
